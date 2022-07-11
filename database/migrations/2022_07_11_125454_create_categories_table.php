@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('photo')->nullable();
-            $table->boolean('is_parent')->default('true');
+            $table->boolean('is_parent')->default(true);
             $table->mediumText('summary')->nullable();
-            $table->unsignedBigInteger('parent-id');
-            $table->foreign('id')->references('categories')->onDelete('SET NULL');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->enum('status',['inactive','active'])->default('inactive');
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

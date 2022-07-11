@@ -78,10 +78,27 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                        <i class="icon-list nav-icon"></i>
-                        <p>Category Management</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-list"></i>
+                        <p>
+                            Category Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('category.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('category.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add Category</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="pages/layout/boxed.html" class="nav-link">

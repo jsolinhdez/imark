@@ -26,7 +26,6 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Inicia Sesión en <strong>iMarK</strong></p>
-
             <form action="{{ route('login')  }}" method="post">
                 @csrf
 

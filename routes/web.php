@@ -21,7 +21,16 @@ Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Admin Dashboard
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
     Route::get('/',[\App\Http\Controllers\AdminController::class,'admin'])->name('admin');
+
+    //Banner Section
+    Route::resource('/banner', \App\Http\Controllers\BannerController::class);
+    Route::post('banner_status',[\App\Http\Controllers\BannerController::class,'bannerStatus'])->name('banner.status');
+
 });
+
+
+

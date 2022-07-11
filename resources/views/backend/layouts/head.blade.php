@@ -23,6 +23,15 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/adminlte.min.css') }}">
     <!-- Simple Icons -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/simple-line-icons.css') }}">
-
+    <!-- Database Data -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Summernote -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/summernote/summernote-bs4.min.css') }}">
+    <!-- Buttton Swicht Bootstrap -->
+    <link href="{{ asset('backend/assets/plugins/switch-button-bootstrap/css/bootstrap-switch-button.min.css') }}" rel="stylesheet">
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.css') }}">
 
 </head>

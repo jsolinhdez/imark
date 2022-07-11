@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="backend/assets/img/AdminLTELogo.png" alt="AdminLTE Logo"
+    <a href="{{ route('admin') }}" class="brand-link">
+        <img src="/backend/assets/img/AdminLTELogo.png" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">iMarK</span>
     </a>
@@ -11,7 +11,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="backend/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="/backend/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Julio Alejandro Hdez</a>
@@ -19,17 +19,7 @@
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                       aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -45,95 +35,120 @@
                         </p>
                     </a>
                 </li>
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                               aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon icon-grid"></i>
                         <p>
                             Management
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
+                        </p>
+                    </a>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-picture"></i>
+                        <p>
+                            Banner Management
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
-                                <i class="icon-picture nav-icon"></i>
-                                <p>Banner Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                <i class="icon-list nav-icon"></i>
-                                <p>Category Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
-                                <i class="icon-briefcase nav-icon"></i>
-                                <p>Products Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                <i class="icon-basket-loaded nav-icon"></i>
-                                <p>Carts Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                                <i class="icon-notebook nav-icon"></i>
-                                <p>Order Management </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                                <i class="icon-pencil nav-icon"></i>
-                                <p>Post Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/fixed-footer.html" class="nav-link">
-                                <i class="icon-tag nav-icon"></i>
-                                <p>Post Tag</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="icon-plus nav-icon"></i>
-                                <p>Post Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                            <a href="{{ route('banner.index') }}" class="nav-link">
                                 <i class="icon-eye nav-icon"></i>
-                                <p>Review Management</p>
+                                <p>All Banners</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="icon-present nav-icon"></i>
-                                <p>Coupon Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="icon-user nav-icon"></i>
-                                <p>User Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="icon-bubbles nav-icon"></i>
-                                <p>Comments Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                <i class="icon-settings nav-icon"></i>
-                                <p>Settings</p>
+                            <a href="{{ route('banner.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add Banner</p>
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                        <i class="icon-list nav-icon"></i>
+                        <p>Category Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/boxed.html" class="nav-link">
+                        <i class="icon-briefcase nav-icon"></i>
+                        <p>Products Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                        <i class="icon-basket-loaded nav-icon"></i>
+                        <p>Carts Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                        <i class="icon-notebook nav-icon"></i>
+                        <p>Order Management </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                        <i class="icon-pencil nav-icon"></i>
+                        <p>Post Category</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/fixed-footer.html" class="nav-link">
+                        <i class="icon-tag nav-icon"></i>
+                        <p>Post Tag</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-plus nav-icon"></i>
+                        <p>Post Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-eye nav-icon"></i>
+                        <p>Review Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-present nav-icon"></i>
+                        <p>Coupon Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-user nav-icon"></i>
+                        <p>User Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-bubbles nav-icon"></i>
+                        <p>Comments Management</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                        <i class="icon-settings nav-icon"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
                 </li>
                 </br>
                 </br>

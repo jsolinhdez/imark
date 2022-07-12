@@ -76,9 +76,9 @@
 
 
                                     <div class="col-md-6 form-group">
-                                        <label for="condition">Condition</label>
+                                        <label for="condition">Condition<span class="text-danger"> *</span></label>
                                         <select name="condition" class="custom-select rounded-0">
-                                            <option value="">--Chosse status--</option>
+                                            <option value="">--Chosse condition--</option>
                                             <option value="banner" {{ old('condition'== 'banner' ? 'selected' : '') }}>
                                                 Bannner
                                             </option>
@@ -88,7 +88,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="status">Status</label>
+                                        <label for="status">Status<span class="text-danger"> *</span></label>
                                         <select name="status" class="custom-select rounded-0">
                                             <option value="">--Chosse status--</option>
                                             <option value="active" {{ old('status'== 'active' ? 'selected' : '') }}>

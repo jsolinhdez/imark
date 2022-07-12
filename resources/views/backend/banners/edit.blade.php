@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <label for="condition">Condition</label>
+                                        <label for="condition">Condition<span class="text-danger"> *</span></label>
                                         <select name="condition" class="custom-select rounded-0">
                                             <option value="">--Chosse condition--</option>
                                             <option value="banner" {{  $banner->condition == 'banner' ? 'selected' : '' }}>

@@ -55,7 +55,7 @@ class CategoryController extends Controller
             'title' => 'string|required',
             'summary' => 'string|nullable',
             'is_parent' => 'sometimes|in:1',
-            'parent_id' => 'nullable',
+            'parent_id' => 'nullable|exists:categories,id',
             'status' => 'in:active,inactive'
         ]);
         $data = $request->all();
@@ -123,7 +123,7 @@ class CategoryController extends Controller
                 'title' => 'string|required',
                 'summary' => 'string|nullable',
                 'is_parent' => 'sometimes|in:1',
-                'parent_id' => 'nullable',
+                'parent_id' => 'nullable|exists:categories,id',
                 'status' => 'in:active,inactive'
             ]);
             $data = $request->all();
@@ -152,9 +152,13 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        $child_cat_id = Category::where('parent_id',$id)->pluck('id');
         if ($category) {
             $status = $category->delete();
             if ($status) {
+                if (count($child_cat_id)>0){
+                    Category::shiftChild($child_cat_id);
+                }
                 return redirect()->route('category.index')->with('success', 'Category delete successfully');
             }
         } else {

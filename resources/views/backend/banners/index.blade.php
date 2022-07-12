@@ -155,17 +155,22 @@
                 },
                 success: function (response) {
                     if (response.status) {
+                        const randomId = `banner-alert-${Math.floor(Math.random() * 1000)}`
                         const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
                         const alert = (message, type) => {
                             const wrapper = document.createElement('div')
                             wrapper.innerHTML = [
-                                `<div class="alert alert-${type} alert-dismissible" id="banner-alert" role="alert">`,
+                                `<div class="alert-dismissible fade show alert alert-${type} alert-dismissible" id="${randomId}" role="alert">`,
                                 `   <div>${message}</div>`,
                                 '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
                                 '</div>'
                             ].join('')
 
                             alertPlaceholder.append(wrapper)
+                            setTimeout(function () {
+                                const query = "#"+ randomId
+                                $(query).slideUp();
+                            }, 1500);
                         }
 
                         alert('Nice, you edit this banner status!', 'success')
@@ -176,9 +181,7 @@
                 }
             })
         });
-        setTimeout(function () {
-            $('#banner-alert').slideUp();
-        }, 3000);
+
     </script>
 @endsection
 

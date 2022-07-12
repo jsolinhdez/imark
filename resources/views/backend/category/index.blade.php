@@ -18,8 +18,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class=" card-title">All Categories
-                                <a class="btn ml-2 btn-outline-secondary" href=" {{ route('category.create') }}"><i class="mr-1 icon-plus"></i>Add Category</a></h3>
-                                <p class="float-right">Total Categories: <strong>{{ \App\Models\Category::count() }}</strong></p>
+                                    <a class="btn ml-2 btn-outline-secondary" href=" {{ route('category.create') }}"><i
+                                            class="mr-1 icon-plus"></i>Add Category</a></h3>
+                                <p class="float-right">Total Categories:
+                                    <strong>{{ \App\Models\Category::count() }}</strong></p>
 
                             </div>
 
@@ -42,7 +44,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td><img src="{{ $item->photo }}"  style="max-width:150px;max-height:90px;"
+                                            <td><img src="{{ $item->photo }}" style="max-width:150px;max-height:90px;"
                                                      alt="category image"></td>
                                             <td>{{ $item->is_parent===1 ? 'Yes' : 'No' }}</td>
                                             <td>{{ \App\Models\Category::where('id',$item->parent_id)->value('title') }}</td>
@@ -56,10 +58,12 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('category.edit', $item->id) }}"
-                                                   class="btn float-left btn-sm btn-outline-warning" data-toggle="tooltip"
+                                                   class="btn float-left btn-sm btn-outline-warning"
+                                                   data-toggle="tooltip"
                                                    title="Edit" data-popper-placement="bottom"><i
                                                         class=" icon-note"></i></a>
-                                                <form class="float-left ml-2" action="{{ route('category.destroy',$item->id) }}" method="post">
+                                                <form class="float-left ml-2"
+                                                      action="{{ route('category.destroy',$item->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="" class="dltBtn btn btn-sm btn-outline-danger"
@@ -110,7 +114,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.dltBtn').click(function (e){
+        $('.dltBtn').click(function (e) {
             var form = $(this).closest('form');
             var dataID = $(this).data('id');
             e.preventDefault();
@@ -139,7 +143,7 @@
             var mode = $(this).prop('checked');
             var id = $(this).val();
             $.ajax({
-                url: "{{ route('category.status') }}",
+                url: "{{ route('banner.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -148,17 +152,22 @@
                 },
                 success: function (response) {
                     if (response.status) {
+                        const randomId = `banner-alert-${Math.floor(Math.random() * 1000)}`
                         const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
                         const alert = (message, type) => {
                             const wrapper = document.createElement('div')
                             wrapper.innerHTML = [
-                                `<div class="alert alert-${type} alert-dismissible" id="category-alert" role="alert">`,
+                                `<div class="alert-dismissible fade show alert alert-${type} alert-dismissible" id="${randomId}" role="alert">`,
                                 `   <div>${message}</div>`,
                                 '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
                                 '</div>'
                             ].join('')
 
                             alertPlaceholder.append(wrapper)
+                            setTimeout(function () {
+                                const query = "#" + randomId
+                                $(query).slideUp();
+                            }, 1500);
                         }
 
                         alert('Nice, you edit this banner status!', 'success')
@@ -169,9 +178,7 @@
                 }
             })
         });
-        setTimeout(function () {
-            $('#category-alert').slideUp();
-        }, 3000);
+
     </script>
 @endsection
 

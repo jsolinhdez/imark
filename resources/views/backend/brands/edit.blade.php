@@ -33,7 +33,7 @@
                                 @method('PATCH')
                                 <div class="row card-body">
                                     <div class="form-group">
-                                        <label for="title">Título<span class="text-danger"> *</span></label>
+                                        <label for="title">Título</label>
                                         <input type="text" class="form-control" name="title"
                                                value="{{ $brand->title }}"
                                                placeholder="Introduzca el título">
@@ -44,7 +44,7 @@
                                         <div class="card card-outline card-info">
                                             <div class="card-header">
                                                 <h3 class="card-title">
-                                                    Photo
+                                                    Photo<span class="text-danger"> *</span>
                                                 </h3>
                                             </div>
                                             <div class="input-group">

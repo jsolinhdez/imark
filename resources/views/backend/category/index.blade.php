@@ -17,7 +17,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class=" card-title">All Categories</h3>
+                                <h3 class=" card-title">All Categories
+                                <a class="btn ml-2 btn-outline-secondary" href=" {{ route('category.create') }}"><i class="mr-1 icon-plus"></i>Add Category</a></h3>
                                 <p class="float-right">Total Categories: <strong>{{ \App\Models\Category::count() }}</strong></p>
 
                             </div>
@@ -27,7 +28,7 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Serial Number</th>
+                                        <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Photo</th>
                                         <th>Is Parent</th>
@@ -44,7 +45,7 @@
                                             <td><img src="{{ $item->photo }}"  style="max-width:150px;max-height:90px;"
                                                      alt="category image"></td>
                                             <td>{{ $item->is_parent===1 ? 'Yes' : 'No' }}</td>
-                                            <td>{{ $item->parent_id }}</td>
+                                            <td>{{ \App\Models\Category::where('id',$item->parent_id)->value('title') }}</td>
                                             <td>
                                                 <input type="checkbox" name="toogle" value="{{ $item->id }}"
                                                        {{ $item->status=='active' ? 'checked' : '' }}
@@ -74,7 +75,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Serial Number</th>
+                                        <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Photo</th>

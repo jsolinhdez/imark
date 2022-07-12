@@ -31,41 +31,22 @@
                                 @csrf
                                 <div class="row card-body">
                                     <div class="form-group">
-                                        <label for="title">Título<span class="text-danger"> *</span></label>
+                                        <label for="title">Title<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control" name="title" value="{{ old('title') }}"
-                                               placeholder="Introduzca el título">
+                                               placeholder="Enter title">
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <div class="card card-outline card-info">
-                                            <div class="card-header">
-                                                <h3 class="card-title">
-                                                    Descripción
-                                                </h3>
-                                            </div>
-                                            <!-- /.card-header -->
-                                            <div class="card-body">
-                                          <textarea rows="3" name="description" id="description"
-                                                    placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
-                                                    class="form-control">
-
-                                          </textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                     <div class="form-group">
                                         <div class="card card-outline card-info">
                                             <div class="card-header">
                                                 <h3 class="card-title">
-                                                    Foto
+                                                    Photo
                                                 </h3>
                                             </div>
                                             <div class="input-group">
                                                <span class="input-group-btn">
                                                  <a id="lfm" data-input="thumbnail" data-preview="holder"
                                                     class="btn btn-primary">
-                                                   <i class="fa fa-picture-o"></i> Seleccione
+                                                   <i class="fa fa-picture-o"></i> Chosse
                                                  </a>
                                                </span>
                                                 <input id="thumbnail" class="form-control" type="text" name="photo">
@@ -74,10 +55,30 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group col-md-12">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Description
+                                                </h3>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                          <textarea rows="3" name="description" id="description"
+                                                    placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
+                                                    class="form-control">{{ old('description') }}
+
+                                          </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="col-md-6 form-group">
-                                        <label for="condition">Condición</label>
+                                        <label for="condition">Condition</label>
                                         <select name="condition" class="custom-select rounded-0">
-                                            <option value="">--Seleccione la condición--</option>
+                                            <option value="">--Chosse status--</option>
                                             <option value="banner" {{ old('condition'== 'banner' ? 'selected' : '') }}>
                                                 Bannner
                                             </option>
@@ -87,9 +88,9 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="status">Estado</label>
+                                        <label for="status">Status</label>
                                         <select name="status" class="custom-select rounded-0">
-                                            <option value="">--Seleccione el estado--</option>
+                                            <option value="">--Chosse status--</option>
                                             <option value="active" {{ old('status'== 'active' ? 'selected' : '') }}>
                                                 Activo
                                             </option>

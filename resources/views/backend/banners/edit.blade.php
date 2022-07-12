@@ -97,7 +97,7 @@
 
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <input class="btn btn-outline-secondary" type="button" value="Cancel" onclick="history.back()"/>
 
                                 </div>

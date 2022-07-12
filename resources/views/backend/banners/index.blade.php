@@ -17,7 +17,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class=" card-title">All Banners</h3>
+                                <h3 class=" card-title">All Banners
+                                    <a class="btn ml-2 btn-outline-secondary" href=" {{ route('banner.create') }}"><i class="mr-1 icon-plus"></i>Add Banner</a></h3>
+
                                 <p class="float-right">Total Banners: <strong>{{ \App\Models\Banner::count() }}</strong></p>
 
                             </div>
@@ -27,7 +29,7 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Serial Number</th>
+                                        <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Photo</th>
@@ -80,7 +82,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Serial Number</th>
+                                        <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Photo</th>

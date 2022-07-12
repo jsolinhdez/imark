@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>iMarK &copy; 2022 <a href="https://adminlte.io">Julio Alejandro Hernandez Lopez</a>.</strong>
+    <strong>iMarK &copy; 2022 <a href="https://twitter.com/jsolinhdez" target="-_blank">Julio Alejandro Hernandez Lopez</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0

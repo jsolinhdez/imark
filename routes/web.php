@@ -32,7 +32,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
     //Category Section
     Route::resource('/category', \App\Http\Controllers\CategoryController::class);
     Route::post('category_status',[\App\Http\Controllers\CategoryController::class,'categoryStatus'])->name('category.status');
-
+    //Brand Section
+    Route::resource('/brand', \App\Http\Controllers\BrandController::class);
+    Route::post('brand_status',[\App\Http\Controllers\BrandController::class,'brandStatus'])->name('brand.status');
 });
 
 

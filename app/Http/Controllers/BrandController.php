@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-
-class BannerController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +16,19 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::orderby('id', 'DESC')->get();
-        return view('backend.banners.index', compact('banners'));
+        $brands = Brand::orderby('id', 'DESC')->get();
+        return view('backend.brands.index', compact('brands'));
     }
 
-    public function bannerStatus(Request $request)
+    public function brandStatus(Request $request)
     {
         if ($request->mode == 'true') {
-            DB::table('banners')->where('id', $request->id)->update(['status' => 'active']);
+            DB::table('brands')->where('id', $request->id)->update(['status' => 'active']);
         } else {
-            DB::table('banners')->where('id', $request->id)->update(['status' => 'inactive']);
+            DB::table('brands')->where('id', $request->id)->update(['status' => 'inactive']);
         }
         return response()->json(['msg' => 'Successfully update status', 'status' => true]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -38,34 +36,32 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('backend.banners.create');
+        return view('backend.brands.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'string|required',
-            'description' => 'string|nullable',
+            'title' => 'nullable|string',
             'photo' => 'required',
-            'condition' => 'required|in:banner,promo',
-            'status' => 'required|in:active,inactive'
+            'status' => 'nullable|in:active,inactive'
         ]);
         $data = $request->all();
         $slug = Str::slug($request->input('title'));
-        $slug_count = Banner::where('slug', $slug)->count();
+        $slug_count = Brand::where('slug', $slug)->count();
         if ($slug_count > 0) {
             $slug = time() . '-' . $slug;
         }
         $data['slug'] = $slug;
-        $status = Banner::create($data);
+        $status = Brand::create($data);
         if ($status) {
-            return redirect()->route('banner.index')->with('success', 'Banner create successfully');
+            return redirect()->route('brand.index')->with('success', 'Brand create successfully');
         } else {
             return back()->with('error', 'Something went wrong');
         }
@@ -74,7 +70,7 @@ class BannerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -85,14 +81,14 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $banner = Banner::find($id);
-        if ($banner) {
-            return view('backend.banners.edit', compact('banner'));
+        $brand = Brand::find($id);
+        if ($brand) {
+            return view('backend.brands.edit', compact('brand'));
         } else {
             return back()->with('error', 'Data no found');
         }
@@ -101,25 +97,23 @@ class BannerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $banner = Banner::find($id);
-        if ($banner) {
+        $brand = Brand::find($id);
+        if ($brand) {
             $this->validate($request, [
                 'title' => 'string|required',
-                'description' => 'string|nullable',
                 'photo' => 'required',
-                'condition' => 'required|in:banner,promo',
                 'status' => 'in:active,inactive'
             ]);
             $data = $request->all();
-            $status = $banner->fill($data)->save();
+            $status = $brand->fill($data)->save();
             if ($status) {
-                return redirect()->route('banner.index')->with('success', 'Banner create successfully');
+                return redirect()->route('brand.index')->with('success', 'Brand create successfully');
             } else {
                 return back()->with('error', 'Something went wrong');
             }
@@ -131,16 +125,16 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $banner = Banner::find($id);
-        if ($banner) {
-            $status=$banner->delete();
+        $brand = Brand::find($id);
+        if ($brand) {
+            $status=$brand->delete();
             if ($status){
-                return redirect()->route('banner.index')->with('success', 'Banner delete successfully');
+                return redirect()->route('brand.index')->with('success', 'brand delete successfully');
             }
         } else {
             return back()->with('error', 'Something went wrong');

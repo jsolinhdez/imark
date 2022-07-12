@@ -101,6 +101,29 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-star"></i>
+                        <p>
+                            Brand Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('brand.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All Brand</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('brand.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add Brand</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="pages/layout/boxed.html" class="nav-link">
                         <i class="icon-briefcase nav-icon"></i>
                         <p>Products Management</p>

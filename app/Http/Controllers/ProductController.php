@@ -29,7 +29,15 @@ class ProductController extends Controller
         }
         return response()->json(['msg' => 'Successfully update status', 'status' => true]);
     }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.product.create');
+    }
     /**
      * Store a newly created resource in storage.
      *

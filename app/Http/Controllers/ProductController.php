@@ -98,7 +98,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            return view('backend.product.edit', compact('product'));
+        } else {
+            return back()->with('error', 'Category no found');
+        }
     }
 
     /**

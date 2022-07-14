@@ -56,7 +56,7 @@ class CategoryController extends Controller
             'summary' => 'string|nullable',
             'is_parent' => 'sometimes|in:1',
             'parent_id' => 'nullable|exists:categories,id',
-            'status' => 'in:active,inactive'
+            'status' => 'required|in:active,inactive'
         ]);
         $data = $request->all();
         $slug = Str::slug($request->input('title'));
@@ -127,7 +127,7 @@ class CategoryController extends Controller
                 'status' => 'in:active,inactive'
             ]);
             $data = $request->all();
-            if ($request->is_parent==1){
+            if ($request->is_parent == 1) {
                 $data['parent_id'] = null;
             }
             $data['is_parent'] = $request->input('is_parent', 0);
@@ -152,17 +152,32 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        $child_cat_id = Category::where('parent_id',$id)->pluck('id');
+        $child_cat_id = Category::where('parent_id', $id)->pluck('id');
         if ($category) {
             $status = $category->delete();
             if ($status) {
-                if (count($child_cat_id)>0){
+                if (count($child_cat_id) > 0) {
                     Category::shiftChild($child_cat_id);
                 }
                 return redirect()->route('category.index')->with('success', 'Category delete successfully');
             }
         } else {
             return back()->with('error', 'Something went wrong');
+        }
+    }
+
+    public function getChildByParentID(Request $request, $id)
+    {
+        $category = Category::find($request->id);
+        if ($category) {
+            $child_id = Category::getChildByParentID($request->id);
+            if (count($child_id) <= 0) {
+                return response()->json(['status' => false, 'data' => null, 'msg' => '']);
+            } else {
+                return response()->json(['status' => true, 'data' => $child_id, 'msg' => '']);
+            }
+        } else {
+            return response()->json(['status' => false, 'data' => null, 'msg' => 'Category not found']);
         }
     }
 }

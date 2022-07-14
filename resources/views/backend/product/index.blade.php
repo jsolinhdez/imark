@@ -52,12 +52,12 @@
                                             <td>{{ $item->discount}}%</td>
                                             <td>{{ $item->size }}</td>
                                             <td>
-                                                @if($item->conditions=='new')
-                                                    <span class="badge badge-success">{{ $item->conditions }}</span>
-                                                @elseif($item->conditions=='popular')
-                                                    <span class="badge badge-warning">{{ $item->conditions }}</span>
+                                                @if($item->condition=='new')
+                                                    <span class="badge badge-success">{{ $item->condition }}</span>
+                                                @elseif($item->condition=='popular')
+                                                    <span class="badge badge-warning">{{ $item->condition }}</span>
                                                 @else
-                                                    <span class="badge badge-primary">{{ $item->conditions }}</span>
+                                                    <span class="badge badge-primary">{{ $item->condition }}</span>
                                                 @endif
                                             </td>
                                             <td>

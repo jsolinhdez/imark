@@ -70,9 +70,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group col-md-6 card">
-                                        Summary
-                                        <textarea rows="3" name="summary" id="summary"
+                                    <div class="form-group col-md-6 ">
+                                        <label  for="">Summary</label>
+
+                                        <textarea rows="2" name="summary" id="summary"
                                                   placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
                                                   class="form-control">{{ old('summary') }}
                                           </textarea>
@@ -97,20 +98,20 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-3 form-group">
                                         <label for="">Brand<span class="text-danger"> *</span></label>
-                                        <select name="" class="custom-select rounded-0">
-                                            <option value="">--Chosse brand--</option>
+                                        <select name="brand_id" class="custom-select rounded-0">
+                                            <option value="">--Brand--</option>
                                             @foreach(\App\Models\Brand::get() as $brand)
-                                                <option value="">{{ $brand->title }}</option>
+                                                <option value="{{$brand->id}}">{{ $brand->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <label for="status">Status<span class="text-danger"> *</span></label>
+
+                                    <div class="col-md-3 form-group">
+                                        <label for="">Status<span class="text-danger"> *</span></label>
                                         <select name="status" class="custom-select rounded-0">
-                                            <option value="">--Chosse status--</option>
+                                            <option value="">--Status--</option>
                                             <option value="active" {{ old('status'== 'active' ? 'selected' : '') }}>
                                                 Activo
                                             </option>
@@ -120,10 +121,10 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-3 form-group">
                                         <label for="">Size</label>
                                         <select name="size" class="custom-select rounded-0">
-                                            <option value="">--Chosse size--</option>
+                                            <option value="">--Size--</option>
                                             <option value="S" {{ old('size'== 'S' ? 'selected' : '') }}>Small</option>
                                             <option value="M" {{ old('size'== 'M' ? 'selected' : '') }}>Medium</option>
                                             <option value="L" {{ old('size'== 'L' ? 'selected' : '') }}>Large</option>
@@ -131,10 +132,10 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <label for="condition">Condition<span class="text-danger"> *</span></label>
+                                    <div class="col-md-3 form-group">
+                                        <label for="">Condition<span class="text-danger"> *</span></label>
                                         <select name="condition" class="custom-select rounded-0">
-                                            <option value="">--Chosse condition--</option>
+                                            <option value="">--Condition--</option>
                                             <option value="new" {{ old('conditions'== 'new' ? 'selected' : '') }}>
                                                 New
                                             </option>
@@ -146,18 +147,32 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <label for="">Category<span class="text-danger"> *</span></label>
-                                        <select name="condition" class="custom-select rounded-0">
-                                            <option value="">--Chosse category--</option>
 
+                                    <div class="col-md-4 form-group">
+                                        <label for="">Vendor<span class="text-danger"> *</span></label>
+                                        <select name="vendor_id" class="custom-select rounded-0">
+                                            <option value="">--Vendor--</option>
+                                            @foreach(\App\Models\User::where('role','vendor')->get() as $vendor)
+                                                <option value="{{$vendor->id}}">{{ $vendor->full_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4 form-group">
+                                        <label for="">Category<span class="text-danger"> *</span></label>
+                                        <select name="cat_id" id="cat_id" class="custom-select rounded-0">
+                                            <option value="">--Category--</option>
+                                            @foreach(\App\Models\Category::where('is_parent','1')->get() as $cat)
+                                                <option value="{{$cat->id}}">{{ $cat->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group d-none" id="child_cat_div">
                                         <label for="">Child Category<span class="text-danger"> *</span></label>
-                                        <select name="condition" class="custom-select rounded-0">
-                                            <option value="">--Chosse child category--</option>
-
+                                        <select name="child_cat_id" id="child_cat_id" class="custom-select rounded-0">
+                                            <option value="">--Child category--</option>
+                                            @foreach(\App\Models\Category::where('is_parent','0')->get() as $category)
+                                                <option value="{{$category->id}}">{{ $category->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -191,11 +206,31 @@
         })
     </script>
     <script>
-        $('#lfm').filemanager('image');
-        $(function () {
-            // Summernote
-            $('#summary').summernote()
-
-        })
+        $('#cat_id').change(function (){
+           var cat_id = $(this).val();
+           if(cat_id!= null){
+               $.ajax({
+                   url:"/admin/category/"+cat_id+"/child",
+                   type:"POST",
+                   data:{
+                       _token:"{{csrf_token()}}",
+                       cat_id:cat_id,
+                   },
+                   success:function (response){
+                       var html_option = "<option value=''>--Child Category--</option>";
+                       if (response.status){
+                           $('#child_cat_div').removeClass('d-none');
+                           $.each(response.data,function (id,title){
+                              html_option += "<option value='"+id+"'>"+title+"</option>"
+                           });
+                       }
+                       else {
+                           $('#child_cat_div').addClass('d-none');
+                       }
+                       $('#child_cat_id').html(html_option);
+                   }
+               })
+           }
+        });
     </script>
 @endsection

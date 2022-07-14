@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-< lang="en">
 
 <!-- Head -->
 <head>

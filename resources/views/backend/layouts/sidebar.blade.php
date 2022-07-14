@@ -14,10 +14,9 @@
                 <img src="/backend/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Julio Alejandro Hdez</a>
+                <a href="#" class="d-block">Nombre de usuario</a>
             </div>
         </div>
-
         <!-- SidebarSearch Form -->
 
 

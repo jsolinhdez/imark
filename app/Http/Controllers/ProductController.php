@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
@@ -51,18 +53,17 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'title' => 'string|required',
-            'price' => 'numeric|required',
-            'stock' => 'numeric|required',
-            'discount' => 'numeric|nullable',
-            'summary' => 'string|nullable',
+            'summary' => 'string|required',
             'description' => 'string|nullable',
-            'brand_id' => 'numeric|required',
-            'status' => 'required|in:inactive,active',
-            'size' => 'nullable|in:S,M,L,XL',
-            'condition' => 'nullable|in:new,popular,winter',
-            'vendor_id' => 'numeric|nullable',
-            'cat_id' => 'numeric|required',
-            'child_cat_id' => 'numeric|nullable',
+            'price' => 'nullable|numeric',
+            'stock' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+            'photo' => 'required',
+            'cat_id' => 'required|exists:categories,id',
+            'child_cat_id' => 'nullable|exists:categories,id',
+            'size' => 'nullable',
+            'condition' => 'nullable',
+            'status' => 'nullable|in:active,inactive',
         ]);
         $data = $request->all();
         $slug = Str::slug($request->input('title'));
@@ -71,6 +72,7 @@ class ProductController extends Controller
             $slug = time() . '-' . $slug;
         }
         $data['slug'] = $slug;
+        $data['offer_price'] = ($request->price - (($request->price * $request->discount) / 100));
         $status = Product::create($data);
         if ($status) {
             return redirect()->route('product.index')->with('success', 'Product create successfully');
@@ -87,7 +89,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            return view('backend.product.view', compact(['product']));
+        } else {
+            return back()->with('error', 'Product no found');
+        }
     }
 
     /**
@@ -98,6 +105,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+
         $product = Product::find($id);
         if ($product) {
             return view('backend.product.edit', compact('product'));
@@ -115,7 +123,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        if ($product) {
+            $this->validate($request, [
+                'title' => 'string|required',
+                'summary' => 'string|required',
+                'description' => 'string|nullable',
+                'price' => 'nullable|numeric',
+                'stock' => 'nullable|numeric',
+                'discount' => 'nullable|numeric',
+                'photo' => 'required',
+                'cat_id' => 'required|exists:categories,id',
+                'child_cat_id' => 'nullable|exists:categories,id',
+                'size' => 'nullable',
+                'condition' => 'nullable',
+                'status' => 'nullable|in:active,inactive',
+            ]);
+            $data = $request->all();
+            $data['offer_price'] = ($request->price - (($request->price * $request->discount) / 100));
+
+            $status = $product->fill($data)->save();
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'Product successfully updated');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
+        } else {
+            return back()->with('eror', 'Product not found');
+        }
     }
 
     /**
@@ -128,10 +163,15 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if ($product) {
-            $product->delete();
-            return redirect()->route('product.index')->with('success', 'Product delete successfully');
+            $status = $product->delete();
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'Product delete successfully');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
         } else {
-            return back()->with('error', 'Something went wrong');
+            return back()->with('eror', 'Category not found');
+
         }
     }
 }

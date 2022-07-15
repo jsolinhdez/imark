@@ -98,7 +98,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $parent_cats = Category::where('is_parent', 1)->orderBy('title', 'ASC')->get();
         $category = Category::find($id);
         if ($category) {
             return view('backend.category.edit', compact(['category', 'parent_cats']));

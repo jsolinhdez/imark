@@ -4,3 +4,38 @@
 tbody tr:hover > td{
    color: #6c757d !important;
 }
+.content-wrapper .badge-secondary{
+    color: #6c757d;
+    background-color: transparent;
+    border: 1px solid #6c757d;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.content-wrapper .badge-primary{
+    color: #007bff;
+    background-color: transparent;
+    border: 1px solid #007bff;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.content-wrapper .badge-warning{
+    color: #ffc107;
+    background-color: transparent;
+    border: 1px solid #ffc107;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.content-wrapper .badge-success{
+    color: #28a745;
+    background-color: transparent;
+    border: 1px solid #28a745;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.content-wrapper .badge-light{
+    color: #f8f9fa;
+    background-color: transparent;
+    border: 1px solid #f8f9fa;
+    font-size: 15px;
+    text-transform: uppercase;
+}

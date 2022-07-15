@@ -128,7 +128,7 @@
                                             <option value="S" {{ old('size'== 'S' ? 'selected' : '') }}>Small</option>
                                             <option value="M" {{ old('size'== 'M' ? 'selected' : '') }}>Medium</option>
                                             <option value="L" {{ old('size'== 'L' ? 'selected' : '') }}>Large</option>
-                                            <option value="XL" {{ old('size'== 'L' ? 'selected' : '') }}>Extra Large</option>
+                                            <option value="XL" {{ old('size'== 'XL' ? 'selected' : '') }}>Extra Large</option>
 
                                         </select>
                                     </div>
@@ -136,13 +136,13 @@
                                         <label for="">Condition<span class="text-danger"> *</span></label>
                                         <select name="condition" class="custom-select rounded-0">
                                             <option value="">--Condition--</option>
-                                            <option value="new" {{ old('conditions'== 'new' ? 'selected' : '') }}>
+                                            <option value="new" {{ old('condition'== 'new' ? 'selected' : '') }}>
                                                 New
                                             </option>
-                                            <option value="popular" {{ old('conditions'== 'popular' ? 'selected' : '') }} >
+                                            <option value="popular" {{ old('condition'== 'popular' ? 'selected' : '') }} >
                                                 Popular
                                             </option>
-                                            <option value="winter" {{ old('conditions'== 'winter' ? 'selected' : '') }} >
+                                            <option value="winter" {{ old('condition'== 'winter' ? 'selected' : '') }} >
                                                 Winter
                                             </option>
                                         </select>

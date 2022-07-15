@@ -18,9 +18,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class=" card-title">All Products
-                                    <a class="btn ml-2 btn-outline-secondary" href=" {{ route('product.create') }}"><i class="mr-1 icon-plus"></i>Add product</a></h3>
+                                    <a class="btn ml-2 btn-outline-secondary" href=" {{ route('product.create') }}"><i
+                                            class="mr-1 icon-plus"></i>Add product</a></h3>
 
-                                <p class="float-right">Total Products: <strong>{{ \App\Models\Product::count() }}</strong></p>
+                                <p class="float-right">Total Products:
+                                    <strong>{{ \App\Models\Product::count() }}</strong></p>
 
                             </div>
 
@@ -50,12 +52,12 @@
                                                      alt="product image"></td>
                                             <td>${{ number_format($item->price,2) }}</td>
                                             <td>{{ $item->discount}}%</td>
-                                            <td>{{ $item->size }}</td>
+                                            <td><span class="badge badge-light">{{ $item->size }}</span></td>
                                             <td>
                                                 @if($item->condition=='new')
                                                     <span class="badge badge-success">{{ $item->condition }}</span>
                                                 @elseif($item->condition=='popular')
-                                                    <span class="badge badge-warning">{{ $item->condition }}</span>
+                                                    <span class="badge  badge-warning">{{ $item->condition }}</span>
                                                 @else
                                                     <span class="badge badge-primary">{{ $item->condition }}</span>
                                                 @endif
@@ -69,11 +71,20 @@
 
                                             </td>
                                             <td>
+                                                <a href="javascript:void(0);"
+                                                   class="btn ml-2 float-left btn-sm btn-outline-info "
+                                                   data-toggle="tooltip" data-bs-toggle="modal"
+                                                   data-bs-target="#productID{{$item->id}}"
+                                                   title="view" data-popper-placement="bottom"><i
+                                                        class=" icon-eye"></i></a>
                                                 <a href="{{ route('product.edit', $item->id) }}"
-                                                   class="btn float-left btn-sm btn-outline-warning" data-toggle="tooltip"
+                                                   class="btn ml-2 float-left btn-sm btn-outline-warning"
+                                                   data-toggle="tooltip"
                                                    title="Edit" data-popper-placement="bottom"><i
                                                         class=" icon-note"></i></a>
-                                                <form class="float-left ml-2" action="{{ route('product.destroy',$item->id) }}" method="post">
+
+                                                <form class="float-left ml-2"
+                                                      action="{{ route('product.destroy',$item->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="" class="dltBtn btn btn-sm btn-outline-danger"
@@ -84,6 +95,94 @@
 
 
                                             </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="productID{{$item->id}}"
+                                                 data-bs-backdrop="static"
+                                                 data-bs-keyboard="false" tabindex="-1"
+                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog modal-dialog-centered">
+                                                    @php
+                                                        $product = \App\Models\Product::where('id',$item->id)->first();
+                                                    @endphp
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">
+                                                                {{$product->title}}</h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <strong>Summary</strong>
+                                                            <p>{!! html_entity_decode($product->summary) !!}</p>
+
+                                                            <strong>Description</strong>
+                                                            <p>{!! html_entity_decode($product->description) !!}</p>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <strong>Price</strong>
+                                                                    <p>$ {{number_format($product->price,2)}}</p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <strong>Offer Price</strong>
+                                                                    <p>$ {{number_format($product->offer_price,2)}}</p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <strong>Stock</strong>
+                                                                    <p>{{number_format($product->stock)}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <strong>Category</strong>
+                                                                    <p>{{ \App\Models\Category::where('id',$product->cat_id)->value('title') }}</p>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <strong>Child Category</strong>
+                                                                    <p>{{ \App\Models\Category::where('id',$product->child_cat_id)->value('title') }}</p>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <strong>Brand</strong>
+                                                                    <p>{{ \App\Models\Brand::where('id',$product->brand_id)->value('title') }}</p>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <strong>Vendor</strong>
+                                                                    <p >{{ \App\Models\User::where('id',$product->vendor_id)->value('full_name') }}</p>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <strong>Condition</strong>
+                                                                    <p class="badge badge-warning">{{ $product->condition }}</p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <strong>Size</strong>
+                                                                    <p class="badge badge-light">{{ $product->size }}</p>
+
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <strong>Status</strong>
+                                                                    @if($product->status=='active')
+                                                                        <p class="badge badge-success">{{ $product->status }}</p>
+                                                                    @else
+                                                                        <p class="badge badge-secondary">{{ $product->status }}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal"> Close
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -126,7 +225,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('.dltBtn').click(function (e){
+        $('.dltBtn').click(function (e) {
             var form = $(this).closest('form');
             var dataID = $(this).data('id');
             e.preventDefault();
@@ -177,7 +276,7 @@
 
                             alertPlaceholder.append(wrapper)
                             setTimeout(function () {
-                                const query = "#"+ randomId
+                                const query = "#" + randomId
                                 $(query).slideUp();
                             }, 1500);
                         }

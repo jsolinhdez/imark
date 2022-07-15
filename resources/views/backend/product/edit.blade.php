@@ -103,9 +103,9 @@
                                     <div class="col-md-3 form-group">
                                         <label for="">Brand<span class="text-danger"> *</span></label>
                                         <select name="brand_id" class="custom-select rounded-0">
-                                            <option value="{{ $product->brand_id }}">{{ \App\Models\Brand::where('id','$product->brand_id')->pluck('title') }}</option>
+                                            <option value="">--Chosse Brand-- </option>
                                             @foreach(\App\Models\Brand::get() as $brand)
-                                                <option value="{{$brand->id}}">{{ $brand->title }}</option>
+                                                <option value="{{$brand->id}}" {{$brand->id==$product->brand_id ? 'selected' : ''}}>{{ $brand->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -114,10 +114,10 @@
                                         <label for="">Size</label>
                                         <select name="size" class="custom-select rounded-0">
                                             <option value="">--Size--</option>
-                                            <option value="S" {{ old('size'== 'S' ? 'selected' : '') }}>Small</option>
-                                            <option value="M" {{ old('size'== 'M' ? 'selected' : '') }}>Medium</option>
-                                            <option value="L" {{ old('size'== 'L' ? 'selected' : '') }}>Large</option>
-                                            <option value="XL" {{ old('size'== 'L' ? 'selected' : '') }}>Extra Large</option>
+                                            <option value="S" {{ $product->size== 'S' ? 'selected' : '' }}>Small</option>
+                                            <option value="M" {{ $product->size== 'M' ? 'selected' : '' }}>Medium</option>
+                                            <option value="L" {{ $product->size== 'L' ? 'selected' : '' }}>Large</option>
+                                            <option value="XL" {{ $product->size== 'XL' ? 'selected' : '' }}>Extra Large</option>
 
                                         </select>
                                     </div>
@@ -125,13 +125,13 @@
                                         <label for="">Condition<span class="text-danger"> *</span></label>
                                         <select name="condition" class="custom-select rounded-0">
                                             <option value="">--Condition--</option>
-                                            <option value="new" {{ old('conditions'== 'new' ? 'selected' : '') }}>
+                                            <option value="new" {{ $product->condition== 'new' ? 'selected' : '' }}>
                                                 New
                                             </option>
-                                            <option value="popular" {{ old('conditions'== 'popular' ? 'selected' : '') }} >
+                                            <option value="popular" {{ $product->condition== 'popular' ? 'selected' : '' }} >
                                                 Popular
                                             </option>
-                                            <option value="winter" {{ old('conditions'== 'winter' ? 'selected' : '') }} >
+                                            <option value="winter" {{ $product->condition== 'winter' ? 'selected' : '' }} >
                                                 Winter
                                             </option>
                                         </select>
@@ -140,9 +140,9 @@
                                     <div class="col-md-4 form-group">
                                         <label for="">Vendor<span class="text-danger"> *</span></label>
                                         <select name="vendor_id" class="custom-select rounded-0">
-                                            <option value="">--Vendor--</option>
+                                            <option value="">--Vendor</option>
                                             @foreach(\App\Models\User::where('role','vendor')->get() as $vendor)
-                                                <option value="{{$vendor->id}}">{{ $vendor->full_name }}</option>
+                                                <option value="{{$vendor->id}}" {{$vendor->id==$product->vendor_id ? 'selected' : ''}}>{{ $vendor->full_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -151,7 +151,7 @@
                                         <select name="cat_id" id="cat_id" class="custom-select rounded-0">
                                             <option value="">--Category--</option>
                                             @foreach(\App\Models\Category::where('is_parent','1')->get() as $cat)
-                                                <option value="{{$cat->id}}">{{ $cat->title }}</option>
+                                                <option value="{{$cat->id}}" {{$cat->id==$product->cat_id ? 'selected' : ''}}>{{ $cat->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -196,5 +196,38 @@
             $('#description').summernote()
 
         })
+    </script>
+    <script>
+        var child_cat_id  = {{ $product->child_cat_id }};
+        $('#cat_id').change(function (){
+            var cat_id = $(this).val();
+            if(cat_id!= null){
+                $.ajax({
+                    url:"/admin/category/"+cat_id+"/child",
+                    type:"POST",
+                    data:{
+                        _token:"{{csrf_token()}}",
+                        cat_id:cat_id,
+                    },
+                    success:function (response){
+                        var html_option = "<option value=''>--Child Category--</option>";
+                        if (response.status){
+                            $('#child_cat_div').removeClass('d-none');
+                            $.each(response.data,function (id,title){
+                                html_option += "<option value='"+id+"' "+(child_cat_id==id ? 'selected' : '') +">"+title+"</option>"
+                            });
+                        }
+                        else {
+                            $('#child_cat_div').addClass('d-none');
+                        }
+                        $('#child_cat_id').html(html_option);
+                    }
+                })
+            }
+        });
+
+        if (child_cat_id != null){
+            $('#cat_id').change();
+        }
     </script>
 @endsection

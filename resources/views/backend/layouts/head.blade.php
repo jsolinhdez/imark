@@ -11,7 +11,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -33,5 +32,6 @@
     <link href="{{ asset('backend/assets/plugins/switch-button-bootstrap/css/bootstrap-switch-button.min.css') }}" rel="stylesheet">
     <!-- sweetalert2 -->
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>

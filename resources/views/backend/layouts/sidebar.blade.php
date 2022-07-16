@@ -188,10 +188,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                        <i class="icon-user nav-icon"></i>
-                        <p>User Management</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-user"></i>
+                        <p>
+                            User Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add User</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="pages/layout/collapsed-sidebar.html" class="nav-link">

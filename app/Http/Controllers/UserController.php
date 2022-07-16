@@ -115,6 +115,7 @@ class UserController extends Controller
                 'email' => 'email|required|exists:users,email',
                 'phone' => 'string|nullable',
                 'photo' => 'nullable',
+                'password' => 'nullable',
                 'address' => 'string|nullable',
                 'role' => 'required|in:admin,vendor,customer',
             ]);

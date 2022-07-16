@@ -76,14 +76,6 @@
 
                                         </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="">Password<span class="text-danger"> *</span></label>
-                                            <input type="password" class="form-control" name="password"
-                                                   value="{{ old('password') }}"
-                                                   placeholder="Enter password">
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <div class="card card-outline card-info">
                                             <div class="card-header">
@@ -98,7 +90,7 @@
                                                    <i class="fa fa-picture-o"></i> Chosse
                                                  </a>
                                                </span>
-                                                <input id="thumbnail" class="form-control" type="text" name="photo">
+                                                <input id="thumbnail" class="form-control" value="{{ $user->photo }}" type="text" name="photo">
                                             </div>
                                             <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                                         </div>

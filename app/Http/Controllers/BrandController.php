@@ -49,7 +49,7 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'title' => 'nullable|string',
-            'photo' => 'required',
+            'photo' => 'nullable|string',
             'status' => 'nullable|in:active,inactive'
         ]);
         $data = $request->all();
@@ -107,7 +107,7 @@ class BrandController extends Controller
         if ($brand) {
             $this->validate($request, [
                 'title' => 'string|required',
-                'photo' => 'required',
+                'photo' => 'string|nullable',
                 'status' => 'in:active,inactive'
             ]);
             $data = $request->all();

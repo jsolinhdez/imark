@@ -32,6 +32,7 @@
                                         <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Description</th>
+                                        <th>Slug</th>
                                         <th>Photo</th>
                                         <th>Condition</th>
                                         <th>Status</th>
@@ -44,6 +45,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->title }}</td>
                                             <td>{!! html_entity_decode($item->description) !!}</td>
+                                            <td>{{ $item->slug }}</td>
+
                                             <td><img src="{{ $item->photo }}" style="max-width:150px;max-height:90px;"
                                                      alt="banner image"></td>
                                             <td>
@@ -85,6 +88,7 @@
                                         <th>S.N.</th>
                                         <th>Title</th>
                                         <th>Description</th>
+                                        <th>Slug</th>
                                         <th>Photo</th>
                                         <th>Condition</th>
                                         <th>Status</th>

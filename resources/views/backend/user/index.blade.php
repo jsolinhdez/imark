@@ -47,7 +47,7 @@
                                                      style="max-width:150px;max-height:90px;border-radius: 50%"
                                                      alt="user image"></td>
                                             <td>{{ $item->full_name }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->role }}</td>
 
                                             <td>

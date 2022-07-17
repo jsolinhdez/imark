@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Frontend Section
+
+Route::get('/',[\App\Http\Controllers\Fronted\IndexController::class,'home'])->name('home');
+
+//Product category
+Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productCategory'])->name('product.category');
+
+//END Frontend Section
+
+
+
+
+
 
 Auth::routes(['register'=>false]);
 

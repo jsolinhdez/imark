@@ -14,6 +14,8 @@ class BannerController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     * slug column can be add to view to index to button in front
      */
     public function index()
     {
@@ -51,6 +53,7 @@ class BannerController extends Controller
     {
         $this->validate($request, [
             'title' => 'string|required',
+            'slug' => 'string|nullable|unique:banners,slug',
             'description' => 'string|nullable',
             'photo' => 'required',
             'condition' => 'required|in:banner,promo',
@@ -111,12 +114,19 @@ class BannerController extends Controller
         if ($banner) {
             $this->validate($request, [
                 'title' => 'string|required',
+                'slug' => 'string|nullable|exists:banners,slug',
                 'description' => 'string|nullable',
                 'photo' => 'required',
                 'condition' => 'required|in:banner,promo',
                 'status' => 'in:active,inactive'
             ]);
             $data = $request->all();
+            $slug = Str::slug($request->input('title'));
+            $slug_count = Banner::where('slug', $slug)->count();
+            if ($slug_count > 0) {
+                $slug = time() . '-' . $slug;
+            }
+            $data['slug'] = $slug;
             $status = $banner->fill($data)->save();
             if ($status) {
                 return redirect()->route('banner.index')->with('success', 'Banner create successfully');

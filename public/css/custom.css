@@ -4,6 +4,13 @@
 tbody tr:hover > td{
    color: #6c757d !important;
 }
+.product-item .bg-secondary{
+    color: #6c757d;
+    background-color: transparent !important;
+    border: 1px solid #6c757d;
+    font-size: 15px;
+    text-transform: uppercase;
+}
 .content-wrapper .badge-secondary{
     color: #6c757d;
     background-color: transparent;

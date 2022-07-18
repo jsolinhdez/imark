@@ -19,6 +19,8 @@ Route::get('/',[\App\Http\Controllers\Fronted\IndexController::class,'home'])->n
 
 //Product category
 Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productCategory'])->name('product.category');
+//Product detail
+Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productDetail'])->name('product.detail');
 
 //END Frontend Section
 
@@ -29,7 +31,6 @@ Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexContro
 
 Auth::routes(['register'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin Dashboard
 

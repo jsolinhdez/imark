@@ -171,7 +171,6 @@ class ProductController extends Controller
             }
         } else {
             return back()->with('eror', 'Category not found');
-
         }
     }
 }

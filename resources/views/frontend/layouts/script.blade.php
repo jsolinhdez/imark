@@ -10,3 +10,10 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+<!-- Import from backend-->
+<!-- Bootstrap -->
+<script src="{{ asset('backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ asset('backend/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+

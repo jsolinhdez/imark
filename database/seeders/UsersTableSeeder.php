@@ -27,11 +27,11 @@ class UsersTableSeeder extends Seeder
             ],
 //            Vendor
             [
-                'full_name' => 'Solin Vendor',
-                'username' => 'Vendor',
-                'email' => 'vendor@gmail.com',
+                'full_name' => 'Solin Seller',
+                'username' => 'Seller',
+                'email' => 'seller@gmail.com',
                 'password' => bcrypt('1111'),
-                'role' => 'vendor',
+                'role' => 'seller',
                 'status' => 'active',
             ],
 //            Customer

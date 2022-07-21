@@ -1,6 +1,6 @@
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('backend/assets/plugins/jquery/jquery.min.js')}}"></script>
+
 <script src="{{ asset('frontend/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
@@ -17,3 +17,10 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('backend/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 
+<script>
+    setTimeout(function (){
+        $('#alert').slideUp();
+    },2000);
+</script>
+
+@yield('scripts')

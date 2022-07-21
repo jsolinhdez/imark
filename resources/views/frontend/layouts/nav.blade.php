@@ -76,19 +76,14 @@
                 class="collapse navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
                 id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden mb-2" style="height: auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                            <a href="" class="dropdown-item">Men's Dresses</a>
-                            <a href="" class="dropdown-item">Women's Dresses</a>
-                            <a href="" class="dropdown-item">Baby's Dresses</a>
-                        </div>
-                    </div>
-                    <a href="" class="nav-item nav-link">Sleepwear</a>
-                    <a href="" class="nav-item nav-link">Jumpsuits</a>
-                    <a href="" class="nav-item nav-link">Blazers</a>
-                    <a href="" class="nav-item nav-link">Jackets</a>
-                    <a href="" class="nav-item nav-link">Shoes</a>
+                    @php
+                        $cat_parent = \App\Models\Category::where(['status'=>'active','is_parent'=>1])->orderBy('id','DESC')->get();
+                    @endphp
+
+                    @foreach($cat_parent as $cat_p)
+                        <a href="{{ route('product.category',$cat_p->slug) }}"
+                           class="nav-item nav-link">{{ $cat_p->title }}</a>
+                    @endforeach
                 </div>
 
 
@@ -108,7 +103,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                         <a href="shop.html" class="nav-item nav-link">Shop</a>
                         <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                         <div class="nav-item dropdown">
@@ -120,11 +115,37 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
-                        <a href="" class="nav-item nav-link">Register</a>
+                    <div class="user-area navbar py-0">
+                        @auth
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown" aria-expanded="false">
+                                <img class="user-image" src="/frontend/img/user.jpg" alt="asd">
+                            </a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <h6 class="dropdown-item">Hello, <strong>Sara</strong></h6>
+                                <a href="cart.html" class="dropdown-item">My Account</a>
+
+                                <a href="cart.html" class="dropdown-item">Wishing List</a>
+                                <a href="cart.html" class="dropdown-item">Ordered List</a>
+
+                                <a href="{{ route('user.logout') }}" class="dropdown-item"><i class="icon-logout mr-2"></i>Logout</a>
+
+                            </div>
+                        </div>
+                        @else
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown" aria-expanded="false">
+                                    <img
+                                        class="user-image" src="/frontend/img/avatardefault.png" alt="user-avatar">
+                                </a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{{ route('user.auth') }}" class="dropdown-item">Login & Register</a>
+                                </div>
+                            </div>
+
+
+                        @endauth
                     </div>
-                </div>
             </nav>
 
         </div>

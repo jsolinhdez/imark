@@ -26,21 +26,31 @@
                         @endphp
                         @foreach($photos as $key => $photo)
                             <div class="carousel-item {{ $key==0 ? 'active' : ''}}">
-                                <a class="gallery-image" href="{{ $photo }}" title="{{ $product->title }}">
+                                <a class="gallery-image" href="#" title="{{ $product->title }}">
                                     <img class="w-100" src="{{ $photo }}" alt="{{$product->title}}"
                                          style="height: 400px">
                                 </a>
                             </div>
                         @endforeach
                     </div>
+                    <ol class="carousel-indicators">
+                        @php
+                            $photos = explode(',',$product->photo);
+                        @endphp
+                        @foreach($photos as $key => $photo)
+                            <li class="{{$key==0 ? 'active' : ''}}" data-target="#product-carousel"
+                                data-slide-to="{{$key}}"
+                                style="background-image: url({{$photo}});height: 100px;width: 80px;background-size: cover">
 
-
-                                        <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                                            <i class="fa fa-2x fa-angle-left text-dark"></i>
-                                        </a>
-                                        <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                                            <i class="fa fa-2x fa-angle-right text-dark"></i>
-                                        </a>
+                            </li>
+                        @endforeach
+                    </ol>
+                    {{--                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">--}}
+                    {{--                        <i class="fa fa-2x fa-angle-left text-dark"></i>--}}
+                    {{--                    </a>--}}
+                    {{--                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">--}}
+                    {{--                        <i class="fa fa-2x fa-angle-right text-dark"></i>--}}
+                    {{--                    </a>--}}
                 </div>
             </div>
 
@@ -61,57 +71,33 @@
                     <del class="text-danger fw-light">
                         ${{number_format($product->price,2)}}</del>
                 </span></h6>
-                <p class="mb-4">{!! html_entity_decode($product->description) !!} </p>
-                <div class="d-flex mb-3">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                    <form>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-1" name="size">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-2" name="size">
-                            <label class="custom-control-label" for="size-2">S</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-3" name="size">
-                            <label class="custom-control-label" for="size-3">M</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-4" name="size">
-                            <label class="custom-control-label" for="size-4">L</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-5" name="size">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="d-flex mb-4">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-                    <form>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-1" name="color">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-2" name="color">
-                            <label class="custom-control-label" for="color-2">White</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-3" name="color">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-4" name="color">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-5" name="color">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                        </div>
-                    </form>
-                </div>
+                <p class="mb-4">{!! html_entity_decode($product->summary) !!} </p>
+                {{--                <div class="d-flex mb-3">--}}
+                {{--                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>--}}
+                {{--                    <form>--}}
+                {{--                        <div class="custom-control custom-radio custom-control-inline">--}}
+                {{--                            <input type="radio" class="custom-control-input" id="size-1" name="size">--}}
+                {{--                            <label class="custom-control-label" for="size-1">XS</label>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="custom-control custom-radio custom-control-inline">--}}
+                {{--                            <input type="radio" class="custom-control-input" id="size-2" name="size">--}}
+                {{--                            <label class="custom-control-label" for="size-2">S</label>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="custom-control custom-radio custom-control-inline">--}}
+                {{--                            <input type="radio" class="custom-control-input" id="size-3" name="size">--}}
+                {{--                            <label class="custom-control-label" for="size-3">M</label>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="custom-control custom-radio custom-control-inline">--}}
+                {{--                            <input type="radio" class="custom-control-input" id="size-4" name="size">--}}
+                {{--                            <label class="custom-control-label" for="size-4">L</label>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="custom-control custom-radio custom-control-inline">--}}
+                {{--                            <input type="radio" class="custom-control-input" id="size-5" name="size">--}}
+                {{--                            <label class="custom-control-label" for="size-5">XL</label>--}}
+                {{--                        </div>--}}
+                {{--                    </form>--}}
+                {{--                </div>--}}
+                {{--                --}}
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -128,23 +114,7 @@
                     </div>
                     <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>
-                <div class="d-flex pt-2">
-                    <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="row px-xl-5">
@@ -157,17 +127,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                            invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                            consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam.
-                            Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos
-                            dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod
-                            nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt
-                            tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                        <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor
-                            consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita
-                            clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum.
-                            Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                        <p>{!! html_entity_decode($product->description) !!}</p>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Additional Information</h4>
@@ -274,123 +234,58 @@
     <!-- Shop Detail End -->
 
 
-    <!-- Products Start -->
-    <div class="container-fluid py-5">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
-        </div>
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="owl-carousel related-carousel">
-                    <div class="card product-item border-0">
-                        <div
-                            class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2">
-                                    <del>$123.00</del>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div
-                            class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2">
-                                    <del>$123.00</del>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div
-                            class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2">
-                                    <del>$123.00</del>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div
-                            class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2">
-                                    <del>$123.00</del>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                        </div>
-                    </div>
-                    <div class="card product-item border-0">
-                        <div
-                            class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                            <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6>
-                                <h6 class="text-muted ml-2">
-                                    <del>$123.00</del>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                        </div>
+
+    @if(count($product->rel_prods)>0)
+        <!-- Products Start -->
+        <div class="container-fluid py-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
+            </div>
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="owl-carousel related-carousel" data-ride="carousel">
+                        @foreach($product->rel_prods as $item)
+                            @if($item->id != $product->id)
+                                <div class="card product-item border-0">
+                                    <div
+                                        class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ $item->condition }} !</span>
+
+                                        @php
+                                            $photosc = explode(',',$item->photo);
+                                        @endphp
+                                        <img class="img-fluid" src="{{ $photosc[0] }}" alt="{{ $item->title }}">
+
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3">{{ ucfirst($item->title) }}</h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h5>${{number_format($item->offer_price,2)}}</h5>
+                                            <h6 class="text-muted ml-2">
+                                                <del class="text-danger fw-light">
+                                                    ${{number_format($item->price,2)}}</del>
+                                            </h6>
+                                        </div>
+                                        <p>{{ ucfirst( \App\Models\Brand::where('id',$item->brand_id)->value('title'))  }}</p>
+
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="{{ route('product.detail',$item->slug) }}"
+                                           class="btn btn-sm text-dark p-0"><i
+                                                class="fas fa-eye text-primary mr-1"></i>View
+                                            Detail</a>
+                                        <a href="" class="btn btn-sm text-dark p-0"><i
+                                                class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                    </div>
+                                </div>
+
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Products End -->
-
+        <!-- Products End -->
+    @endif
 @endsection

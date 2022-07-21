@@ -5,11 +5,9 @@ tbody tr:hover > td{
    color: #6c757d !important;
 }
 .product-item .bg-secondary{
-    color: #6c757d;
-    background-color: transparent !important;
-    border: 1px solid #6c757d;
     font-size: 15px;
     text-transform: uppercase;
+    z-index: 22222;
 }
 .content-wrapper .badge-secondary{
     color: #6c757d;
@@ -45,4 +43,12 @@ tbody tr:hover > td{
     border: 1px solid #f8f9fa;
     font-size: 15px;
     text-transform: uppercase;
+}
+a.product-title{
+    font-size: 32px;
+    text-decoration: none;
+}
+.user-image{
+    border-radius: 50%;
+    width: 50px;
 }

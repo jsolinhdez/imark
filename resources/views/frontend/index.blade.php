@@ -71,13 +71,13 @@
                     <div class="col-lg-4 col-md-6 pb-1">
                         <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                             <p class="text-right">Products:
-                                <strong>{{ count(\App\Models\Product::where('cat_id',$cat->id)->get()) }}</strong></p>
+                                <strong>{{ count(\App\Models\Product::where(['cat_id'=>$cat->id,'status'=>'active'])->get()) }}</strong></p>
                             <a href="{{route('product.category',$cat->slug)}}"
                                class="cat-img position-relative overflow-hidden mb-3">
                                 @php
                                     $photosc = explode(',',$cat->photo);
                                 @endphp
-                                <img class="img-fluid" src="{{ $photosc[0] }}" alt="">
+                                <img class="img-fluid" src="{{ $photosc[0] }}" alt="Product-image">
                             </a>
                             <h5 class="font-weight-semi-bold m-0">{{ ucfirst($cat->title) }}</h5>
                         </div>
@@ -137,18 +137,18 @@
                             <img class="img-fluid w-100" src="{{$photosp[0]}}" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h4 class="text-truncate mb-3">{{ ucfirst($nproduct->title) }}</h4>
+                            <a class="product-title" href="{{route('product.detail',$nproduct->slug)}}">{{ ucfirst($nproduct->title) }}</a>
                             <div class="d-flex justify-content-center">
-                                <h6>{{ number_format($nproduct->offer_price,2) }}</h6>
+                                <h5>{{ number_format($nproduct->offer_price,2) }}</h5>
                                 <h6 class="text-muted ml-2">
-                                    <del>{{ number_format($nproduct->price,2) }}</del>
+                                    <del class="text-danger">{{ number_format($nproduct->price,2) }}</del>
                                 </h6>
                             </div>
                             <p>{{ ucfirst( \App\Models\Brand::where('id',$nproduct->brand_id)->value('title'))  }}</p>
 
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
+                            <a href="{{ route('product.detail',$nproduct->slug) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</a>
                             <a href="" class="btn btn-sm text-dark p-0"><i
                                     class="fas fa-shopping-cart text-primary mr-1"></i>Add

@@ -12,29 +12,30 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Authentication
+Route::get('user/auth',[\App\Http\Controllers\Fronted\IndexController::class,'userAuth'])->name('user.auth');
+Route::post('user/login',[\App\Http\Controllers\Fronted\IndexController::class,'loginSubmit'])->name('login.submit');
+Route::post('user/register',[\App\Http\Controllers\Fronted\IndexController::class,'registerSubmit'])->name('register.submit');
+
+
+Route::get('user/logout',[\App\Http\Controllers\Fronted\IndexController::class,'userLogout'])->name('user.logout');
+
 
 //Frontend Section
-
 Route::get('/',[\App\Http\Controllers\Fronted\IndexController::class,'home'])->name('home');
 
 //Product category
 Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productCategory'])->name('product.category');
 //Product detail
 Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productDetail'])->name('product.detail');
-
 //END Frontend Section
-
-
-
-
-
 
 Auth::routes(['register'=>false]);
 
 
 //Admin Dashboard
 
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('/',[\App\Http\Controllers\AdminController::class,'admin'])->name('admin');
 
     //Banner Section
@@ -59,3 +60,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
 
 
 
+Route::group(['prefix'=>'seller','middleware'=>['auth','seller']],function () {
+    Route::get('/', [\App\Http\Controllers\AdminController::class, 'admin'])->name('seller');
+});

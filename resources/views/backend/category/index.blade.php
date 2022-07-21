@@ -143,7 +143,7 @@
             var mode = $(this).prop('checked');
             var id = $(this).val();
             $.ajax({
-                url: "{{ route('banner.status') }}",
+                url: "{{ route('category.status') }}",
                 type: "POST",
                 data: {
                     _token: '{{ csrf_token() }}',

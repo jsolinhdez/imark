@@ -158,76 +158,36 @@
                                 </div>
                             </form>
                             <div class="dropdown ml-4">
-                                <button class="btn border dropdown-toggle" type="button" id="triggerId"
-                                        data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Sort by
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
-                                </div>
+                                <select class="" id="sortBy">
+                                    <option value="">Default Sort</option>
+                                    <option value="priceAsc" {{  old('sortBy') == 'priceAsc' ? 'selected' : '' }}>Price
+                                        - Lower to Higher
+                                    </option>
+                                    <option value="priceDesc" {{  old('sortBy') == 'priceDesc' ? 'selected' : '' }}>
+                                        Price - Higher to Lower
+                                    </option>
+                                    <option value="titleAsc" {{  old('sortBy') == 'titleAsc' ? 'selected' : '' }}>
+                                        Alphabetical Ascending
+                                    </option>
+                                    <option value="titleDesc" {{  old('sortBy') == 'titleDesc' ? 'selected' : '' }}>
+                                        Alphabetical Descending
+                                    </option>
+                                    <option value="discDesc" {{  old('sortBy') == 'discDesc' ? 'selected' : '' }}>
+                                        Discount - Lower to Higher
+                                    </option>
+                                    <option value="discDesc" {{  old('sortBy') == 'discDesc' ? 'selected' : '' }}>
+                                        Discount - Higher to Lower
+                                    </option>
+
+                                </select>
                             </div>
                         </div>
                     </div>
-                    @if(count($categories->products)>0)
-                        @foreach($categories->products as $item)
-                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                                <div class="card product-item border-0 mb-4">
-                                    <div
-                                        class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                        @php
-                                            $photos = explode(',',$item->photo);
-                                        @endphp
-                                        <img class="img-fluid w-100" src="{{ $photos[0] }}" alt="">
-                                    </div>
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ $item->condition }} !</span>
-                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                        <h3 class="text-truncate mb-3">{{ucfirst($item->title)}}</h3>
-                                        <div class="d-flex justify-content-center">
-                                            <h6>${{number_format($item->offer_price,2)}}</h6>
-                                            <p class="text-muted ml-2">
-                                                <del class="text-danger fw-light">
-                                                    ${{number_format($item->price,2)}}</del>
-                                            </p>
-                                        </div>
-                                        <p>{{ ucfirst( \App\Models\Brand::where('id',$item->brand_id)->value('title'))  }}</p>
-
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="{{ route('product.detail',$item->slug) }}" class="btn btn-sm text-dark p-0"><i
-                                                class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                        <a href="" class="btn btn-sm text-dark p-0"><i
-                                                class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>No products Found</p>
-                    @endif
-                    <div class="col-12 pb-1">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center mb-3">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="justify-content-center row" id="product-data">
+                    @include('frontend.layouts._single-product')
+                    </div>
+                    <div class="ajax-load text-center container" style="display: none">
+                        <img src="{{ asset('frontend/img/loading_icon.gif') }}">
                     </div>
                 </div>
             </div>
@@ -235,4 +195,44 @@
         </div>
     </div>
     <!-- Shop End -->
+@endsection
+
+@section('scripts')
+    <script>
+        $('#sortBy').change(function () {
+            var sort = $('#sortBy').val();
+            window.location = "{{ url(''.$route.'') }}/{{ $categories->slug }}?sort=" + sort;
+        });
+    </script>
+    <script>
+        function loadmoreData(page) {
+            $.ajax({
+                url: '?page=' + page,
+                type: 'get',
+                beforeSend: function () {
+                    $('.ajax-load').show();
+                },
+            })
+                .done(function (data) {
+                    if (data.html == '') {
+                        $('.ajax-load').html('<h2>No more product available</h2>');
+                        return;
+                    }
+                    $('.ajax-load').hide();
+                    $('#product-data').append(data.html);
+                })
+                .fail(function () {
+                    console.log('Something went wrong loading more products');
+                });
+        }
+
+        var page = 1;
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() + 120 >= $(document).height()) {
+                page++;
+                loadmoreData(page);
+            }
+        })
+
+    </script>
 @endsection

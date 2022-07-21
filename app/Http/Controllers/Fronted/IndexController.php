@@ -131,4 +131,22 @@ class IndexController extends Controller
         Auth::logout();
         return redirect()->home()->with('success', 'Successfully logout');
     }
+    public function userDashboard(){
+        $user=Auth::user();
+
+        return view('frontend.user.dashboard',compact('user'));
+    }
+
+    public function userOrder(){
+        $user=Auth::user();
+
+        return view('frontend.user.order',compact('user'));
+    }
+
+
+
+
+
+
+
 }

@@ -63,3 +63,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
 Route::group(['prefix'=>'seller','middleware'=>['auth','seller']],function () {
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'admin'])->name('seller');
 });
+
+//UserDashboard
+Route::group(['prefix'=>'user'],function (){
+    Route::get('/dashboard',[\App\Http\Controllers\Fronted\IndexController::class,'userDashboard'])->name('user.dashboard');
+    Route::get('/order',[\App\Http\Controllers\Fronted\IndexController::class,'userOrder'])->name('user.order');
+
+});

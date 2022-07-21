@@ -123,7 +123,7 @@
                             </a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <h6 class="dropdown-item">Hello, <strong>Sara</strong></h6>
-                                <a href="cart.html" class="dropdown-item">My Account</a>
+                                <a href="{{route('user.dashboard')}}" class="dropdown-item">My Account</a>
 
                                 <a href="cart.html" class="dropdown-item">Wishing List</a>
                                 <a href="cart.html" class="dropdown-item">Ordered List</a>

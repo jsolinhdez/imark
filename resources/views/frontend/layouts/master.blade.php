@@ -10,7 +10,7 @@
 @include('frontend.layouts.nav')
 
 <div class="row">
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-center notification-div">
         @include('backend.layouts.notifications')
     </div>
 </div>

@@ -12,19 +12,19 @@
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
-                <a class="text-dark px-2" href="">
+                <a class="text-dark px-2" href="https://www.facebook.com/julioalejandro.hernandezlopez.9">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a class="text-dark px-2" href="">
+                <a class="text-dark px-2" href="https://twitter.com/jsolinhdez">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a class="text-dark px-2" href="">
+                <a class="text-dark px-2" href="https://www.linkedin.com/in/julio-alejandro-hernandez-a57ba9241/">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a class="text-dark px-2" href="">
+                <a class="text-dark px-2" href="https://www.instagram.com/solin.hdez/?hl=es">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a class="text-dark pl-2" href="">
+                <a class="text-dark pl-2" href="https://www.youtube.com/channel/UCt4bCCKcngtFr-wxW12bzFQ">
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>
@@ -126,8 +126,8 @@
                                     <h6 class="dropdown-item">Hello, <strong>Sara</strong></h6>
                                     <a href="{{route('user.dashboard')}}" class="dropdown-item">My Account</a>
 
+                                    <a href="{{ route('user.order') }}" class="dropdown-item">Ordered List</a>
                                     <a href="cart.html" class="dropdown-item">Wishing List</a>
-                                    <a href="cart.html" class="dropdown-item">Ordered List</a>
 
                                     <a href="{{ route('user.logout') }}" class="dropdown-item"><i
                                             class="icon-logout mr-2"></i>Logout</a>

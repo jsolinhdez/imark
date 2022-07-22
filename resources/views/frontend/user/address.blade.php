@@ -6,29 +6,36 @@
     <div class="px-4 my-4">
         <div class="row px-xl-5">
             <div class="col-md-8 p-1">
-                <div class="profile-tab px-xl-5 border p-2">
-                    <h3 class="float-left">Hello! <strong>{{$user->full_name}}</strong></h3>
-                    <div class="float-right">
-                        <a href="#profileEditModal" data-toggle="modal" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
-                    </div>
+                <!-- Address Start -->
+                <div class="px-xl-5 border p-2">
+                    <h3 class="mb-3">The following address will be user on the checkout page by default</h3>
                     <div class="clearfix"></div>
+
                     <hr>
-                    <div>
-                        <strong>About: </strong>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            <br>
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                    <div class="row p-2">
+                        <div class="col-md-6">
+                            <h6>Billing Address</h6>
+                            <p>MD Naddruz ISLAM</p>
+                            <p> ISLAM</p>
+                            <p>1600</p>
+                            <a href="#profileEditModal" data-toggle="modal" class="btn btn-success"><i
+                                    class="fa fa-edit"></i> Edit Billing Address</a>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Shipping Address</h6>
+                            <p> ISLAM</p>
+                            <p>1600</p>
+                            <a href="#profileEditModal" data-toggle="modal" class="btn btn-success"><i
+                                    class="fa fa-edit"></i> Edit Shipping Address</a>
+
+                        </div>
+
                     </div>
 
 
                     <!-- Profile Edit Modal -->
-                    <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -43,13 +50,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">First Name</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Enter first name">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Last Name</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+                                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Enter last name">
                                                 </div>
                                             </div>
                                         </div>
@@ -57,13 +66,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Enter email">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Username</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Enter email">
                                                 </div>
                                             </div>
                                         </div>
@@ -77,7 +88,9 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save Information</button>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
+                                            Information
+                                        </button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -89,12 +102,14 @@
                     </div>
 
                 </div>
+
+
+                <!-- Address End -->
+
             </div>
             <div class="col-md-4 p-1">
                 @include('frontend.user.sidebar')
             </div>
-
-
         </div>
     </div>
 

@@ -68,5 +68,9 @@ Route::group(['prefix'=>'seller','middleware'=>['auth','seller']],function () {
 Route::group(['prefix'=>'user'],function (){
     Route::get('/dashboard',[\App\Http\Controllers\Fronted\IndexController::class,'userDashboard'])->name('user.dashboard');
     Route::get('/order',[\App\Http\Controllers\Fronted\IndexController::class,'userOrder'])->name('user.order');
+    Route::get('/address',[\App\Http\Controllers\Fronted\IndexController::class,'userAddress'])->name('user.address');
+    Route::get('/account-detail',[\App\Http\Controllers\Fronted\IndexController::class,'userAccount'])->name('user.account');
+
+
 
 });

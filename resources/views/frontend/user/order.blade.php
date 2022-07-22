@@ -4,10 +4,10 @@
 @section('content')
 
     <div class="px-4 my-4">
-        <div class="row">
+        <div class="row px-xl-5">
             <div class="col-md-8 p-1">
                 <!-- Cart Start -->
-                    <div class="row px-xl-5">
+                    <div class="row">
                         <div class="col-lg-8 table-responsive mb-5">
                             <table class="table table-bordered text-center mb-0">
                                 <thead class="bg-secondary text-dark">
@@ -165,29 +165,7 @@
 
             </div>
             <div class="col-md-4 p-1">
-                <div class="profile-sidebar border">
-                    <div class="widget">
-                        <h5 class="mb-2 border-bottom pb-3">
-                           <img src="{{ $user->photo }}" style="width: 100px;border-radius: 50%;">
-                        </h5>
-
-                        <div class="list-group mt-3">
-                            <a href="profile.html" class="list-group-item list-group-item-action">
-                                Profile
-                            </a>
-                            <a href="{{ route('user.dashboard') }}" class="list-group-item list-group-item-action">
-                                Dashboard
-                            </a>
-                            <a href="{{ route('user.order') }}" class="list-group-item list-group-item-action">
-                                My Ordered List
-                            </a>
-                            <a href="{{ route('user.logout') }}" class="list-group-item list-group-item-action">
-                                Logout
-                            </a>
-                        </div>
-
-                    </div> <!-- Single Widget -->
-                </div>
+                @include('frontend.user.sidebar')
             </div>
         </div>
     </div>

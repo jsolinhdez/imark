@@ -200,3 +200,6 @@ img.d-block.w-100 {
 .alert{
     margin-bottom: 0;
 }
+.notification-div .btn-close{
+    margin-left: 35%;
+}

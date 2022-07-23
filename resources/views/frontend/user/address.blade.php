@@ -8,98 +8,158 @@
             <div class="col-md-8 p-1">
                 <!-- Address Start -->
                 <div class="px-xl-5 border p-2">
-                    <h3 class="mb-3">The following address will be user on the checkout page by default</h3>
+                    <h2 class="mb-3">The following address will be user on the checkout page by default</h2>
                     <div class="clearfix"></div>
 
                     <hr>
                     <div class="row p-2">
                         <div class="col-md-6">
-                            <h6>Billing Address</h6>
-                            <p>MD Naddruz ISLAM</p>
-                            <p> ISLAM</p>
-                            <p>1600</p>
-                            <a href="#profileEditModal" data-toggle="modal" class="btn btn-success"><i
+                            <h4>Billing Address</h4>
+                            <p>Address: <span>{{ $user->address }}</span></p>
+                            <p>Country: <span>{{ $user->country }}</span></p>
+                            <p>State: <span>{{ $user->state }}</span></p>
+                            <p>City: <span>{{ $user->city }}</span></p>
+                            <p>Postcode: <span>{{ $user->postcode }}</span></p>
+                            <div class="clearfix"></div>
+
+                            <a href="#editaddress" data-toggle="modal" class="btn btn-success"><i
                                     class="fa fa-edit"></i> Edit Billing Address</a>
-                        </div>
-                        <div class="col-md-6">
-                            <h6>Shipping Address</h6>
-                            <p> ISLAM</p>
-                            <p>1600</p>
-                            <a href="#profileEditModal" data-toggle="modal" class="btn btn-success"><i
-                                    class="fa fa-edit"></i> Edit Shipping Address</a>
-
-                        </div>
-
-                    </div>
 
 
-                    <!-- Profile Edit Modal -->
-                    <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Your Profile</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">First Name</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp" placeholder="Enter first name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Last Name</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp" placeholder="Enter last name">
-                                                </div>
-                                            </div>
+                            {{--Modal edit billing address--}}
+                            <div class="modal fade" id="editaddress" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Your <strong>Billing
+                                                    Address</strong></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp" placeholder="Enter email">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Username</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp" placeholder="Enter email">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <form action="{{ route('billing.address',$user->id) }}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
 
-                                        <div class="row">
-                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword1">About</label>
-                                                    <textarea class="form-control" rows="5"></textarea>
+                                                    <label for="">Address</label>
+                                                    <textarea name="address" class="form-control" id=""
+                                                              placeholder="eg. La habana">{{ $user->address }}</textarea>
                                                 </div>
-                                            </div>
-                                        </div>
+                                                <div class="form-group">
+                                                    <label for="">Country</label>
+                                                    <input type="text" class="form-control" name="country"
+                                                           placeholder="eg. Qatar" value="{{ $user->country }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Postcode</label>
+                                                    <input type="number" name="postcode" class="form-control"
+                                                           placeholder="eg. 45122" value="{{ $user->postcode }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">State</label>
+                                                    <input type="text" name="state"  class="form-control"
+                                                           placeholder="eg. state1" value="{{ $user->state }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                           placeholder="eg. Vedado" value="{{ $user->city }}">
+                                                </div>
 
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
-                                            Information
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit"  class="btn btn-success"><i
+                                                        class="fa fa-check"></i> Save Information
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            {{--END Modal edit billing address--}}
+
+
                         </div>
+                        <div class="col-md-6">
+                            <h4>Shipping Address</h4>
+                            <p>Shipping Address: <span>{{ $user->saddress }}</span></p>
+                            <p>Shipping Country: <span>{{ $user->scountry }}</span></p>
+                            <p>Shipping State: <span>{{ $user->sstate }}</span></p>
+                            <p>Shipping City: <span>{{ $user->scity }}</span></p>
+                            <p>Shipping Postcode: <span>{{ $user->spostcode }}</span></p>
+                            <div class="clearfix"></div>
+                            <a href="#editsaddress" data-toggle="modal" class="btn btn-success"><i
+                                    class="fa fa-edit"></i> Edit Shipping Address</a>
+
+                            <!--  Edit Shipping address Modal -->
+                            <div class="modal fade" id="editsaddress" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Your <strong>Shipping
+                                                    Address</strong></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('shipping.address',$user->id) }}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <label for="">Shipping Address</label>
+                                                    <textarea name="saddress" class="form-control" id=""
+                                                              placeholder="eg. La habana">{{ $user->saddress }}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Shipping Country</label>
+                                                    <input type="text" class="form-control" name="scountry"
+                                                           placeholder="eg. Qatar" value="{{ $user->scountry }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Shipping Postcode</label>
+                                                    <input type="number" name="spostcode" class="form-control"
+                                                           placeholder="eg. 45122" value="{{ $user->spostcode }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Shipping State</label>
+                                                    <input type="text" name="sstate"  class="form-control"
+                                                           placeholder="eg. state1" value="{{ $user->sstate }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Shipping City</label>
+                                                    <input type="text" name="scity" class="form-control"
+                                                           placeholder="eg. Vedado" value="{{ $user->scity }}">
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit"  class="btn btn-success"><i
+                                                        class="fa fa-check"></i> Save Information
+                                                </button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Edit Shipping address Modal -->
+
+
+                        </div>
+
                     </div>
+
 
                 </div>
 

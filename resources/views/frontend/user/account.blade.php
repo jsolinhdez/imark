@@ -50,19 +50,19 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Current Password</label>
-                                    <input type="text" class="form-control" name="old_password">
+                                    <input type="password" class="form-control" name="old_password">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="password">New Password</label>
-                                    <input type="text" class="form-control" id="password" name="password">
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="confirm_password">Confirm New Password</label>
-                                    <input type="text" class="form-control" id="confirm_password" name="confirmation_password">
+                                    <input type="password" class="form-control" id="confirm_password" name="confirmation_password">
                                 </div>
                             </div>
                         </div>

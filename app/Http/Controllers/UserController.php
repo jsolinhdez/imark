@@ -117,6 +117,7 @@ class UserController extends Controller
                 'photo' => 'nullable',
                 'password' => 'nullable',
                 'address' => 'string|nullable',
+                'status' => 'nullable|in:active,inactive',
                 'role' => 'required|in:admin,seller,customer',
             ]);
             $data = $request->all();

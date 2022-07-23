@@ -62,7 +62,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password_confirmation" class="form-control" id="password"
+                            <input type="password" name="password_confirmation" class="form-control" id="confirm_password"
                                    placeholder="Confirm Password">
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>

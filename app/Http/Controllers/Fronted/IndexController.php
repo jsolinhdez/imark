@@ -152,11 +152,25 @@ class IndexController extends Controller
 
         return view('frontend.user.account',compact('user'));
     }
+    public function billingAddress(Request $request,$id){
+        $user= User::where('id',$id)->update(['country'=>$request->country,'city'=>$request->city,'postcode'=>$request->postcode,'address'=>$request->address,'state'=>$request->state]);
+        if ($user){
+            return back()->with('success','Address successfully updated');
+        }
+        else{
+            return back()->with('error','Something went wrong');
 
+        }
+    }
+    public function shippingAddress(Request $request,$id){
+        $user= User::where('id',$id)->update(['scountry'=>$request->scountry,'scity'=>$request->scity,'spostcode'=>$request->spostcode,'saddress'=>$request->saddress,'sstate'=>$request->sstate]);
+        if ($user){
+            return back()->with('success','Shipping Address successfully updated');
+        }
+        else{
+            return back()->with('error','Something went wrong');
 
-
-
-
-
+        }
+    }
 
 }

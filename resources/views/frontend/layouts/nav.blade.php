@@ -120,10 +120,10 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
                                    aria-expanded="false">
-                                    <img class="user-image" src="/frontend/img/user.jpg" alt="asd">
+                                    <img class="user-image" src="{{ auth()->user()->photo }}" alt="asd">
                                 </a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <h6 class="dropdown-item">Hello, <strong>Sara</strong></h6>
+                                    <h6 class="dropdown-item">Hello, <strong>{{ auth()->user()->full_name }}</strong></h6>
                                     <a href="{{route('user.dashboard')}}" class="dropdown-item">My Account</a>
 
                                     <a href="{{ route('user.order') }}" class="dropdown-item">Ordered List</a>
@@ -139,7 +139,7 @@
                                 <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
                                    aria-expanded="false">
                                     <img
-                                        class="user-image" src="/frontend/img/avatardefault.png" alt="user-avatar">
+                                        class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">
                                 </a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="{{ route('user.auth') }}" class="dropdown-item">Login & Register</a>

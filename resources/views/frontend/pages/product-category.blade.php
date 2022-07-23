@@ -172,10 +172,10 @@
                                     <option value="titleDesc" {{  old('sortBy') == 'titleDesc' ? 'selected' : '' }}>
                                         Alphabetical Descending
                                     </option>
-                                    <option value="discDesc" {{  old('sortBy') == 'discDesc' ? 'selected' : '' }}>
+                                    <option value="discountAsc" {{  old('sortBy') == 'discountAsc' ? 'selected' : '' }}>
                                         Discount - Lower to Higher
                                     </option>
-                                    <option value="discDesc" {{  old('sortBy') == 'discDesc' ? 'selected' : '' }}>
+                                    <option value="discountDesc" {{  old('sortBy') == 'discountDesc' ? 'selected' : '' }}>
                                         Discount - Higher to Lower
                                     </option>
 

@@ -116,40 +116,42 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="user-area navbar py-0">
-                        @auth
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img class="user-image" src="{{ auth()->user()->photo }}" alt="asd">
-                                </a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <h6 class="dropdown-item">Hello, <strong>{{ auth()->user()->full_name }}</strong></h6>
-                                    <a href="{{route('user.dashboard')}}" class="dropdown-item">My Account</a>
-
-                                    <a href="{{ route('user.order') }}" class="dropdown-item">Ordered List</a>
-                                    <a href="cart.html" class="dropdown-item">Wishing List</a>
-
-                                    <a href="{{ route('user.logout') }}" class="dropdown-item"><i
-                                            class="icon-logout mr-2"></i>Logout</a>
-
-                                </div>
+                        <div class="nav-item dropdown">
+                            <div class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
+                               aria-expanded="false">
+                                @auth()
+                                    <img class="user-image" src="{{ auth()->user()->photo }}" alt="user-image">
+                                @else
+                                    <img class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">
+                                @endauth
                             </div>
-                        @else
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img
-                                        class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">
-                                </a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{{ route('user.auth') }}" class="dropdown-item">Login & Register</a>
-                                </div>
-                            </div>
+                            <ul class="dropdown-menu rounded-0 m-0">
 
+                            @auth
+                                    @php
+                                        $first = explode(' ',auth()->user()->full_name);
+                                    @endphp
+                                    <li ><h6 class="dropdown-item">Hello, <strong>{{ $first[0] }}</strong>
+                                        </h6></li>
+                                    <li ><a class="dropdown-item" href="{{route('user.dashboard')}}" >My Account</a></li>
 
-                        @endauth
+                                    <li ><a class="dropdown-item" href="{{ route('user.order') }}" >Ordered List</a></li>
+                                    <li ><a class="dropdown-item" href="cart.html" >Wishing List</a></li>
+
+                                    <li ><a class="dropdown-item"  href="{{ route('user.logout') }}" ><i
+                                                class="icon-logout mr-2"></i>Logout</a></li>
+                                @else
+
+                                    <li ><a class="dropdown-item" href="{{ route('user.auth') }}" >Login & Register</a></li>
+
+                                @endauth
+                            </ul>
+                        </div>
+
                     </div>
+                </div>
             </nav>
+
 
         </div>
     </div>

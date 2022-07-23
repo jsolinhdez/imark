@@ -11,7 +11,8 @@
 
                     <div class="clearfix"></div>
                     <hr>
-                    <form action="" method="POST">
+                    <form action="{{ route('update.account',$user->id) }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -19,13 +20,19 @@
                                             class="text-danger"> *</span></label>
                                     <input type="text" class="form-control" id="full_name" name="full_name"
                                            value="{{ $user->full_name }}" placeholder="eg. Julio Alejandro">
+                                    @error('full_name')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Username</label>
-                                    <input type="email" class="form-control" id="username" name="username"
+                                    <input type="text" class="form-control" id="username" name="username"
                                            value="{{ $user->username }}" placeholder="eg. julio.97">
+                                    @error('username')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -43,26 +50,29 @@
                                     <label for="exampleInputEmail1">Phone Number</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
                                            value="{{ $user->phone }}" placeholder="eg. 994521556">
+                                    @error('phone')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="">Current Password</label>
-                                    <input type="password" class="form-control" name="old_password">
+                                    <label for="">Current Password (Leave blank to unchanged)</label>
+                                    <input type="password" class="form-control" name="oldpassword" id="currentpassword">
+                                    @error('oldpassword')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="password">New Password</label>
-                                    <input type="password" class="form-control" id="password" name="password">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="confirm_password">Confirm New Password</label>
-                                    <input type="password" class="form-control" id="confirm_password" name="confirmation_password">
+                                    <label for="password">New Password (Leave blank to unchanged)</label>
+                                    <input type="password" class="form-control" id="newpassword" name="newpassword">
+                                    @error('newpassword')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

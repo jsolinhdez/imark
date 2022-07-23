@@ -73,6 +73,8 @@ Route::group(['prefix'=>'user'],function (){
 
     Route::post('/billing/address/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'billingAddress'])->name('billing.address');
     Route::post('/shipping/address/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'shippingAddress'])->name('shipping.address');
+    Route::post('/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'updateAccount'])->name('update.account');
+
 
 
 

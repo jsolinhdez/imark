@@ -28,6 +28,8 @@ Route::get('/',[\App\Http\Controllers\Fronted\IndexController::class,'home'])->n
 Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productCategory'])->name('product.category');
 //Product detail
 Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productDetail'])->name('product.detail');
+//Cart Section
+Route::post('cart/store',[\App\Http\Controllers\Frontend\CartController::class,'cartStore'])->name('cart.store');
 //END Frontend Section
 
 Auth::routes(['register'=>false]);

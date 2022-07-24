@@ -26,7 +26,7 @@
                     <a href="{{ route('product.detail',$item->slug) }}"
                        class="btn btn-sm text-dark p-0"><i
                             class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                    <a href="" class="btn btn-sm text-dark p-0"><i
+                    <a href="" data-quantity="1" id="add_to_cart{{$item->id}}" data-product-id="{{$item->id}}" class="add_to_cart btn btn-sm text-dark p-0"><i
                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                 </div>
             </div>

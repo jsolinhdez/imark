@@ -30,6 +30,8 @@ Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexContro
 Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productDetail'])->name('product.detail');
 //Cart Section
 Route::post('cart/store',[\App\Http\Controllers\Frontend\CartController::class,'cartStore'])->name('cart.store');
+Route::post('cart/delete',[\App\Http\Controllers\Frontend\CartController::class,'cartDelete'])->name('cart.delete');
+
 //END Frontend Section
 
 Auth::routes(['register'=>false]);

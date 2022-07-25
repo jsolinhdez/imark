@@ -22,5 +22,9 @@
         $('#alert').slideUp();
     },2000);
 </script>
+<!-- sweetalert2-->
+<script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+<script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
 
 @yield('scripts')

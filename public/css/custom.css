@@ -7,7 +7,6 @@ tbody tr:hover > td{
 .product-item .bg-secondary{
     font-size: 15px;
     text-transform: uppercase;
-    z-index: 22222;
 }
 .content-wrapper .badge-secondary{
     color: #6c757d;
@@ -51,4 +50,28 @@ a.product-title{
 .user-image{
     border-radius: 50%;
     width: 50px;
+}
+.item-tumb{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.total{
+    font-weight: 700;
+}
+.total .price{
+    float: right;
+}
+.subtotal .price{
+    float: right;
+}
+.cart-item-desc .icon-trash{
+    padding: 5px;
+    background: #e9d4d2;
+    border-radius: 50%;
+}
+.cart-item-desc .icon-trash:hover{
+    padding: 5px;
+    background: #c5837c;
+    border-radius: 50%;
 }

@@ -54,10 +54,51 @@
                 <i class="fas fa-heart text-primary"></i>
                 <span class="badge">0</span>
             </a>
-            <a href="" class="btn border">
-                <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="badge">0</span>
-            </a>
+            <div class="btn border cart-list">
+
+                <a class="nav-link  dropdown-toggle py-0" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+
+                    <span
+                        class="badge">{{ \Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count() }}</span>
+                </a>
+                <ul class="dropdown-menu rounded-0 m-0">
+                    @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
+                        <li >
+                            <div class="dropdown-item cart-item-desc d-flex align-items-center border">
+                                <a href="{{ route('product.detail',$item->model->slug) }}"><img src="{{ $item->model->photo }}" class="item-tumb" alt="item-image" >
+                                </a>
+                                <div>
+                                    <a href="{{ route('product.detail',$item->model->slug) }}">{{ $item->name }}</a>
+                                    <p>{{ $item->qty }} x - <span
+                                            class="price-cart">$ {{ number_format($item->price,2) }}</span></p>
+                                </div>
+                                <span class="m-lg-2 cart_delete" data-id="{{$item->rowId}}" href=""><i class="icon-trash "  ></i></span>
+                            </div>
+                        </li>
+                        <hr>
+                    @endforeach
+                    <div class="cart-calc">
+                        <li class="dropdown-item subtotal">
+                            <span >Sub Total:  </span>
+                            <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
+                        </li>
+{{--                        <li class="dropdown-item">--}}
+{{--                            <span >Shipping:  </span>--}}
+{{--                            <span >$50.00  </span>--}}
+{{--                        </li>--}}
+                        <li class="dropdown-item total">
+                            <span >Total:  </span>
+                            <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
+                        </li>
+
+                    </div>
+                    <div class="p-4">
+                        <button class="btn btn-primary btn-block border-0 py-3 " type="submit">Checkout</button>
+                    </div>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -118,7 +159,7 @@
                     <div class="user-area navbar py-0">
                         <div class="nav-item dropdown">
                             <div class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
-                               aria-expanded="false">
+                                 aria-expanded="false">
                                 @auth()
                                     <img class="user-image" src="{{ auth()->user()->photo }}" alt="user-image">
                                 @else
@@ -127,22 +168,23 @@
                             </div>
                             <ul class="dropdown-menu rounded-0 m-0">
 
-                            @auth
+                                @auth
                                     @php
                                         $first = explode(' ',auth()->user()->full_name);
                                     @endphp
-                                    <li ><h6 class="dropdown-item">Hello, <strong>{{ $first[0] }}</strong>
+                                    <li><h6 class="dropdown-item">Hello, <strong>{{ $first[0] }}</strong>
                                         </h6></li>
-                                    <li ><a class="dropdown-item" href="{{route('user.dashboard')}}" >My Account</a></li>
+                                    <li><a class="dropdown-item" href="{{route('user.dashboard')}}">My Account</a></li>
 
-                                    <li ><a class="dropdown-item" href="{{ route('user.order') }}" >Ordered List</a></li>
-                                    <li ><a class="dropdown-item" href="cart.html" >Wishing List</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.order') }}">Ordered List</a></li>
+                                    <li><a class="dropdown-item" href="cart.html">Wishing List</a></li>
 
-                                    <li ><a class="dropdown-item"  href="{{ route('user.logout') }}" ><i
+                                    <li><a class="dropdown-item" href="{{ route('user.logout') }}"><i
                                                 class="icon-logout mr-2"></i>Logout</a></li>
                                 @else
 
-                                    <li ><a class="dropdown-item" href="{{ route('user.auth') }}" >Login & Register</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('user.auth') }}">Login & Register</a>
+                                    </li>
 
                                 @endauth
                             </ul>

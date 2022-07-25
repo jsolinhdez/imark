@@ -175,7 +175,8 @@
                                     <option value="discountAsc" {{  old('sortBy') == 'discountAsc' ? 'selected' : '' }}>
                                         Discount - Lower to Higher
                                     </option>
-                                    <option value="discountDesc" {{  old('sortBy') == 'discountDesc' ? 'selected' : '' }}>
+                                    <option
+                                        value="discountDesc" {{  old('sortBy') == 'discountDesc' ? 'selected' : '' }}>
                                         Discount - Higher to Lower
                                     </option>
 
@@ -184,7 +185,7 @@
                         </div>
                     </div>
                     <div class="justify-content-center row" id="product-data">
-                    @include('frontend.layouts._single-product')
+                        @include('frontend.layouts._single-product')
                     </div>
                     <div class="ajax-load text-center container" style="display: none">
                         <img src="{{ asset('frontend/img/loading_icon.gif') }}">
@@ -236,7 +237,7 @@
 
     </script>
     <script>
-        $(document).on('click','.add_to_cart',function (e){
+        $(document).on('click', '.add_to_cart', function (e) {
             e.preventDefault();
             var product_id = $(this).data('product-id');
             var product_qty = $(this).data('quantity');
@@ -245,22 +246,34 @@
             var path = "{{ route('cart.store') }}";
 
             $.ajax({
-                url:path,
-                type:"POST",
-                dataType:"JSON",
-                data:{
-                    product_id:product_id,
-                    product_qty:product_qty,
-                    _token:token,
+                url: path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                    _token: token,
                 },
-                beforeSend:function (){
-                    $('#add_to_cart'+product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+                beforeSend: function () {
+                    $('#add_to_cart' + product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
                 },
-                complete:function (){
-                    $('#add_to_cart'+product_id).html('<i class="fa fa-cart-plus"></i> Add to Cart');
+                complete: function () {
+                    $('#add_to_cart' + product_id).html('<i class="fa fa-cart-plus"></i> Added to Cart');
                 },
-                success:function (data){
+                success: function (data) {
                     console.log(data);
+                    $('body #nav-ajax').html(data['nav']);
+                    if (data['status']) {
+                        swal.fire({
+                            title: "Good job",
+                            text: data['message'],
+                            icon: "success",
+                            button: "Aww yiss!",
+                        });
+                    }
+                },
+                error:function (err){
+                    console.log(err);
                 }
             });
 

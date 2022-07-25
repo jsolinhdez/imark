@@ -50,7 +50,13 @@
                                                     <span class="badge badge-primary">{{ $item->type }}</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $item->value }} %</td>
+                                            <td>
+                                                @if($item->type=='fixed')
+                                                    <span>- {{ $item->value }}</span>
+                                                @else
+                                                    <span>{{ $item->value }} %</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <input type="checkbox" name="toogle" value="{{ $item->id }}"
                                                        {{ $item->status=='active' ? 'checked' : '' }}

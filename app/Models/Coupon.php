@@ -8,5 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Coupon extends Model
 {
     use HasFactory;
-    protected $fillable=['code','type','status','value'];
+
+    protected $fillable = ['code', 'type', 'status', 'value'];
+
+    public function discount($total)
+    {
+        $ent = floatval(preg_replace("/[^-0-9\.]/","",$total));
+        if ($this->type == "fixed") {
+            return $this->value;
+        } elseif ($this->type == "percent") {
+            return ($this->value / 100) * $ent;
+        } else {
+            return 0;
+        }
+    }
+
 }

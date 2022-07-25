@@ -32,6 +32,11 @@ Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexControll
 Route::get('cart',[\App\Http\Controllers\Frontend\CartController::class,'cart'])->name('cart');
 Route::post('cart/store',[\App\Http\Controllers\Frontend\CartController::class,'cartStore'])->name('cart.store');
 Route::post('cart/delete',[\App\Http\Controllers\Frontend\CartController::class,'cartDelete'])->name('cart.delete');
+Route::post('cart/update',[\App\Http\Controllers\Frontend\CartController::class,'cartUpdate'])->name('cart.update');
+
+//Coupon Section
+Route::post('coupon/add',[\App\Http\Controllers\Frontend\CartController::class,'couponAdd'])->name('coupon.add');
+
 
 //END Frontend Section
 

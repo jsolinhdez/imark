@@ -87,19 +87,33 @@
                             <span>Sub Total:  </span>
                             <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
                         </li>
-                        {{--                        <li class="dropdown-item">--}}
-                        {{--                            <span >Shipping:  </span>--}}
-                        {{--                            <span >$50.00  </span>--}}
-                        {{--                        </li>--}}
+                        <li class="dropdown-item subtotal">
+                            <span>Coupon Discount:  </span>
+                            @if(session()->has('coupon'))
+                                <span class="price">- {{ session('coupon')['value'] }}</span>
+                            @else
+                                <span class="price">- 0</span>
+                            @endif
+                        </li>
+                        @php
+                            $calc = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
+                        @endphp
                         <li class="dropdown-item total">
                             <span>Total:  </span>
-                            <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
+                            @if(session()->has('coupon'))
+                                <span
+                                    class="price">$ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value']}}</span>
+                            @else
+                                <span class="price">$ {{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
+                            @endif
                         </li>
 
                     </div>
                     <div class="p-4">
-                        <a class="btn btn-success border-0 py-3" href="{{ route('cart') }}" type="button" style="width: 40%">Cart</a>
-                        <a class="btn btn-primary border-0 py-3" type="submit" style="float: right">Checkout</a>
+                        <a class="btn btn-success border-0 py-3" href="{{ route('cart') }}" type="button"
+                           style="width: 40%">Cart</a>
+                        <a class="btn btn-primary border-0 py-3" type="submit"
+                           style="float: right;width: 60%">Checkout</a>
 
                     </div>
                 </ul>

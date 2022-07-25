@@ -9,6 +9,10 @@ use Cart;
 
 class CartController extends Controller
 {
+    public function cart(){
+        return view('frontend.pages.cart.index');
+    }
+
     public function cartStore(Request $request)
     {
         $product_qty = $request->input('product_qty');
@@ -37,7 +41,6 @@ class CartController extends Controller
         }
         return json_encode($response);
     }
-
     public function cartDelete(Request $request)
     {
         $id = $request->input('cart_id');
@@ -52,4 +55,14 @@ class CartController extends Controller
         }
         return json_encode($response);
     }
+
+
+
+
+
+
+
+
+
+
 }

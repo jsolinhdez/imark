@@ -258,7 +258,7 @@
                     $('#add_to_cart' + product_id).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
                 },
                 complete: function () {
-                    $('#add_to_cart' + product_id).html('<i class="fa fa-cart-plus"></i> Added to Cart');
+                    $('#add_to_cart' + product_id).html('<i class="fa fa-cart-plus"></i> Add to Cart');
                 },
                 success: function (data) {
                     console.log(data);

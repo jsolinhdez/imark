@@ -65,37 +65,42 @@
                 </a>
                 <ul class="dropdown-menu rounded-0 m-0">
                     @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
-                        <li >
+                        <li>
                             <div class="dropdown-item cart-item-desc d-flex align-items-center border">
-                                <a href="{{ route('product.detail',$item->model->slug) }}"><img src="{{ $item->model->photo }}" class="item-tumb" alt="item-image" >
+                                <a href="{{ route('product.detail',$item->model->slug) }}"><img
+                                        src="{{ $item->model->photo }}" class="item-tumb" alt="item-image">
                                 </a>
                                 <div>
                                     <a href="{{ route('product.detail',$item->model->slug) }}">{{ $item->name }}</a>
                                     <p>{{ $item->qty }} x - <span
                                             class="price-cart">$ {{ number_format($item->price,2) }}</span></p>
                                 </div>
-                                <span class="m-lg-2 cart_delete" data-id="{{$item->rowId}}" href=""><i class="icon-trash "  ></i></span>
+                                <span class="m-lg-2 cart_delete" data-id="{{$item->rowId}}" href=""><i
+                                        class="icon-trash "></i></span>
                             </div>
+                            <hr>
+
                         </li>
-                        <hr>
                     @endforeach
                     <div class="cart-calc">
                         <li class="dropdown-item subtotal">
-                            <span >Sub Total:  </span>
+                            <span>Sub Total:  </span>
                             <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
                         </li>
-{{--                        <li class="dropdown-item">--}}
-{{--                            <span >Shipping:  </span>--}}
-{{--                            <span >$50.00  </span>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="dropdown-item">--}}
+                        {{--                            <span >Shipping:  </span>--}}
+                        {{--                            <span >$50.00  </span>--}}
+                        {{--                        </li>--}}
                         <li class="dropdown-item total">
-                            <span >Total:  </span>
+                            <span>Total:  </span>
                             <span class="price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
                         </li>
 
                     </div>
                     <div class="p-4">
-                        <button class="btn btn-primary btn-block border-0 py-3 " type="submit">Checkout</button>
+                        <a class="btn btn-success border-0 py-3" href="{{ route('cart') }}" type="button" style="width: 40%">Cart</a>
+                        <a class="btn btn-primary border-0 py-3" type="submit" style="float: right">Checkout</a>
+
                     </div>
                 </ul>
             </div>

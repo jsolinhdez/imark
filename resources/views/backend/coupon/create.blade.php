@@ -25,37 +25,37 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Add Brand</h3>
+                                <h3 class="card-title">Add Coupon</h3>
                             </div>
-                            <form action="{{ route('brand.store') }}" method="POST">
+                            <form action="{{ route('coupon.store') }}" method="POST">
                                 @csrf
                                 <div class="row card-body">
                                     <div class="form-group">
-                                        <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}"
-                                               placeholder="Enter title">
+                                        <label for="title">Coupon Code<span class="text-danger"> *</span></label>
+                                        <input type="text" class="form-control" name="code" value="{{ old('code') }}"
+                                               placeholder="eg. HAPPY">
                                     </div>
                                     <div class="form-group">
-                                        <div class="card card-outline card-info">
-                                            <div class="card-header">
-                                                <h3 class="card-title">
-                                                    Photo<span class="text-danger"> *</span>
-                                                </h3>
-                                            </div>
-                                            <div class="input-group">
-                                               <span class="input-group-btn">
-                                                 <a id="lfm" data-input="thumbnail" data-preview="holder"
-                                                    class="btn btn-primary">
-                                                   <i class="fa fa-picture-o"></i> Chosse
-                                                 </a>
-                                               </span>
-                                                <input id="thumbnail" class="form-control" type="text" name="photo">
-                                            </div>
-                                            <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-                                        </div>
+                                        <label for="title">Coupon Value<span class="text-danger"> *</span></label>
+                                        <input type="number" class="form-control" name="value" value="{{ old('value') }}"
+                                               placeholder="eg. 10%">
                                     </div>
 
 
+
+                                    <div class="col-md-6 form-group">
+                                        <label for="status">Type<span class="text-danger"> *</span></label>
+                                        <select name="type" class="custom-select rounded-0">
+                                            <option value="">--Chosse type--</option>
+                                            <option value="fixed" {{ old('type'== 'fixed' ? 'selected' : '') }}>
+                                                Fixed
+                                            </option>
+                                            <option
+                                                value="percent" {{ old('type'== 'percent' ? 'selected' : '') }} >
+                                                Percentage
+                                            </option>
+                                        </select>
+                                    </div>
                                     <div class="col-md-6 form-group">
                                         <label for="status">Status<span class="text-danger"> *</span></label>
                                         <select name="status" class="custom-select rounded-0">
@@ -70,13 +70,15 @@
                                         </select>
                                     </div>
 
+
+
                                 </div>
                                 <!-- /.card-body -->
 
 
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ route('brand.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('coupon.index') }}" class="btn btn-secondary">Cancel</a>
 
                                 </div>
                             </form>
@@ -96,8 +98,21 @@
         $('#lfm').filemanager('image');
         $(function () {
             // Summernote
-            $('#description').summernote()
+            $('#summary').summernote()
 
+        })
+    </script>
+    <script>
+        $('#is_parent').change(function (e) {
+            e.preventDefault();
+            var is_checked = $('#is_parent').prop('checked');
+            // alert(is_checked);
+            if (is_checked) {
+                $('#parent_cat_id').addClass('d-none');
+                $('#parent_cat_id').val('');
+            } else {
+                $('#parent_cat_id').removeClass('d-none');
+            }
         })
     </script>
 @endsection

@@ -182,10 +182,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                        <i class="icon-present nav-icon"></i>
-                        <p>Coupon Management</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-present"></i>
+                        <p>
+                            Coupon Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('coupon.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All Coupon</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupon.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add Coupon</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

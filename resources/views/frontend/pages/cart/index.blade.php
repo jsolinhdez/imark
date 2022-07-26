@@ -8,20 +8,25 @@
                 @include('frontend.layouts._cart-list')
             </div>
             <div class="col-lg-4">
-                <form class="mb-3" action="{{ route('coupon.add') }}" id="coupon-form" method="POST">
+                @if(session()->has('coupon'))
+                    <div class="coupon-applied mb-4">
+                        <i class="fas fa-check"></i> Applied Coupon... <strong>{{session('coupon')['code'] }}</strong>
+                        <a href="#" class="delete-coupon ml-5"><i class="icon-trash"></i></a>
+                    </div>
+                @endif
+                <form class="mb-5" action="{{ route('coupon.add') }}" id="coupon-form" method="POST">
                     @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" name="code" placeholder="Coupon Code">
+                        @if(session()->has('coupon'))
+                            <input type="text" class="form-control p-4" name="code" value="{{session('coupon')['code'] }}" placeholder="Coupon Code">
+                        @else
+                            <input type="text" class="form-control p-4" name="code" placeholder="Coupon Code">
+                        @endif
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary coupon-btn">Apply Coupon</button>
                         </div>
                     </div>
                 </form>
-                @if(session()->has('coupon'))
-                    <div class="coupon-applied mb-5" >
-                        <i class="fas fa-check"></i> Applied Coupon... <strong>{{session('coupon')['code'] }}</strong>
-                    </div>
-                @endif
                 @include('frontend.layouts._total-calc')
                 <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
             </div>
@@ -44,8 +49,6 @@
 
 
     </script>
-
-
 
     <script>
 
@@ -70,6 +73,7 @@
                         $('body #cart_counter').html(data['cart_count']);
                         $('body #cart_list').html(data['cart_list']);
                         $('body #data_total').html(data['total_c']);
+                        $('#coupon-form').submit();
 
 
                         swal.fire({
@@ -100,7 +104,7 @@
 
             if (input.val() != 1) {
                 var newVal = parseFloat(input.val());
-                $('#qty-input-'+ id).val(newVal);
+                $('#qty-input-' + id).val(newVal);
             }
 
             var productQuantity = $("#update-cart-" + id).data('product-quantity');
@@ -128,6 +132,7 @@
                         $('body #cart_counter').html(data['cart_count']);
                         $('body #cart_list').html(data['cart_list']);
                         $('body #data_total').html(data['total_c']);
+                        $('#coupon-form').submit();
 
 
                         swal.fire({
@@ -135,8 +140,7 @@
                             text: data['message'],
                             icon: "success",
                         });
-                    }
-                    else {
+                    } else {
                         $('body #nav-ajax').html(data['nav']);
                         $('body #cart_counter').html(data['cart_count']);
                         $('body #cart_list').html(data['cart_list']);

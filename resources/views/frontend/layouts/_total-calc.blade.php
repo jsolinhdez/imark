@@ -5,17 +5,30 @@
     <div class="card-body">
         <div class="d-flex justify-content-between mb-3 pt-1">
             <h6 class="font-weight-medium">Subtotal</h6>
-            <h6 class="font-weight-medium">{{ Cart::instance('shopping')->subtotal() }}</h6>
+            <h6 class="font-weight-medium">$ {{ Cart::instance('shopping')->subtotal() }}</h6>
         </div>
         <div class="d-flex justify-content-between">
             <h6 class="font-weight-medium">Coupon</h6>
-            <h6 class="font-weight-medium">- $10</h6>
+            @if(session()->has('coupon'))
+                <h6 class="price">- $ {{ session('coupon')['value'] }}</h6>
+            @else
+                <h6 class="price">- 0</h6>
+            @endif
         </div>
     </div>
+    @php
+        $calc = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
+    @endphp
     <div class="card-footer border-secondary bg-transparent">
         <div class="d-flex justify-content-between mt-2">
             <h5 class="font-weight-bold">Total</h5>
-            <h5 class="font-weight-bold">{{ Cart::instance('shopping')->total() }}</h5>
+            @if(session()->has('coupon'))
+                <h5 class="font-weight-bold">
+                    $ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value']}}</h5>
+            @else
+                <h5 class="font-weight-bold">
+                    $ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) }}</h5>
+            @endif
         </div>
     </div>
 </div>

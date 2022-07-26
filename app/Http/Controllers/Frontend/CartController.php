@@ -123,5 +123,4 @@ class CartController extends Controller
             return back()->with('success','Coupon applied successfully');
         }
     }
-
 }

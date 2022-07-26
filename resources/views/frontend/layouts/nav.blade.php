@@ -50,9 +50,9 @@
             </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="" class="btn border">
+            <a href="{{ route('wishlist') }}" class="btn border" id="wishlist_counter">
                 <i class="fas fa-heart text-primary"></i>
-                <span class="badge">0</span>
+                <span class="badge">{{ \Gloudemans\Shoppingcart\Facades\Cart::instance('wishlist')->count() }}</span>
             </a>
             <div class="btn border cart-list">
 
@@ -169,6 +169,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{{ route('wishlist') }}" class="dropdown-item">Wishlist</a>
                                 <a href="{{ route('cart') }}" class="dropdown-item">Shopping Cart</a>
                                 <a href="checkout.html" class="dropdown-item">Checkout</a>
                             </div>

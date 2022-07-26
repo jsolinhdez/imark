@@ -236,6 +236,7 @@
         })
 
     </script>
+    {{--    Add to Cart--}}
     <script>
         $(document).on('click', '.add_to_cart', function (e) {
             e.preventDefault();
@@ -272,11 +273,75 @@
                         });
                     }
                 },
-                error:function (err){
+                error: function (err) {
                     console.log(err);
                 }
             });
 
         });
     </script>
+    {{--    END Add to Cart--}}
+
+    {{--    Add to Wishlist--}}
+
+    <script>
+        $(document).on('click', '.add_to_wishlist', function (e) {
+            e.preventDefault();
+            var product_id = $(this).data('id');
+            var product_qty = $(this).data('quantity');
+
+            var token = "{{ csrf_token() }}";
+            var path = "{{ route('wishlist.store') }}";
+
+            $.ajax({
+                url: path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                    _token: token,
+                },
+                beforeSend: function () {
+                    $('#add_to_wishlist_' + product_id).html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                complete: function () {
+                    $('#add_to_wishlist_' + product_id).html('<i class="fas fa-hand-holding-heart"></i> Added to Wishlist');
+                },
+                success: function (data) {
+                    $('body #nav-ajax').html(data['nav']);
+                    $('body #wishlist_counter').html(data['wishlist_count']);
+                    if (data['status']) {
+                        swal.fire({
+                            title: "Good job",
+                            text: data['message'],
+                            icon: "success",
+                        });
+                    }
+                    else if(data['present']){
+                        $('body #nav-ajax').html(data['nav']);
+                        $('body #wishlist_counter').html(data['wishlist_count']);
+                        swal.fire({
+                            title: "Opps !",
+                            text: data['message'],
+                            icon: "warning",
+                        });
+                    }
+                    else{
+                        swal.fire({
+                            title: "Sorry !",
+                            text: "You can't add that product",
+                            icon: "error",
+                        });
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+        });
+    </script>
+    {{--    ENDAdd to Wishlist--}}
+
 @endsection

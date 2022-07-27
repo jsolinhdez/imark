@@ -43,6 +43,14 @@ Route::post('wishlist/store',[\App\Http\Controllers\Frontend\WishlistController:
 Route::post('wishlist/move-to-cart',[\App\Http\Controllers\Frontend\WishlistController::class,'moveToCart'])->name('wishlist.move.cart');
 Route::post('wishlist/remove',[\App\Http\Controllers\Frontend\WishlistController::class,'wishlistRemove'])->name('wishlist.remove');
 
+//Checkout Section
+Route::get('checkout1',[\App\Http\Controllers\Frontend\CheckoutController::class,'checkout1'])->name('checkout1')->middleware('user');
+
+
+
+
+
+
 
 //END Frontend Section
 

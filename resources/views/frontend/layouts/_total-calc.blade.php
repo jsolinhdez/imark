@@ -24,10 +24,10 @@
             <h5 class="font-weight-bold">Total</h5>
             @if(session()->has('coupon'))
                 <h5 class="font-weight-bold">
-                    $ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value']}}</h5>
+                    $ {{ number_format(floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value'],2)  }}</h5>
             @else
                 <h5 class="font-weight-bold">
-                    $ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) }}</h5>
+                    $ {{ number_format(floatval(preg_replace("/[^-0-9\.]/","",$calc)),2) }}</h5>
             @endif
         </div>
     </div>

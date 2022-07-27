@@ -102,9 +102,9 @@
                             <span>Total:  </span>
                             @if(session()->has('coupon'))
                                 <span
-                                    class="price">$ {{ floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value']}}</span>
+                                    class="price">$ {{ number_format(floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value'],2) }}</span>
                             @else
-                                <span class="price">$ {{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal() }}</span>
+                                <span class="price">$ {{ number_format(\Gloudemans\Shoppingcart\Facades\Cart::subtotal(),2) }}</span>
                             @endif
                         </li>
 
@@ -112,7 +112,7 @@
                     <div class="p-4">
                         <a class="btn btn-success border-0 py-3" href="{{ route('cart') }}" type="button"
                            style="width: 40%">Cart</a>
-                        <a class="btn btn-primary border-0 py-3" type="submit"
+                        <a class="btn btn-primary border-0 py-3" href="{{ route('checkout1') }}" type="submit"
                            style="float: right;width: 60%">Checkout</a>
 
                     </div>
@@ -171,7 +171,7 @@
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="{{ route('wishlist') }}" class="dropdown-item">Wishlist</a>
                                 <a href="{{ route('cart') }}" class="dropdown-item">Shopping Cart</a>
-                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                <a href="{{ route('checkout1') }}" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>

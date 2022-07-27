@@ -79,8 +79,8 @@
                                 <div class="col-md-12 form-group mb-4">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Ship to same
-                                            address</label>
+                                        <label class="custom-control-label" for="customCheck1"><strong>Ship to same
+                                            address </strong>( You can keep your shipping address | <span class="text-danger">Uncheck</span> to Modify | or <span class="text-info">Check</span> to use your billing address to shipping )</label>
                                     </div>
                                 </div>
                                 <div class="mb-4" id="shipping_form">

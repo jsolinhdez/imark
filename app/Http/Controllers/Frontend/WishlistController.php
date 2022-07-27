@@ -62,4 +62,35 @@ class WishlistController extends Controller
 
         return $response;
     }
+
+    public function wishlistRemove(Request $request){
+        $id = $request->input('rowId');
+        \Gloudemans\Shoppingcart\Facades\Cart::instance('wishlist')->remove($id);
+
+        $response['status'] = true;
+        $response['message'] = "Item successfully removed from your wishlist";
+        $response['cart_count'] = \Gloudemans\Shoppingcart\Facades\Cart::instance('wishlist')->count();
+
+        if ($request->ajax()) {
+            $wishlist =  view('frontend.layouts._wishlist')->render();
+            $response['wishlist_list'] = $wishlist;
+            $nav =  view('frontend.layouts.nav')->render();
+            $response['nav-ajax'] = $nav;
+        }
+        return $response;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

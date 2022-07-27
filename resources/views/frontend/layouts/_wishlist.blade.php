@@ -20,7 +20,7 @@
                     <a href="javascript:void(0)"
                        data-id="{{ $item->rowId }}" class="move_to_cart btn  text-dark p-0 mr-5"><i
                             class="icon-plus text-primary mr-1"></i>Add To Cart</a>
-                    <a class="cart_delete btn  text-dark p-0" data-id="{{ $item->rowId }}"><i
+                    <a class="delete_wishlist btn  text-dark p-0" data-id="{{ $item->rowId }}"><i
                             class="icon-trash text-primary mr-1"></i>Remove</a>
                 </td>
             </tr>

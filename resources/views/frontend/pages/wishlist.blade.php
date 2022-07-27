@@ -63,5 +63,49 @@
 
         });
     </script>
+    <script>
+        $(document).on('click','.delete_wishlist', function (e) {
+            e.preventDefault();
+            var rowId = $(this).data('id');
+            var token = "{{ csrf_token() }}";
+            var path = "{{ route('wishlist.remove') }}";
+
+            $.ajax({
+                url: path,
+                type: "POST",
+                data: {
+                    rowId: rowId,
+                    _token: token,
+                },
+                success: function (data) {
+                    if (data['status']) {
+                        $('body #cart_counter').html(data['cart_count']);
+                        $('body #wishlist_list').html(data['wishlist_list']);
+                        $('body #nav-ajax').html(data['nav-ajax']);
+                        swal.fire({
+                            title: "Success !",
+                            text: data['message'],
+                            icon: "success",
+                        });
+                    } else {
+                        swal.fire({
+                            title: "Opps !",
+                            text: "Something went wrong",
+                            icon: "warning",
+                        });
+                    }
+                },
+                error: function (err) {
+                    swal.fire({
+                        title: "Error !",
+                        text: "Some error",
+                        icon: "error",
+                    });
+                }
+
+            });
+
+        });
+    </script>
 
 @endsection

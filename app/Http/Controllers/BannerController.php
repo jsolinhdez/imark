@@ -97,7 +97,7 @@ class BannerController extends Controller
         if ($banner) {
             return view('backend.banners.edit', compact('banner'));
         } else {
-            return back()->with('error', 'Coupon no found');
+            return back()->with('error', 'Banner no found');
         }
     }
 

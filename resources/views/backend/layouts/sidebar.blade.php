@@ -146,10 +146,27 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                        <i class="icon-basket-loaded nav-icon"></i>
-                        <p>Carts Management</p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-truck"></i>
+                        <p>
+                            Shipping Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('shipping.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All Shippings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('shipping.create') }}" class="nav-link">
+                                <i class="icon-plus nav-icon"></i>
+                                <p>Add Shipping</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">

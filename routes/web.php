@@ -85,6 +85,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::resource('/coupon', \App\Http\Controllers\CouponController::class);
     Route::post('coupon_status',[\App\Http\Controllers\CouponController::class,'couponStatus'])->name('coupon.status');
 
+    //Shipping Section
+    Route::resource('/shipping', \App\Http\Controllers\ShippingController::class);
+    Route::post('shipping_status',[\App\Http\Controllers\ShippingController::class,'shippingStatus'])->name('shipping.status');
+
 });
 
 

@@ -79,8 +79,8 @@
                                     <tr>
                                         <th>S.N.</th>
                                         <th>Shipping Address</th>
-                                        <th>Delivery Charge</th>
                                         <th>Delivery Time</th>
+                                        <th>Delivery Charge</th>
                                         <th>Status</th>
                                         <th>Actions</th>
 

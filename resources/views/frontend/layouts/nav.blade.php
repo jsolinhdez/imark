@@ -102,9 +102,9 @@
                             <span>Total:  </span>
                             @if(session()->has('coupon'))
                                 <span
-                                    class="price">$ {{ number_format(floatval(preg_replace("/[^-0-9\.]/","",$calc)) - session('coupon')['value'],2) }}</span>
+                                    class="price">$ {{ number_format((float)str_replace(',','',$calc) - session('coupon')['value'],2) }}</span>
                             @else
-                                <span class="price">$ {{ number_format(\Gloudemans\Shoppingcart\Facades\Cart::subtotal(),2) }}</span>
+                                <span class="price">$ {{ \Gloudemans\Shoppingcart\Facades\Cart::subtotal()}}</span>
                             @endif
                         </li>
 

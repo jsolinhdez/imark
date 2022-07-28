@@ -13,7 +13,7 @@ class Coupon extends Model
 
     public function discount($total)
     {
-        $ent = floatval(preg_replace("/[^-0-9\.]/","",$total));
+        $ent = (float)str_replace(',','',$total);
         if ($this->type == "fixed") {
             return $this->value;
         } elseif ($this->type == "percent") {

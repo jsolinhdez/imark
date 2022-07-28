@@ -35,17 +35,17 @@
                                     <div class="form-group">
                                         <label for="shipping_address">Shipping Address<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control" name="shipping_address" value="{{ $shipping->shipping_address }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. Kamastry Dalas ">
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery_time">Delivery Time<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control" name="delivery_time" value="{{ $shipping->delivery_time }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. 31 dias">
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery_charge">Delivery Charge</label>
                                         <input type="number"  step="any" class="form-control" name="delivery_charge" value="{{ $shipping->delivery_charge }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. 32.00">
                                     </div>
 
                                 </div>

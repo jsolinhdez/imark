@@ -45,6 +45,8 @@ Route::post('wishlist/remove',[\App\Http\Controllers\Frontend\WishlistController
 
 //Checkout Section
 Route::get('checkout1',[\App\Http\Controllers\Frontend\CheckoutController::class,'checkout1'])->name('checkout1')->middleware('user');
+Route::post('checkout1-first',[\App\Http\Controllers\Frontend\CheckoutController::class,'checkout1Store'])->name('checkout1.store');
+Route::post('checkout2-two',[\App\Http\Controllers\Frontend\CheckoutController::class,'checkout2Store'])->name('checkout2.store');
 
 
 

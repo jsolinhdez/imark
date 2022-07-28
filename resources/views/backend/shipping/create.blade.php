@@ -33,17 +33,17 @@
                                     <div class="form-group">
                                         <label for="shipping_address">Shipping Address<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control" name="shipping_address" value="{{ old('shipping_address') }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. Kamastry Dalas ">
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery_time">Delivery Time<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control" name="delivery_time" value="{{ old('delivery_time') }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. 30 dias">
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery_charge">Delivery Charge</label>
                                         <input type="number"  step="any" class="form-control" name="delivery_charge" value="{{ old('delivery_charge') }}"
-                                               placeholder="eg. ">
+                                               placeholder="eg. 12.50 ">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="status">Status<span class="text-danger"> *</span></label>

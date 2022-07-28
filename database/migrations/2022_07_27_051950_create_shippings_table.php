@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('shipping_address');
             $table->string('delivery_time');
-            $table->float('delivery_charge')->default(0);
+            $table->float('delivery_charge')->nullable()->default(0);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

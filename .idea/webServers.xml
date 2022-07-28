@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cf811493-3d56-4e65-a38b-4d633fd666ce" name="New Laravel Aplication" url="0.0.0.0">
+        <fileTransfer mountedRoot="C:\xampp\htdocs\imark\public" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

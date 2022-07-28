@@ -9,6 +9,8 @@
                 <p class="nav-item nav-link "><span>Shipping</span></p>
                 <p class="nav-item nav-link active"><span>Payment</span></p>
                 <p class="nav-item nav-link"><span>Reviews</span></p>
+                <p class="nav-item nav-link "><span>Complete</span></p>
+
 
             </div>
             <div class="container-fluid p-5" >
@@ -17,13 +19,13 @@
                     @csrf
                     <div class="card-body">
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio1"   name="payment_method" class="custom-control-input" >
+                        <input type="radio" id="customRadio1"  required value="cod" name="payment_method" class="custom-control-input" >
                         <label class="custom-control-label" for="customRadio1"><i class="icon-wallet"></i></label> Cash on Delivery
                     </div>
                     </div>
                     <div class="mt-4" style="float: right">
-                        <a class="btn btn-secondary border-0 py-3" href="">Back</a>
-                        <button type="submit" class="btn btn-success border-0 py-3">Continue</button>
+                        <a class="btn btn-secondary border-0 py-3" href="{{ route('checkout1') }}">Go Back</a>
+                        <button type="submit" class="btn btn-success border-0 py-3">Final Step</button>
                     </div>
                 </form>
             </div>

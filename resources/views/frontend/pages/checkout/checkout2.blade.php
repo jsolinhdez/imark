@@ -9,6 +9,8 @@
                 <p class="nav-item nav-link active"><span>Shipping</span></p>
                 <p class="nav-item nav-link"><span>Payment</span></p>
                 <p class="nav-item nav-link"><span>Reviews</span></p>
+                <p class="nav-item nav-link "><span>Complete</span></p>
+
 
             </div>
             <div class="container-fluid pt-5">
@@ -33,7 +35,7 @@
                                     <td class="align-middle"> $ {{ number_format( $item->delivery_charge,2) }} </td>
                                     <td class="align-middle">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio{{$key}}" name="delivery_charge"
+                                            <input required type="radio" id="customRadio{{$key}}" name="delivery_charge"
                                                    value="{{ $item->delivery_charge }}" class="custom-control-input"
                                                    name="payment">
                                             <label class="custom-control-label" for="customRadio{{$key}}"></label>
@@ -49,7 +51,7 @@
                         </tbody>
                     </table>
                     <div class="mt-4" style="float: right">
-                        <a class="btn btn-secondary border-0 py-3" href="{{ route('checkout1') }}">Back</a>
+                        <a class="btn btn-secondary border-0 py-3" href="{{ route('checkout1') }}">Go Back</a>
                         <button type="submit" class="btn btn-success border-0 py-3">Continue</button>
                     </div>
                 </form>

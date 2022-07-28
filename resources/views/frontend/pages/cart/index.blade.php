@@ -135,11 +135,6 @@
                         $('#coupon-form').submit();
 
 
-                        swal.fire({
-                            title: "Good job!!",
-                            text: data['message'],
-                            icon: "success",
-                        });
                     } else {
                         $('body #nav-ajax').html(data['nav']);
                         $('body #cart_counter').html(data['cart_count']);

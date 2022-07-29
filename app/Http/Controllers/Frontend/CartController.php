@@ -7,6 +7,7 @@ use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cart;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -121,6 +122,19 @@ class CartController extends Controller
                 'value' => $coupon->discount($total_price),
             ]);
             return back()->with('success','Coupon applied successfully');
+        }
+    }
+
+    public function couponRemove(){
+
+        $status = Session::forget('coupon');
+
+
+        if ($status){
+            return back()->with('success','Coupon applied successfully');
+        }
+        else{
+            return back()->with('errror','Something went wrong');
         }
     }
 }

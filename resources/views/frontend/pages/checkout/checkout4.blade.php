@@ -80,6 +80,8 @@
                                 <h5 class="font-weight-bold">$ {{ number_format((float)str_replace(',','',\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal())-\Illuminate\Support\Facades\Session::get('coupon')['value'],2) }} </h5>
                             @elseif(\Illuminate\Support\Facades\Session::has('checkout'))
                                 <h5 class="font-weight-bold">$ {{ number_format((float)str_replace(',','',\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal())+\Illuminate\Support\Facades\Session::get('checkout')[0]['delivery_charge'],2) }} </h5>
+                            @else
+                                <h5 class="font-weight-bold">$ {{ number_format((float)str_replace(',','',\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal()),2) }} </h5>
                             @endif
                         </div>
                     </div>

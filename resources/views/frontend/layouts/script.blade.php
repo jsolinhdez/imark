@@ -26,5 +26,13 @@
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
+<!--animatet-->
+<script src="{{ asset('frontend/animatet/js/main.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="{{ asset('frontend/animatet/lib/easing/easing.min.js')}}"></script>
+<script src="{{ asset('frontend/animatet/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+
+<script src="{{ asset('frontend/animatet/mail/jqBootstrapValidation.min.js')}}"></script>
+<script src="{{ asset('frontend/animatet/mail/contact.js')}}"></script>
 
 @yield('scripts')

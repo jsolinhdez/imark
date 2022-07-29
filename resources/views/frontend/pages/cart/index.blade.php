@@ -8,13 +8,16 @@
                 @include('frontend.layouts._cart-list')
             </div>
             <div class="col-lg-4">
+
+                <h4 class="card-title">Have a Coupon?</h4>
+                <h6>Enter your coupon code here & get awesome discounts!</h6>
                 @if(session()->has('coupon'))
-                    <div class="coupon-applied mb-4">
+                    <div class="coupon-applied mt-4 mb-4">
                         <i class="fas fa-check"></i> Applied Coupon... <strong>{{session('coupon')['code'] }}</strong>
-                        <a href="#" class="delete-coupon ml-5"><i class="icon-trash"></i></a>
+                        <a href="{{ route('coupon.remove') }}" class="delete-coupon ml-5"><i class="icon-trash"></i>Remove Coupon Discount</a>
                     </div>
                 @endif
-                <form class="mb-5" action="{{ route('coupon.add') }}" id="coupon-form" method="POST">
+                <form class="mb-5 mt-4" action="{{ route('coupon.add') }}" id="coupon-form" method="POST">
                     @csrf
                     <div class="input-group">
                         @if(session()->has('coupon'))

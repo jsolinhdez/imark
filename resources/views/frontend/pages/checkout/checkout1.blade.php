@@ -13,6 +13,18 @@
 
 
             </div>
+            <div class="col-md-12">
+                @if($errors->any())
+                    <div class="alert alert-danger" id="alert">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <div class="container-fluid pt-5">

@@ -180,11 +180,12 @@
                         <div class="nav-item dropdown">
                             <div class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
                                  aria-expanded="false">
-                                @auth()
+                                @if(auth()->user())
                                     <img class="user-image" src="{{ auth()->user()->photo }}" alt="user-image">
                                 @else
+
                                     <img class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">
-                                @endauth
+                                @endif
                             </div>
                             <ul class="dropdown-menu rounded-0 m-0">
 

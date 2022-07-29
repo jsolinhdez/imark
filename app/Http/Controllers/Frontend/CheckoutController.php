@@ -50,6 +50,8 @@ class CheckoutController extends Controller
             'scountry' => 'string|nullable',
             'sstate' => 'string|nullable',
             'spostcode' => 'numeric|nullable',
+            'sub_total' => 'required',
+            'total_amount' => 'required',
 
         ]);
 
@@ -159,6 +161,7 @@ class CheckoutController extends Controller
         $status = $order->save();
 
         if ($status) {
+            Cart::instance('shopping')->destroy();
             Session::forget('coupon');
             Session::forget('checkout');
             return redirect()->route('complete', $order['order_number']);

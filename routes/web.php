@@ -36,6 +36,7 @@ Route::post('cart/update',[\App\Http\Controllers\Frontend\CartController::class,
 
 //Coupon Section
 Route::post('coupon/add',[\App\Http\Controllers\Frontend\CartController::class,'couponAdd'])->name('coupon.add');
+Route::get('coupon/remove',[\App\Http\Controllers\Frontend\CartController::class,'couponRemove'])->name('coupon.remove');
 
 //Wishlist Section
 Route::get('wishlist',[\App\Http\Controllers\Frontend\WishlistController::class,'wishlist'])->name('wishlist');
@@ -112,8 +113,4 @@ Route::group(['prefix'=>'user'],function (){
     Route::post('/billing/address/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'billingAddress'])->name('billing.address');
     Route::post('/shipping/address/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'shippingAddress'])->name('shipping.address');
     Route::post('/{id}',[\App\Http\Controllers\Fronted\IndexController::class,'updateAccount'])->name('update.account');
-
-
-
-
 });

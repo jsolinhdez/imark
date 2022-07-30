@@ -7,8 +7,11 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 @foreach($banners as $value => $banner)
+                    @php
+                        $phob = explode('com',$banner->photo);
+                    @endphp
                     <div class="carousel-item {{ $value==0 ? 'active' : ''}}" style="height: 410px;">
-                        <img class="img-fluid" src="{{ $banner->photo }}" alt="Image">
+                        <img class="img-fluid" src="{{ $phob[1] }}" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">{{ $banner->description }}</h4>
@@ -78,7 +81,10 @@
                                 @php
                                     $photosc = explode(',',$cat->photo);
                                 @endphp
-                                <img class="img-fluid" src="{{ $photosc[0] }}" alt="Product-image">
+                                @php
+                                    $phoc = explode('com',$photosc[0]);
+                                @endphp
+                                <img class="img-fluid" src="{{ $phoc[1] }}" alt="Product-image" style="width: 300px;height: 350px">
                             </a>
                             <h5 class="font-weight-semi-bold m-0">{{ ucfirst($cat->title) }}</h5>
                         </div>
@@ -133,8 +139,11 @@
                             @php
                                 $photosp = explode(',',$nproduct->photo);
                             @endphp
+                            @php
+                                $phop = explode('com',$photosp[0]);
+                            @endphp
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{{$photosp[0]}}" alt="">
+                                <img class="img-fluid w-100" src="{{$phop[1]}}" alt="">
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square add_to_cart" data-quantity="1"
                                        id="add_to_cart{{$nproduct->id}}"

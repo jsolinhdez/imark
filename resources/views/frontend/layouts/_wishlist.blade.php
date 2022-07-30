@@ -10,8 +10,14 @@
     @if(\Gloudemans\Shoppingcart\Facades\Cart::instance('wishlist')->count() > 0)
 
         @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('wishlist')->content() as $item)
+            @php
+                $photos = explode(',',$item->model->photo);
+            @endphp
+            @php
+                $phosi = explode('com',$photos[0]);
+            @endphp
             <tr>
-                <td class="align-middle"><img src="{{ $item->model->photo }}" alt=""
+                <td class="align-middle"><img src="{{ $phosi[1] }}" alt=""
                                               style="width: 50px;"> {{ $item->model->title }}
                 </td>
                 <td class="align-middle">$ {{ number_format($item->price,2) }}</td>

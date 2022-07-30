@@ -6,7 +6,7 @@ tbody tr:hover > td{
 }
 .product-item .bg-secondary{
     font-size: 15px;
-    text-transform: uppercase;
+    text-transform: 3ppercase;
 }
 .content-wrapper .badge-secondary{
     color: #6c757d;
@@ -53,7 +53,7 @@ a.product-title{
 }
 .item-tumb{
     width: 50px;
-    height: 50px;
+    height: 30px;
     margin-right: 20px;
 }
 .total{
@@ -74,4 +74,7 @@ a.product-title{
     padding: 5px;
     background: #c5837c;
     border-radius: 50%;
+}
+.cart-list ul.dropdown-menu.show{
+    left: -50px !important;
 }

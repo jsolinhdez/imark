@@ -24,10 +24,13 @@
                         @php
                             $photos = explode(',',$product->photo);
                         @endphp
+                        @php
+                            $phosp = explode('com',$photos[0]);
+                        @endphp
                         @foreach($photos as $key => $photo)
                             <div class="carousel-item {{ $key==0 ? 'active' : ''}}">
                                 <a class="gallery-image" href="#" title="{{ $product->title }}">
-                                    <img class="w-100" src="{{ $photo }}" alt="{{$product->title}}"
+                                    <img class="w-100" src="{{ $phosp[1] }}" alt="{{$product->title}}"
                                          style="height: 400px">
                                 </a>
                             </div>
@@ -38,9 +41,12 @@
                             $photos = explode(',',$product->photo);
                         @endphp
                         @foreach($photos as $key => $photo)
+                            @php
+                                $phosp = explode('com',$photo);
+                            @endphp
                             <li class="{{$key==0 ? 'active' : ''}}" data-target="#product-carousel"
                                 data-slide-to="{{$key}}"
-                                style="background-image: url({{$photo}});height: 100px;width: 80px;background-size: cover">
+                                style="background-image: url({{$phosp[1]}});height: 100px;width: 80px;background-size: cover">
 
                             </li>
                         @endforeach
@@ -255,7 +261,10 @@
                                         @php
                                             $photosc = explode(',',$item->photo);
                                         @endphp
-                                        <img class="img-fluid" src="{{ $photosc[0] }}" alt="{{ $item->title }}">
+                                        @php
+                                            $phospr = explode('com',$photosc[0]);
+                                        @endphp
+                                        <img class="img-fluid" src="{{ $phospr[0] }}" alt="{{ $item->title }}">
 
                                     </div>
                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">

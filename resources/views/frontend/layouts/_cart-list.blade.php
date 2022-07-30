@@ -11,7 +11,13 @@
     <tbody class="align-middle">
     @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
         <tr>
-            <td class="align-middle"><img src="{{ $item->model->photo }}" alt=""
+            @php
+                $photos = explode(',',$item->model->photo);
+            @endphp
+            @php
+                $phosi = explode('com',$photos[0]);
+            @endphp
+            <td class="align-middle"><img src="{{ $phosi[1] }}" alt=""
                                           style="width: 50px;"> {{ $item->model->title }}
             </td>
             <td class="align-middle">$ {{ number_format($item->price,2) }}</td>

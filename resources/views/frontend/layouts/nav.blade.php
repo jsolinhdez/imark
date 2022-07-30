@@ -65,10 +65,16 @@
                 </a>
                 <ul class="dropdown-menu rounded-0 m-0">
                     @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
+                        @php
+                            $photos = explode(',',$item->model->photo);
+                        @endphp
+                        @php
+                            $phosi = explode('com',$photos[0]);
+                        @endphp
                         <li>
                             <div class="dropdown-item cart-item-desc d-flex align-items-center border">
                                 <a href="{{ route('product.detail',$item->model->slug) }}"><img
-                                        src="{{ $item->model->photo }}" class="item-tumb" alt="item-image">
+                                        src="{{ $phosi[1] }}" class="item-tumb" alt="item-image">
                                 </a>
                                 <div>
                                     <a href="{{ route('product.detail',$item->model->slug) }}">{{ $item->name }}</a>
@@ -156,7 +162,7 @@
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                 <a href="" class="text-decoration-none d-block d-lg-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                            class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                            class="text-primary font-weight-bold border px-3 mr-1">i</span>MarK</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -181,7 +187,10 @@
                             <div class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
                                  aria-expanded="false">
                                 @if(auth()->user())
-                                    <img class="user-image" src="{{ auth()->user()->photo }}" alt="user-image">
+                                    @php
+                                        $phosi = explode('com',auth()->user()->photo);
+                                    @endphp
+                                    <img class="user-image" src="{{ $phosi[1] }}" alt="user-image">
                                 @else
 
                                     <img class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">

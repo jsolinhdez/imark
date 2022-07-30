@@ -6,8 +6,12 @@
                     @php
                         $photos = explode(',',$item->photo);
                     @endphp
-                    <img class="img-fluid w-100" src="{{ $photos[0] }}" alt="">
+                    @php
+                        $pho = explode('com',$photos[0]);
+                    @endphp
+                    <img class="img-fluid w-100" src="{{ $pho[1]  }}" alt="">
                 </div>
+
                 <span
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ $item->condition }} !</span>
                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">

@@ -14,7 +14,7 @@
                 <div class="container-fluid p-5">
                     <h4 class="mb-4">Congratulations !!</h4>
 
-                    <div class="card p-3 w-25">
+                    <div class="card p-3 w-100">
                         <h5 class="card-title">Thank You For Your Order !</h5>
                         <p class="card-text">You will receive an email of your order details.</p>
                         <p class="card-text">You Order id is <strong>#{{ $order }}</strong>.</p>

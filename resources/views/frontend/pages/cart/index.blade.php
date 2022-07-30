@@ -9,7 +9,7 @@
             </div>
             <div class="col-lg-4">
 
-                <h4 class="card-title">Have a Coupon?</h4>
+                <h4 class="card-title">Have a Coupon?</h4> 
                 <h6>Enter your coupon code here & get awesome discounts!</h6>
                 @if(session()->has('coupon'))
                     <div class="coupon-applied mt-4 mb-4">

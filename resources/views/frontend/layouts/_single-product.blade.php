@@ -27,14 +27,14 @@
 
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">
+                    <a href="" data-quantity="1" id="add_to_cart{{$item->id}}" data-product-id="{{$item->id}}" class="add_to_cart btn btn-sm text-dark p-0"><i
+                            class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    <a href="javascript:void(0);"
+                    class="btn btn-sm text-dark p-0 add_to_wishlist" data-quantity="1" data-id="{{ $item->id }}" id="add_to_wishlist_{{ $item->id }}"><i
+                        class="fas fa-heart text-primary mr-1 " ></i>Add to wishlist</a>
                     <a href="{{ route('product.detail',$item->slug) }}"
                        class="btn btn-sm text-dark p-0"><i
                             class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                    <a href="javascript:void(0);"
-                       class="btn btn-sm text-dark p-0 add_to_wishlist" data-quantity="1" data-id="{{ $item->id }}" id="add_to_wishlist_{{ $item->id }}"><i
-                            class="fas fa-heart text-primary mr-1 " ></i>Add to wishlist</a>
-                    <a href="" data-quantity="1" id="add_to_cart{{$item->id}}" data-product-id="{{$item->id}}" class="add_to_cart btn btn-sm text-dark p-0"><i
-                            class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                 </div>
             </div>
         </div>

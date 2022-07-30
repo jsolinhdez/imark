@@ -187,10 +187,16 @@
                             <div class="nav-link dropdown-toggle py-0" data-toggle="dropdown"
                                  aria-expanded="false">
                                 @if(auth()->user())
-                                    @php
-                                        $phosi = explode('com',auth()->user()->photo);
-                                    @endphp
-                                    <img class="user-image" src="{{ $phosi[1] }}" alt="user-image">
+                                    @if(auth()->user()->photo)
+                                        @php
+                                            $phosi = explode('com',auth()->user()->photo);
+                                        @endphp
+                                        <img class="user-image" src="{{ $phosi[1] }}" alt="user-image">
+                                    @else
+
+                                        <img class="user-image" src="{{ Helper::userDefaultImage() }}"
+                                             alt="user-avatar">
+                                    @endif
                                 @else
 
                                     <img class="user-image" src="{{ Helper::userDefaultImage() }}" alt="user-avatar">

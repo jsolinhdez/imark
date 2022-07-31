@@ -18,11 +18,13 @@
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-12">
-                <form action="{{ route('shop.filter') }}" method="POST">
-                @csrf
+        <form action="{{ route('shop.filter') }}" method="POST">
+            @csrf
+            <div class="row px-xl-5">
+
+                <!-- Shop Sidebar Start -->
+                <div class="col-lg-3 col-md-12">
+
                 @if(count($cats)>0)
                     <!-- Category Start -->
                         <div class="border-bottom mb-4 pb-4">
@@ -46,103 +48,103 @@
 
                         </div>
                         <!-- Category End -->
-                    @endif
-                </form>
+                @endif
                 <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                    <form>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
+                        <form>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="color-all">
+                                <label class="custom-control-label" for="price-all">All Color</label>
+                                <span class="badge border font-weight-normal">1000</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-1">
+                                <label class="custom-control-label" for="color-1">Black</label>
+                                <span class="badge border font-weight-normal">150</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-2">
+                                <label class="custom-control-label" for="color-2">White</label>
+                                <span class="badge border font-weight-normal">295</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-3">
+                                <label class="custom-control-label" for="color-3">Red</label>
+                                <span class="badge border font-weight-normal">246</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-4">
+                                <label class="custom-control-label" for="color-4">Blue</label>
+                                <span class="badge border font-weight-normal">145</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="color-5">
+                                <label class="custom-control-label" for="color-5">Green</label>
+                                <span class="badge border font-weight-normal">168</span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Color End -->
+
+                    <!-- Size Start -->
+                    <div class="mb-5">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
+                        <form>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="size-all">
+                                <label class="custom-control-label" for="size-all">All Size</label>
+                                <span class="badge border font-weight-normal">1000</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-1">
+                                <label class="custom-control-label" for="size-1">XS</label>
+                                <span class="badge border font-weight-normal">150</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-2">
+                                <label class="custom-control-label" for="size-2">S</label>
+                                <span class="badge border font-weight-normal">295</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-3">
+                                <label class="custom-control-label" for="size-3">M</label>
+                                <span class="badge border font-weight-normal">246</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-4">
+                                <label class="custom-control-label" for="size-4">L</label>
+                                <span class="badge border font-weight-normal">145</span>
+                            </div>
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="size-5">
+                                <label class="custom-control-label" for="size-5">XL</label>
+                                <span class="badge border font-weight-normal">168</span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Size End -->
                 </div>
-                <!-- Color End -->
-
-                <!-- Size Start -->
-                <div class="mb-5">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
-                    <form>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">All Size</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-1">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-2">
-                            <label class="custom-control-label" for="size-2">S</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-3">
-                            <label class="custom-control-label" for="size-3">M</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div
-                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-4">
-                            <label class="custom-control-label" for="size-4">L</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="size-5">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Size End -->
-            </div>
-            <!-- Shop Sidebar End -->
+                <!-- Shop Sidebar End -->
 
 
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-12">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
+                <!-- Shop Product Start -->
+                <div class="col-lg-9 col-md-12">
+                    <div class="row pb-3">
+                        <div class="col-12 pb-1">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search by name">
                                     <div class="input-group-append">
@@ -151,79 +153,95 @@
                                         </span>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="dropdown ml-4">
-                                <button class="btn border dropdown-toggle" type="button" id="triggerId"
-                                        data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    Sort by
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
+                                <div class="dropdown ml-4">
+                                    <select name="sortBy" onchange="this.form.submit();">
+                                        <option value="">Default Sort</option>
+                                        <option value="priceAsc" {{  old('sortBy') == 'priceAsc' ? 'selected' : '' }}>
+                                            Price
+                                            - Lower to Higher
+                                        </option>
+                                        <option value="priceDesc" {{  old('sortBy') == 'priceDesc' ? 'selected' : '' }}>
+                                            Price - Higher to Lower
+                                        </option>
+                                        <option value="titleAsc" {{  old('sortBy') == 'titleAsc' ? 'selected' : '' }}>
+                                            Alphabetical Ascending
+                                        </option>
+                                        <option value="titleDesc" {{  old('sortBy') == 'titleDesc' ? 'selected' : '' }}>
+                                            Alphabetical Descending
+                                        </option>
+                                        <option
+                                            value="discountAsc" {{  old('sortBy') == 'discountAsc' ? 'selected' : '' }}>
+                                            Discount - Lower to Higher
+                                        </option>
+                                        <option
+                                            value="discountDesc" {{  old('sortBy') == 'discountDesc' ? 'selected' : '' }}>
+                                            Discount - Higher to Lower
+                                        </option>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    @if(count($products)>0)
-                        @foreach($products as $product)
-                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                                <div class="card product-item border-0 mb-4">
+
+                        @if(count($products)>0)
+                            @foreach($products as $product)
+                                <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                    <div class="card product-item border-0 mb-4">
                                     <span
                                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{ $product->condition }}</span>
-                                    @php
-                                        $photos = explode(',',$product->photo);
-                                    @endphp
-                                    @php
-                                        $pho = explode('com',$photos[0]);
-                                    @endphp
-                                    <div
-                                        class="card-header text-center product-img position-relative overflow-hidden bg-transparent border p-0">
-                                        <img class="img-fluid " src="{{ $pho[1] }}" alt="{{$product->title}}"
-                                             style="width: 250px">
-                                    </div>
-                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                        <h4 class="text-truncate mb-3">{{ ucfirst($product->title) }}</h4>
-                                        <div class="d-flex justify-content-center">
-                                            <h6>${{number_format($product->offer_price,2)}}</h6>
-                                            <h6 class="text-muted ml-2">
-                                                <del>${{number_format($product->price,2)}}</del>
-                                            </h6>
-
+                                        @php
+                                            $photos = explode(',',$product->photo);
+                                        @endphp
+                                        @php
+                                            $pho = explode('com',$photos[0]);
+                                        @endphp
+                                        <div
+                                            class="card-header text-center product-img position-relative overflow-hidden bg-transparent border p-0">
+                                            <img class="img-fluid " src="{{ $pho[1] }}" alt="{{$product->title}}"
+                                                 style="width: 250px">
                                         </div>
-                                        <p class="text-gray-dark">Brand
-                                            : {{ ucfirst( \App\Models\Brand::where('id',$product->brand_id)->value('title'))  }}</p>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="" data-quantity="1" id="add_to_cart{{$product->id}}"
-                                           data-product-id="{{$product->id}}"
-                                           class="add_to_cart btn btn-sm text-dark p-0"><i
-                                                class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                                        <a href="javascript:void(0);"
-                                           class="btn btn-sm text-dark p-0 add_to_wishlist" data-quantity="1"
-                                           data-id="{{ $product->id }}" id="add_to_wishlist_{{ $product->id }}"><i
-                                                class="fas fa-heart text-primary mr-1 "></i>Add to wishlist</a>
-                                        <a href="{{ route('product.detail',$product->slug) }}"
-                                           class="btn btn-sm text-dark p-0"><i
-                                                class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                            <h4 class="text-truncate mb-3">{{ ucfirst($product->title) }}</h4>
+                                            <div class="d-flex justify-content-center">
+                                                <h6>${{number_format($product->offer_price,2)}}</h6>
+                                                <h6 class="text-muted ml-2">
+                                                    <del>${{number_format($product->price,2)}}</del>
+                                                </h6>
+
+                                            </div>
+                                            <p class="text-gray-dark">Brand
+                                                : {{ ucfirst( \App\Models\Brand::where('id',$product->brand_id)->value('title'))  }}</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between bg-light border">
+                                            <a href="" data-quantity="1" id="add_to_cart{{$product->id}}"
+                                               data-product-id="{{$product->id}}"
+                                               class="add_to_cart btn btn-sm text-dark p-0"><i
+                                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                            <a href="javascript:void(0);"
+                                               class="btn btn-sm text-dark p-0 add_to_wishlist" data-quantity="1"
+                                               data-id="{{ $product->id }}" id="add_to_wishlist_{{ $product->id }}"><i
+                                                    class="fas fa-heart text-primary mr-1 "></i>Add to wishlist</a>
+                                            <a href="{{ route('product.detail',$product->slug) }}"
+                                               class="btn btn-sm text-dark p-0"><i
+                                                    class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                        </div>
                                     </div>
                                 </div>
+                            @endforeach
+                        @else
+                            <div class="col-12 pb-1">
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <h4>Sorry, No products found !</h4>
+                                </div>
                             </div>
-                        @endforeach
-                    @else
-                        <div class="col-12 pb-1">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h4>Sorry, No products found !</h4>
-                            </div>
-                        </div>
-                    @endif
-                    {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
+                        @endif
+                        {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
+                    </div>
                 </div>
+                <!-- Shop Product End -->
             </div>
-            <!-- Shop Product End -->
-        </div>
+        </form>
     </div>
     <!-- Shop End -->
 
@@ -334,3 +352,8 @@
     </script>
     {{--    ENDAdd to Wishlist--}}
 @endsection
+
+
+
+
+

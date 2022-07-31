@@ -184,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="justify-content-center row" id="product-data">
+                    <div class="col-12 row" id="product-data">
                         @include('frontend.layouts._single-product')
                     </div>
                     <div class="ajax-load text-center container" style="display: none">

@@ -177,7 +177,6 @@
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="{{ route('wishlist') }}" class="dropdown-item">Wishlist</a>
                                 <a href="{{ route('cart') }}" class="dropdown-item">Shopping Cart</a>
-                                <a href="{{ route('checkout1') }}" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>

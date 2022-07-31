@@ -40,7 +40,7 @@
                                            @endif id="{{ $cat->slug }}"
                                            name="category[]" onchange="this.form.submit();" value="{{ $cat->slug }}">
                                     <label class="custom-control-label" for="{{ $cat->slug }}">{{ $cat->title }}</label>
-                                    <span class="badge border font-weight-normal">{{ count($cat->products )  }}</span>
+                                    <span class="badge border font-weight-normal">{{ count($cat->products) }}</span>
                                 </div>
                             @endforeach
 

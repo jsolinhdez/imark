@@ -25,44 +25,44 @@ class IndexController extends Controller
         return view('frontend.index', compact(['banners', 'categories']));
     }
 
-    public function shop(Request $request){
+    public function shop(Request $request)
+    {
 
         $products = Product::query();
 
 
-        if (!empty($_GET['category'])){
-            $slugs = explode(',',$_GET['category']);
-            $cat_ids = Category::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
-            $products = $products->whereIn('cat_id',$cat_ids)->paginate(12);
-        }
-        else{
-            $products = Product::where('status','active')->paginate(12);
+        if (!empty($_GET['category'])) {
+            $slugs = explode(',', $_GET['category']);
+            $cat_ids = Category::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
+            $products = $products->whereIn('cat_id', $cat_ids)->where('status', 'active')->paginate(12);
+        } else {
+            $products = Product::where('status', 'active')->paginate(12);
         }
 
         $cats = Category::where(['status' => 'active', 'is_parent' => 1])->with('products')->orderBy('title', 'ASC')->get();
-        return view('frontend.pages.shop',compact('products','cats'));
+        return view('frontend.pages.shop', compact('products', 'cats'));
     }
 
-    public function shopFilter(Request $request){
+
+    public function shopFilter(Request $request)
+    {
 
         $data = $request->all();
 
         $catUrl = '';
 
-        if(!empty($data['category'])){
-            foreach ($data['category'] as $category){
-                if (empty($catUrl)){
-                    $catUrl .= '&category='.$category;
-                }
-                else{
-                    $catUrl .= ','.$category;
+        if (!empty($data['category'])) {
+            foreach ($data['category'] as $category) {
+                if (empty($catUrl)) {
+                    $catUrl .= '&category=' . $category;
+                } else {
+                    $catUrl .= ',' . $category;
 
                 }
             }
         }
-        return \redirect()->route('shop',$catUrl);
+        return \redirect()->route('shop', $catUrl);
     }
-
 
 
     public function productCategory(Request $request, $slug)
@@ -89,18 +89,18 @@ class IndexController extends Controller
                 $products = Product::where(['status' => 'active', 'cat_id' => $categories->id])->orderBy('price', 'ASC')->paginate(12);
             } elseif ($sort == 'discountDesc') {
                 $products = Product::where(['status' => 'active', 'cat_id' => $categories->id])->orderBy('price', 'DESC')->paginate(12);
-            }else{
+            } else {
                 $products = Product::where(['status' => 'active', 'cat_id' => $categories->id])->paginate(12);
             }
         }
         $route = 'product-category';
 
-        if ($request->ajax()){
-            $view = view('frontend.layouts._single-product',compact('products'))->render();
-            return response()->json(['html'=>$view]);
+        if ($request->ajax()) {
+            $view = view('frontend.layouts._single-product', compact('products'))->render();
+            return response()->json(['html' => $view]);
         }
 
-        return view('frontend.pages.product-category', compact(['categories', 'route','products']));
+        return view('frontend.pages.product-category', compact(['categories', 'route', 'products']));
     }
 
     //Product detail
@@ -115,7 +115,7 @@ class IndexController extends Controller
     //user auth
     public function userAuth()
     {
-        Session::put('url.intended',URL::previous());
+        Session::put('url.intended', URL::previous());
         return view('frontend.auth.auth');
     }
 
@@ -173,71 +173,81 @@ class IndexController extends Controller
         Auth::logout();
         return redirect()->home()->with('success', 'Successfully logout');
     }
-    public function userDashboard(){
-        $user=Auth::user();
 
-        return view('frontend.user.dashboard',compact('user'));
+    public function userDashboard()
+    {
+        $user = Auth::user();
+
+        return view('frontend.user.dashboard', compact('user'));
     }
 
-    public function userOrder(){
-        $user=Auth::user();
+    public function userOrder()
+    {
+        $user = Auth::user();
 
-        return view('frontend.user.order',compact('user'));
+        return view('frontend.user.order', compact('user'));
     }
-    public function userAddress(){
-        $user=Auth::user();
 
-        return view('frontend.user.address',compact('user'));
-    }
-    public function userAccount(){
-        $user=Auth::user();
+    public function userAddress()
+    {
+        $user = Auth::user();
 
-        return view('frontend.user.account',compact('user'));
+        return view('frontend.user.address', compact('user'));
     }
-    public function billingAddress(Request $request,$id){
-        $user= User::where('id',$id)->update(['country'=>$request->country,'city'=>$request->city,'postcode'=>$request->postcode,'address'=>$request->address,'state'=>$request->state]);
-        if ($user){
-            return back()->with('success','Address successfully updated');
-        }
-        else{
-            return back()->with('error','Something went wrong');
 
-        }
+    public function userAccount()
+    {
+        $user = Auth::user();
+
+        return view('frontend.user.account', compact('user'));
     }
-    public function shippingAddress(Request $request,$id){
-        $user= User::where('id',$id)->update(['scountry'=>$request->scountry,'scity'=>$request->scity,'spostcode'=>$request->spostcode,'saddress'=>$request->saddress,'sstate'=>$request->sstate]);
-        if ($user){
-            return back()->with('success','Shipping Address successfully updated');
-        }
-        else{
-            return back()->with('error','Something went wrong');
+
+    public function billingAddress(Request $request, $id)
+    {
+        $user = User::where('id', $id)->update(['country' => $request->country, 'city' => $request->city, 'postcode' => $request->postcode, 'address' => $request->address, 'state' => $request->state]);
+        if ($user) {
+            return back()->with('success', 'Address successfully updated');
+        } else {
+            return back()->with('error', 'Something went wrong');
 
         }
     }
-    public function updateAccount(Request $request,$id){
-        $this->validate($request,[
+
+    public function shippingAddress(Request $request, $id)
+    {
+        $user = User::where('id', $id)->update(['scountry' => $request->scountry, 'scity' => $request->scity, 'spostcode' => $request->spostcode, 'saddress' => $request->saddress, 'sstate' => $request->sstate]);
+        if ($user) {
+            return back()->with('success', 'Shipping Address successfully updated');
+        } else {
+            return back()->with('error', 'Something went wrong');
+
+        }
+    }
+
+    public function updateAccount(Request $request, $id)
+    {
+        $this->validate($request, [
             'oldpassword' => 'nullable|min:4',
             'newpassword' => 'nullable|min:4',
             'full_name' => 'required|string',
             'username' => 'nullable|string',
             'phone' => 'nullable|numeric|min:8',
         ]);
-        $hashpassword=Auth::user()->password;
+        $hashpassword = Auth::user()->password;
 
-        if ($request->oldpassword==null && $request->newpassword==null){
-            $user= User::where('id',$id)->update(['full_name'=>$request->full_name,'username'=>$request->username,'phone'=>$request->phone]);
-            return back()->with('success','Account successfully updated');
-        }
-        else{
-            if (\Hash::check($request->oldpassword,$hashpassword)){
-                if (!\Hash::check($request->newpassword,$hashpassword)){
-                    $user= User::where('id',$id)->update(['full_name'=>$request->full_name,'username'=>$request->username,'phone'=>$request->phone,'password'=>Hash::make($request->newpassword)]);
-                    return back()->with('success','Account successfully updated');
-                }else{
-                    return back()->with('error','New password can not be same to old password');
+        if ($request->oldpassword == null && $request->newpassword == null) {
+            $user = User::where('id', $id)->update(['full_name' => $request->full_name, 'username' => $request->username, 'phone' => $request->phone]);
+            return back()->with('success', 'Account successfully updated');
+        } else {
+            if (\Hash::check($request->oldpassword, $hashpassword)) {
+                if (!\Hash::check($request->newpassword, $hashpassword)) {
+                    $user = User::where('id', $id)->update(['full_name' => $request->full_name, 'username' => $request->username, 'phone' => $request->phone, 'password' => Hash::make($request->newpassword)]);
+                    return back()->with('success', 'Account successfully updated');
+                } else {
+                    return back()->with('error', 'New password can not be same to old password');
                 }
-            }else{
-                return back()->with('error','Old password does no match');
+            } else {
+                return back()->with('error', 'Old password does no match');
             }
         }
     }

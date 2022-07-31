@@ -160,11 +160,11 @@ class CheckoutController extends Controller
         $order['sstate'] = Session::get('checkout')['sstate'];
         $order['spostcode'] = Session::get('checkout')['spostcode'];
 
-        Mail::to($order['email'])->bcc($order['semail'])->cc('jsolinhdez@gmail.com')->send(new OrderMail($order));
 
         $status = $order->save();
 
         if ($status) {
+            Mail::to($order['email'])->bcc($order['semail'])->cc('jsolinhdez@gmail.com')->send(new OrderMail($order));
             Cart::instance('shopping')->destroy();
             Session::forget('coupon');
             Session::forget('checkout');

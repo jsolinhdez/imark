@@ -263,7 +263,7 @@
                                         @php
                                             $phospr = explode('com',$photosc[0]);
                                         @endphp
-                                        <img class="img-fluid" src="{{ $phospr[0] }}" alt="{{ $item->title }}">
+                                        <img class="img-fluid" src="{{ $phospr[1] }}" alt="{{ $item->title }}">
 
                                     </div>
                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">

@@ -23,7 +23,7 @@
                                 ${{number_format($item->price,2)}}</del>
                         </h6>
                     </div>
-                    <p>{{ ucfirst( \App\Models\Brand::where('id',$item->brand_id)->value('title'))  }}</p>
+                    <p class="text-gray-dark">Brand : {{ ucfirst( \App\Models\Brand::where('id',$item->brand_id)->value('title'))  }}</p>
 
                 </div>
                 <div class="card-footer d-flex justify-content-between bg-light border">

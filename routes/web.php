@@ -52,8 +52,9 @@ Route::post('checkout2-three',[\App\Http\Controllers\Frontend\CheckoutController
 Route::get('checkout-store',[\App\Http\Controllers\Frontend\CheckoutController::class,'checkoutStore'])->name('checkout.store');
 Route::get('complete/{order}',[\App\Http\Controllers\Frontend\CheckoutController::class,'complete'])->name('complete');
 
-
-
+//Shop Section
+Route::get('shop',[\App\Http\Controllers\Fronted\IndexController::class,'shop'])->name('shop');
+Route::post('shop-filter',[\App\Http\Controllers\Fronted\IndexController::class,'shopFilter'])->name('shop.filter');
 
 
 

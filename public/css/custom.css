@@ -6,7 +6,12 @@ tbody tr:hover > td{
 }
 .product-item .bg-secondary{
     font-size: 15px;
-    text-transform: 3ppercase;
+    color: #ffffff !important;
+    padding: 8px;
+    z-index: 1;
+    background: #D19C97 !important;
+    text-transform: uppercase;
+    border-color: #D19C97 !important;
 }
 .content-wrapper .badge-secondary{
     color: #6c757d;

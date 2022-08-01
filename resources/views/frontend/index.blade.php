@@ -323,14 +323,12 @@
                     $('#add_to_cart' + product_id).html('<i class="fa fa-cart-plus"></i>');
                 },
                 success: function (data) {
-                    console.log(data);
                     $('body #nav-ajax').html(data['nav']);
                     if (data['status']) {
                         swal.fire({
                             title: "Good job",
                             text: data['message'],
                             icon: "success",
-                            button: "Aww yiss!",
                         });
                     }
                 },

@@ -49,6 +49,12 @@
                         </div>
                         <!-- Category End -->
                 @endif
+
+                    <div class="bd-example border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by Price</h5>
+                        <input type="range" class="form-range" min="{{ Helper::minPrice() }}" max="{{ Helper::maxPrice() }}" step="1" id="customRange3">
+                        <label for="customRange3" class="form-label" data-max="1500" data-min="1" data-unit="$">Example range</label>
+                    </div>
                 <!-- Color Start -->
                     <div class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
@@ -155,31 +161,32 @@
                                 </div>
                                 <div class="dropdown ml-4">
                                     <select name="sortBy" onchange="this.form.submit();">
-                                        <option value="">Default Sort</option>
-                                        <option value="priceAsc" {{  old('sortBy') == 'priceAsc' ? 'selected' : '' }}>
+                                        <option value="" >Default Sort</option>
+                                        <option value="priceAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceAsc') selected @endif>
                                             Price
                                             - Lower to Higher
                                         </option>
-                                        <option value="priceDesc" {{  old('sortBy') == 'priceDesc' ? 'selected' : '' }}>
+                                        <option value="priceDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceDesc') selected @endif>
                                             Price - Higher to Lower
                                         </option>
-                                        <option value="titleAsc" {{  old('sortBy') == 'titleAsc' ? 'selected' : '' }}>
+                                        <option value="titleAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleAsc') selected @endif>
                                             Alphabetical Ascending
                                         </option>
-                                        <option value="titleDesc" {{  old('sortBy') == 'titleDesc' ? 'selected' : '' }}>
+                                        <option value="titleDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleDesc') selected @endif>
                                             Alphabetical Descending
                                         </option>
                                         <option
-                                            value="discountAsc" {{  old('sortBy') == 'discountAsc' ? 'selected' : '' }}>
+                                            value="discountAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountAsc') selected @endif>
                                             Discount - Lower to Higher
                                         </option>
                                         <option
-                                            value="discountDesc" {{  old('sortBy') == 'discountDesc' ? 'selected' : '' }}>
+                                            value="discountDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountDesc') selected @endif>
                                             Discount - Higher to Lower
                                         </option>
 
                                     </select>
                                 </div>
+
                             </div>
                         </div>
 
@@ -355,5 +362,8 @@
 
 
 
+@section('scripts')
 
+    <script src="https://widgets.widg.io/widgio-elements.js" defer></script>
+@endsection
 

@@ -206,3 +206,12 @@ img.d-block.w-100 {
 #alert .notification-div{
     margin-left: 35%;
 }
+.badge{
+    color: #D19C97 !important;
+}
+.nav-link, .nav-link{
+    color: #D19C97 !important;
+}
+.nav-link:focus, .nav-link:hover{
+    color: #b15b4d !important;
+}

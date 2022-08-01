@@ -15,6 +15,8 @@
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
+<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
 <!-- adminlte -->
 
 <!-- Libraries Stylesheet -->
@@ -28,7 +30,6 @@
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
 
 <!-- import from backend -->
 

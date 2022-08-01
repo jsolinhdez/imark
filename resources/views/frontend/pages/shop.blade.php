@@ -3,13 +3,13 @@
 @section('content')
 
     <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+    <div class="container-fluid bg-secondary mb-5" style="background-image: url(images/banners/banner-shop.gif);background-position: center;
+    background-size: cover;">
+        <div class="d-flex flex-column align-items-center justify-content-end pb-4" style="min-height: 380px">
             <div class="d-inline-flex">
-                <p class="m-0"><a href="{{ route('home') }}">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Shop</p>
+                <h3 class="m-0 "><a  href="{{ route('home') }}" style="color: #121862">Home</a></h3>
+                <h3 class="m-0 px-2">-</h3>
+                <h3 class="m-0">Shop</h3>
             </div>
         </div>
     </div>

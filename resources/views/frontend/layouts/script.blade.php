@@ -1,18 +1,17 @@
+<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- JavaScript Libraries -->
 <script src="{{ asset('backend/assets/plugins/jquery/jquery.min.js')}}"></script>
 
 <script src="{{ asset('frontend/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 
 
 <!-- Contact Javascript File -->
 <script src="{{ asset('frontend//mail/jqBootstrapValidation.min.js')}}"></script>
 <script src="{{ asset('frontend/mail/contact.js') }}"></script>
 
-<!-- Template Javascript -->
-<script src="{{ asset('frontend/js/main.js') }}"></script>
+
 
 <!-- Import from backend-->
 <!-- Bootstrap -->
@@ -38,5 +37,10 @@
 
 <script src="{{ asset('frontend/animatet/mail/jqBootstrapValidation.min.js')}}"></script>
 <script src="{{ asset('frontend/animatet/mail/contact.js')}}"></script>
+
+<!-- Template Javascript -->
+<script src="{{ asset('frontend/js/main.js') }}"></script>
+
+
 
 @yield('scripts')

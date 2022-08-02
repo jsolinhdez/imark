@@ -15,6 +15,8 @@
 <!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
+
+<!-- Modify that file because conflict with carousel-->
 <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.css')}}">
@@ -24,9 +26,6 @@
 <link href="{{ asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
-<link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
-
-<script src="{{ asset('js/app.js') }}" defer></script>
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -49,6 +48,9 @@
 <link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.css') }}">
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet">
+<link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+
+<script src="{{ asset('js/app.js') }}" defer></script>
 
 
 

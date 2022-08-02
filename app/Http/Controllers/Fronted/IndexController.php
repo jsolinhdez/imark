@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fronted;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -37,6 +38,20 @@ class IndexController extends Controller
             $products = $products->whereIn('cat_id', $cat_ids);
         }
 
+        //Brand Filter
+        if (!empty($_GET['brand'])) {
+            $slugs = explode(',', $_GET['brand']);
+            $brand_ids = Brand::select('id')->whereIn('slug', $slugs)->pluck('id')->toArray();
+            $products = $products->whereIn('brand_id', $brand_ids);
+        }
+
+        //Size Filter
+        if (!empty($_GET['size'])) {
+            $sizes = explode(',', $_GET['size']);
+            $products = $products->whereIn('size', $sizes);
+        }
+
+
         if (!empty($_GET['sortBy'])) {
             if ($_GET['sortBy'] == 'priceAsc') {
                 $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'ASC');
@@ -64,15 +79,14 @@ class IndexController extends Controller
             $price[1] = ceil($price[1]);
 
             $products = $products->whereBetween('offer_price', $price)->where('status', 'active')->paginate(12);
-        }
-        else {
+        } else {
             $products = $products->where('status', 'active')->paginate(12);
         }
 
 
-
+        $brands = Brand::where('status', 'active')->orderBy('title', 'ASC')->with('products')->get();
         $cats = Category::where(['status' => 'active', 'is_parent' => 1])->with('products')->orderBy('title', 'ASC')->get();
-        return view('frontend.pages.shop', compact('products', 'cats'));
+        return view('frontend.pages.shop', compact('products', 'cats', 'brands'));
     }
 
     public function shopFilter(Request $request)
@@ -100,11 +114,36 @@ class IndexController extends Controller
 
         //Price Filter
         $price_range_Url = "";
-        if(!empty($data['price_range'])){
-            $price_range_Url .= '&price='.$data['price_range'];
+        if (!empty($data['price_range'])) {
+            $price_range_Url .= '&price=' . $data['price_range'];
         }
 
-        return \redirect()->route('shop', $catUrl.$sortByUrl.$price_range_Url);
+        //Brand Filter
+        $brandUrl = "";
+        if (!empty($data['brand'])) {
+            foreach ($data['brand'] as $brand) {
+                if (empty($brandUrl)) {
+                    $brandUrl .= '&brand=' . $brand;
+                } else {
+                    $brandUrl .= ',' . $brand;
+                }
+            }
+        }
+
+        //Size Filter
+        $sizeUrl = "";
+        if (!empty($data['size'])) {
+            foreach ($data['size'] as $size) {
+                if (empty($sizeUrl)) {
+                    $sizeUrl .= '&size=' . $size;
+                } else {
+                    $sizeUrl .= ',' . $size;
+                }
+            }
+        }
+
+
+        return \redirect()->route('shop', $catUrl . $sortByUrl . $price_range_Url . $brandUrl . $sizeUrl);
     }
 
     public function productCategory(Request $request, $slug)

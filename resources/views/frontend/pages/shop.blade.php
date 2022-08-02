@@ -57,99 +57,77 @@
                                 $price = explode('-',$_GET['price'])
                             @endphp
                         @endif
-                        <div id="slider-range" slider-min="{{ Helper::minPrice() }}" slider-max="{{ Helper::maxPrice() }}"></div>
+                        <div id="slider-range" slider-min="{{ Helper::minPrice() }}"
+                             slider-max="{{ Helper::maxPrice() }}"></div>
                         <div class="mt-2">
                             <label for="amount">Price range:</label>
-                            <input type="text" id="amount" name="range" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                            <input type="hidden" id="amount_r" value="@if(!empty($_GET['price'])){{ $_GET['price'] }}@endif" slider-min="@if(!empty($_GET['price'])){{ $price[0] }}@else {{ Helper::minPrice() }} @endif" slider-max="@if(!empty($_GET['price'])){{ $price[1] }} @else {{ Helper::maxPrice() }}@endif" name="price_range">
+                            <input type="text" id="amount" name="range" readonly
+                                   style="border:0; color:#f6931f; font-weight:bold;">
+                            <input type="hidden" id="amount_r"
+                                   value="@if(!empty($_GET['price'])){{ $_GET['price'] }}@endif"
+                                   slider-min="@if(!empty($_GET['price'])){{ $price[0] }}@else {{ Helper::minPrice() }} @endif"
+                                   slider-max="@if(!empty($_GET['price'])){{ $price[1] }} @else {{ Helper::maxPrice() }}@endif"
+                                   name="price_range">
                             <button type="submit" class="float-right btn btn-sm btn-primary">Filter</button>
                         </div>
                     </div>
-                    <!-- Color Start -->
-                    <div class="border-bottom mb-4 pb-4">
-                        <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                        <form>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" checked id="color-all">
-                                <label class="custom-control-label" for="price-all">All Color</label>
-                                <span class="badge border font-weight-normal">1000</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="color-1">
-                                <label class="custom-control-label" for="color-1">Black</label>
-                                <span class="badge border font-weight-normal">150</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="color-2">
-                                <label class="custom-control-label" for="color-2">White</label>
-                                <span class="badge border font-weight-normal">295</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="color-3">
-                                <label class="custom-control-label" for="color-3">Red</label>
-                                <span class="badge border font-weight-normal">246</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="color-4">
-                                <label class="custom-control-label" for="color-4">Blue</label>
-                                <span class="badge border font-weight-normal">145</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                                <input type="checkbox" class="custom-control-input" id="color-5">
-                                <label class="custom-control-label" for="color-5">Green</label>
-                                <span class="badge border font-weight-normal">168</span>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Color End -->
 
-                    <!-- Size Start -->
+
+                @if(count($brands)>0)
+                    <!-- Brands Start -->
+                        <div class="border-bottom mb-5 pb-4">
+                            <h5 class="font-weight-semi-bold mb-4">Filter by brands</h5>
+                            @if(!empty($_GET['brand']))
+                                @php
+                                    $filter_brands = explode(',',$_GET['brand'])
+                                @endphp
+                            @endif
+                            @foreach($brands as  $brand)
+                            <div
+                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" @if(!empty($filter_brands) && in_array($brand->slug,$filter_brands)) checked
+                                       @endif onchange="this.form.submit();" name="brand[]" value="{{ $brand->slug }}" class="custom-control-input"  id="{{ $brand->slug }}">
+                                <label class="custom-control-label"  for="{{ $brand->slug }}">{{ $brand->title }}</label>
+                                <span class="badge border font-weight-normal">{{ count($brand->products) }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                        <!-- Brands End -->
+                @endif
+
+
+                <!-- Size Start -->
                     <div class="mb-5">
                         <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
-                        <form>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" checked id="size-all">
-                                <label class="custom-control-label" for="size-all">All Size</label>
-                                <span class="badge border font-weight-normal">1000</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="size-1">
-                                <label class="custom-control-label" for="size-1">XS</label>
-                                <span class="badge border font-weight-normal">150</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="size-2">
-                                <label class="custom-control-label" for="size-2">S</label>
-                                <span class="badge border font-weight-normal">295</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="size-3">
-                                <label class="custom-control-label" for="size-3">M</label>
-                                <span class="badge border font-weight-normal">246</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="size-4">
-                                <label class="custom-control-label" for="size-4">L</label>
-                                <span class="badge border font-weight-normal">145</span>
-                            </div>
-                            <div
-                                class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                                <input type="checkbox" class="custom-control-input" id="size-5">
-                                <label class="custom-control-label" for="size-5">XL</label>
-                                <span class="badge border font-weight-normal">168</span>
-                            </div>
-                        </form>
+                        @if(!empty($_GET['size']))
+                            @php
+                                $filter_sizes = explode(',',$_GET['size'])
+                            @endphp
+                        @endif
+                        <div
+                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" @if(!empty($_GET['size']) && in_array('S',$filter_sizes)) checked @endif name="size[]" value="S" id="sizes" onchange="this.form.submit();">
+                            <label class="custom-control-label" for="sizes">Small</label>
+                            <span class="badge border font-weight-normal">{{ \App\Models\Product::where(['status'=>'active','size'=>'S'])->count() }}</span>
+                        </div>
+                        <div
+                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" @if(!empty($_GET['size']) && in_array('M',$filter_sizes)) checked @endif name="size[]" value="M" id="sizem" onchange="this.form.submit();">
+                            <label class="custom-control-label" for="sizem">Medium</label>
+                            <span class="badge border font-weight-normal">{{ \App\Models\Product::where(['status'=>'active','size'=>'M'])->count() }}</span>
+                        </div>
+                        <div
+                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3" >
+                            <input type="checkbox" class="custom-control-input"  @if(!empty($_GET['size']) && in_array('L',$filter_sizes)) checked @endif name="size[]" value="L" id="sizel" onchange="this.form.submit();">
+                            <label class="custom-control-label" for="sizel">Large</label>
+                            <span class="badge border font-weight-normal">{{ \App\Models\Product::where(['status'=>'active','size'=>'L'])->count() }}</span>
+                        </div>
+                        <div
+                            class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" @if(!empty($_GET['size']) && in_array('XL',$filter_sizes)) checked @endif name="size[]" value="XL" id="sizexl" onchange="this.form.submit();">
+                            <label class="custom-control-label" for="sizexl">Extra Large</label>
+                            <span class="badge border font-weight-normal">{{ \App\Models\Product::where(['status'=>'active','size'=>'XL'])->count() }}</span>
+                        </div>
                     </div>
                     <!-- Size End -->
                 </div>
@@ -386,7 +364,7 @@
                     $("#amount").val("$" + ui.values[0] + " - " + "$" + ui.values[1]);
                     $("#amount").attr("slider-min", ui.values[0]);
                     $("#amount").attr("slider-max", ui.values[1]);
-                    $("#amount_r").val(ui.values[0] + "-"+ ui.values[1]);
+                    $("#amount_r").val(ui.values[0] + "-" + ui.values[1]);
                     $("#amount_r").attr("slider-min", ui.values[0]);
                     $("#amount_r").attr("slider-max", ui.values[1]);
                 }

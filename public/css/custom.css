@@ -12,6 +12,7 @@ tbody tr:hover > td{
     margin-left: -20px;
     background: #D19C97 !important;
     text-transform: uppercase;
+    border-radius: 0 !important;
     border-color: #D19C97 !important;
 }
 .content-wrapper .badge-secondary{

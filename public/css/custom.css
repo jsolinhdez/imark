@@ -9,6 +9,7 @@ tbody tr:hover > td{
     color: #ffffff !important;
     padding: 8px;
     z-index: 1;
+    margin-left: -20px;
     background: #D19C97 !important;
     text-transform: uppercase;
     border-color: #D19C97 !important;

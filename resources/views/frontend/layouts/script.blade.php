@@ -29,6 +29,7 @@
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
+
 <!--animatet-->
 <script src="{{ asset('frontend/animatet/js/main.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

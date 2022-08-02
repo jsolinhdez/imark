@@ -17,6 +17,7 @@
 
 <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
+<link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.css')}}">
 <!-- adminlte -->
 
 <!-- Libraries Stylesheet -->

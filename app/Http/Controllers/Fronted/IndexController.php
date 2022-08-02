@@ -39,27 +39,38 @@ class IndexController extends Controller
 
         if (!empty($_GET['sortBy'])) {
             if ($_GET['sortBy'] == 'priceAsc') {
-                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'ASC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'ASC');
             }
             if ($_GET['sortBy'] == 'priceDesc') {
-                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'DESC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('offer_price', 'DESC');
             }
             if ($_GET['sortBy'] == 'titleAsc') {
-                $products = $products->where(['status' => 'active'])->orderBy('title', 'ASC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('title', 'ASC');
             }
             if ($_GET['sortBy'] == 'titleDesc') {
-                $products = $products->where(['status' => 'active'])->orderBy('title', 'DESC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('title', 'DESC');
             }
             if ($_GET['sortBy'] == 'discountAsc') {
-                $products = $products->where(['status' => 'active'])->orderBy('price', 'ASC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('price', 'ASC');
             }
             if ($_GET['sortBy'] == 'discountDesc') {
-                $products = $products->where(['status' => 'active'])->orderBy('price', 'DESC')->paginate(12);
+                $products = $products->where(['status' => 'active'])->orderBy('price', 'DESC');
             }
+        }
+
+        if (!empty($_GET['price'])) {
+            $price = explode('-', $_GET['price']);
+            $price[0] = floor($price[0]);
+            $price[1] = ceil($price[1]);
+
+            $products = $products->whereBetween('offer_price', $price)->where('status', 'active')->paginate(12);
         }
         else {
             $products = $products->where('status', 'active')->paginate(12);
         }
+
+
+
         $cats = Category::where(['status' => 'active', 'is_parent' => 1])->with('products')->orderBy('title', 'ASC')->get();
         return view('frontend.pages.shop', compact('products', 'cats'));
     }
@@ -87,7 +98,13 @@ class IndexController extends Controller
             $sortByUrl .= '&sortBy=' . $data['sortBy'];
         }
 
-        return \redirect()->route('shop', $catUrl . $sortByUrl);
+        //Price Filter
+        $price_range_Url = "";
+        if(!empty($data['price_range'])){
+            $price_range_Url .= '&price='.$data['price_range'];
+        }
+
+        return \redirect()->route('shop', $catUrl.$sortByUrl.$price_range_Url);
     }
 
     public function productCategory(Request $request, $slug)

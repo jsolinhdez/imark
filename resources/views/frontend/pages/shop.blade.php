@@ -7,7 +7,7 @@
     background-size: cover;">
         <div class="d-flex flex-column align-items-center justify-content-end pb-4" style="min-height: 380px">
             <div class="d-inline-flex">
-                <h3 class="m-0 "><a  href="{{ route('home') }}" style="color: #121862">Home</a></h3>
+                <h3 class="m-0 "><a href="{{ route('home') }}" style="color: #121862">Home</a></h3>
                 <h3 class="m-0 px-2">-</h3>
                 <h3 class="m-0">Shop</h3>
             </div>
@@ -48,14 +48,24 @@
 
                         </div>
                         <!-- Category End -->
-                @endif
-
-                    <div class="bd-example border-bottom mb-4 pb-4">
+                    @endif
+                    <div class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Filter by Price</h5>
-                        <input type="range" class="form-range" min="{{ Helper::minPrice() }}" max="{{ Helper::maxPrice() }}" step="1" id="customRange3">
-                        <label for="customRange3" class="form-label" data-max="1500" data-min="1" data-unit="$">Example range</label>
+
+                        @if(!empty($_GET['price']))
+                            @php
+                                $price = explode('-',$_GET['price'])
+                            @endphp
+                        @endif
+                        <div id="slider-range" slider-min="{{ Helper::minPrice() }}" slider-max="{{ Helper::maxPrice() }}"></div>
+                        <div class="mt-2">
+                            <label for="amount">Price range:</label>
+                            <input type="text" id="amount" name="range" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            <input type="hidden" id="amount_r" value="@if(!empty($_GET['price'])){{ $_GET['price'] }}@endif" slider-min="@if(!empty($_GET['price'])){{ $price[0] }}@else {{ Helper::minPrice() }} @endif" slider-max="@if(!empty($_GET['price'])){{ $price[1] }} @else {{ Helper::maxPrice() }}@endif" name="price_range">
+                            <button type="submit" class="float-right btn btn-sm btn-primary">Filter</button>
+                        </div>
                     </div>
-                <!-- Color Start -->
+                    <!-- Color Start -->
                     <div class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
                         <form>
@@ -161,26 +171,32 @@
                                 </div>
                                 <div class="dropdown ml-4">
                                     <select name="sortBy" onchange="this.form.submit();">
-                                        <option value="" >Default Sort</option>
-                                        <option value="priceAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceAsc') selected @endif>
+                                        <option value="">Default Sort</option>
+                                        <option value="priceAsc"
+                                                @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceAsc') selected @endif>
                                             Price
                                             - Lower to Higher
                                         </option>
-                                        <option value="priceDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceDesc') selected @endif>
+                                        <option value="priceDesc"
+                                                @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceDesc') selected @endif>
                                             Price - Higher to Lower
                                         </option>
-                                        <option value="titleAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleAsc') selected @endif>
+                                        <option value="titleAsc"
+                                                @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleAsc') selected @endif>
                                             Alphabetical Ascending
                                         </option>
-                                        <option value="titleDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleDesc') selected @endif>
+                                        <option value="titleDesc"
+                                                @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleDesc') selected @endif>
                                             Alphabetical Descending
                                         </option>
                                         <option
-                                            value="discountAsc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountAsc') selected @endif>
+                                            value="discountAsc"
+                                            @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountAsc') selected @endif>
                                             Discount - Lower to Higher
                                         </option>
                                         <option
-                                            value="discountDesc" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountDesc') selected @endif>
+                                            value="discountDesc"
+                                            @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='discountDesc') selected @endif>
                                             Discount - Higher to Lower
                                         </option>
 
@@ -300,7 +316,6 @@
     {{--    END Add to Cart--}}
 
     {{--    Add to Wishlist--}}
-
     <script>
         $(document).on('click', '.add_to_wishlist', function (e) {
             e.preventDefault();
@@ -358,12 +373,28 @@
         });
     </script>
     {{--    ENDAdd to Wishlist--}}
+
+
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: parseInt($("#slider-range").attr("slider-min")),
+                max: parseInt($("#slider-range").attr("slider-max")),
+                values: [parseInt($("#amount_r").attr("slider-min")), parseInt($("#amount_r").attr("slider-max"))],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - " + "$" + ui.values[1]);
+                    $("#amount").attr("slider-min", ui.values[0]);
+                    $("#amount").attr("slider-max", ui.values[1]);
+                    $("#amount_r").val(ui.values[0] + "-"+ ui.values[1]);
+                    $("#amount_r").attr("slider-min", ui.values[0]);
+                    $("#amount_r").attr("slider-max", ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - " + "$" + $("#slider-range").slider("values", 1));
+        });
+    </script>
+    <script src="{{ asset('jquery-ui/jquery-ui.js') }}"></script>
 @endsection
 
-
-
-@section('scripts')
-
-    <script src="https://widgets.widg.io/widgio-elements.js" defer></script>
-@endsection
 

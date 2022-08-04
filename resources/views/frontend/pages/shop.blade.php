@@ -372,7 +372,6 @@
             $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - " + "$" + $("#slider-range").slider("values", 1));
         });
     </script>
-    <script src="{{ asset('jquery-ui/jquery-ui.js') }}"></script>
 @endsection
 
 

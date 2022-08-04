@@ -40,7 +40,7 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
-
+<script src="{{ asset('jquery-ui/jquery-ui.js') }}"></script>
 
 
 @yield('scripts')

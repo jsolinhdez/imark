@@ -146,6 +146,35 @@ class IndexController extends Controller
         return \redirect()->route('shop', $catUrl . $sortByUrl . $price_range_Url . $brandUrl . $sizeUrl);
     }
 
+    //Autosearch
+    public function autoSearch(Request $request){
+        $query = $request->get('term','');
+        $products = Product::where('title','LIKE','%'.$query.'%')->get();
+
+        $data = array();
+        foreach ($products as $product){
+            $data[] = array('value'=>$product->title,'id'=>$product->id);
+        }
+        if (count($data)){
+            return $data;
+        }
+        else{
+            return ['value'=>'No search suggestion','id'=>''];
+        }
+    }
+
+    //Search Product
+    public function search(Request $request){
+        $query = $request->input('query');
+        $products = Product::where('title','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(12) ;
+        $brands = Brand::where('status', 'active')->orderBy('title', 'ASC')->with('products')->get();
+        $cats = Category::where(['status' => 'active', 'is_parent' => 1])->with('products')->orderBy('title', 'ASC')->get();
+
+        return view('frontend.pages.shop',compact('products','cats','brands'));
+
+    }
+
+
     public function productCategory(Request $request, $slug)
     {
         $categories = Category::with('products')->where('slug', $slug)->first();

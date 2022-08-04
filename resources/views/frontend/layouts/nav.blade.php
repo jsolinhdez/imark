@@ -38,13 +38,11 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            <form action="">
+            <form action="{{ route('search') }}" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
+                    <input type="search" id="search_text" name="query" class="form-control" placeholder="Search for products">
                     <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
+                            <button type="submit" class="input-group-text bg-transparent text-primary"> <i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </form>

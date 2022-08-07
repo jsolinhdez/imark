@@ -79,6 +79,11 @@
                                                    data-bs-target="#productID{{$item->id}}"
                                                    title="view" data-popper-placement="bottom"><i
                                                         class=" icon-eye"></i></a>
+                                                <a href="{{ route('product.show',$item->id) }}"
+                                                   class="btn ml-2 float-left btn-sm btn-outline-secondary "
+                                                   data-toggle="tooltip"
+                                                   title="add attribute" data-popper-placement="bottom"><i
+                                                        class=" icon-plus"></i></a>
                                                 <a href="{{ route('product.edit', $item->id) }}"
                                                    class="btn ml-2 float-left btn-sm btn-outline-warning"
                                                    data-toggle="tooltip"

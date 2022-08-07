@@ -166,7 +166,9 @@ class IndexController extends Controller
     //Search Product
     public function search(Request $request){
         $query = $request->input('query');
-        $products = Product::where('title','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(12) ;
+
+        $products = Product::where('title','LIKE','%'.$query.'%')->where('status','active')->orderBy('id','DESC')->paginate(12) ;
+
         $brands = Brand::where('status', 'active')->orderBy('title', 'ASC')->with('products')->get();
         $cats = Category::where(['status' => 'active', 'is_parent' => 1])->with('products')->orderBy('title', 'ASC')->get();
 

@@ -26,8 +26,10 @@ Route::get('/',[\App\Http\Controllers\Fronted\IndexController::class,'home'])->n
 
 //Product category
 Route::get('product-category/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productCategory'])->name('product.category');
+
 //Product detail
 Route::get('product-detail/{slug}/',[\App\Http\Controllers\Fronted\IndexController::class,'productDetail'])->name('product.detail');
+
 //Cart Section
 Route::get('cart',[\App\Http\Controllers\Frontend\CartController::class,'cart'])->name('cart');
 Route::post('cart/store',[\App\Http\Controllers\Frontend\CartController::class,'cartStore'])->name('cart.store');
@@ -85,9 +87,15 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     //Brand Section
     Route::resource('/brand', \App\Http\Controllers\BrandController::class);
     Route::post('brand_status',[\App\Http\Controllers\BrandController::class,'brandStatus'])->name('brand.status');
+
     //Product Section
     Route::resource('/product', \App\Http\Controllers\ProductController::class);
     Route::post('product_status',[\App\Http\Controllers\ProductController::class,'productStatus'])->name('product.status');
+
+    //Product Attribute Section
+    Route::post('product-attribute/{id}',[\App\Http\Controllers\ProductController::class,'addProductAttribute'])->name('product.attribute');
+    Route::delete('product-attribute-delete/{id}',[\App\Http\Controllers\ProductController::class,'addProductAttributeDelete'])->name('product.attribute.destroy');
+
     //User Section
     Route::resource('/user', \App\Http\Controllers\UserController::class);
     Route::post('user_status',[\App\Http\Controllers\UserController::class,'userStatus'])->name('user.status');

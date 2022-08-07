@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Brand;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class ProductController extends Controller
 {
@@ -90,8 +92,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        $productattr = ProductAttribute::where('product_id',$id)->orderBy('id','DESC')->get();
         if ($product) {
-            return view('backend.product.view', compact(['product']));
+            return view('backend.product.product-attributte', compact(['product','productattr']));
         } else {
             return back()->with('error', 'Product no found');
         }
@@ -173,4 +176,40 @@ class ProductController extends Controller
             return back()->with('eror', 'Category not found');
         }
     }
+    public function addProductAttributeDelete($id)
+    {
+        $productattr  = ProductAttribute::find($id);
+        if ($productattr) {
+            $status = $productattr->delete();
+            if ($status) {
+                return redirect()->back()->with('success', 'Product attribute delete successfully');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
+        } else {
+            return back()->with('eror', 'Category not found');
+        }
+    }
+
+    public function addProductAttribute(Request $request,$id){
+
+        $data = $request->all();
+
+        foreach ($data['original_price'] as $key=>$val){
+            if (!empty($val)){
+                $attribute = new ProductAttribute();
+                $attribute['original_price'] = $val;
+                $attribute['offer_price'] = $data['offer_price'][$key];
+                $attribute['product_id'] = $id;
+                $attribute['size'] = $data['size'][$key];
+                $attribute['stock'] = $data['stock'][$key];
+
+                $attribute->save();
+            }
+        }
+
+        return redirect()->back()->with('success','Product attribute successfully added');
+    }
+
+
 }

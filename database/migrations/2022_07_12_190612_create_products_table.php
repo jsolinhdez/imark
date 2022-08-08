@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->mediumText('summary');
             $table->longText('description')->nullable();
+            $table->longText('additional_info')->nullable();
+            $table->longText('return_cancellation')->nullable();
             $table->integer('stock')->default(0);
 
             $table->unsignedBigInteger('brand_id');

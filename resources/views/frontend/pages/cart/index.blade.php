@@ -95,6 +95,7 @@
 
 
     </script>
+
     <script>
         $(document).on('click', '.qty-text', function () {
             var id = $(this).data('id');

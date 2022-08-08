@@ -91,9 +91,9 @@
                                             </div>
                                             <!-- /.card-header -->
                                             <div class="card-body">
-                                          <textarea rows="3" name="description" id="description"
+                                          <textarea rows="3" name="description"
                                                     placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
-                                                    class="form-control">{{ $product->description }}
+                                                    class="form-control description">{{ $product->description }}
 
                                           </textarea>
                                             </div>
@@ -164,7 +164,40 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Additional Info
+                                                </h3>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                          <textarea rows="3" name="additional_info"
+                                                    placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
+                                                    class="form-control description">{{ $product->additional_info }}
 
+                                          </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="card card-outline card-info">
+                                            <div class="card-header">
+                                                <h3 class="card-title">
+                                                    Return Cancellation
+                                                </h3>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                          <textarea rows="3" name="return_description"
+                                                    placeholder="Escriba <em>algun</em> <u>texto</u> <strong>aquí</strong>"
+                                                    class="form-control description">{{ $product->return_cancellation }}
+
+                                          </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <!-- /.card-body -->

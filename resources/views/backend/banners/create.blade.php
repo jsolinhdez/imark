@@ -90,7 +90,6 @@
                                     <div class="col-md-6 form-group">
                                         <label for="status">Status<span class="text-danger"> *</span></label>
                                         <select name="status" class="custom-select rounded-0">
-                                            <option value="">--Chosse status--</option>
                                             <option value="active" {{ old('status'== 'active' ? 'selected' : '') }}>
                                                 Activo
                                             </option>

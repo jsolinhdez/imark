@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('sellers', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
             $table->string('username')->unique()->nullable();
@@ -23,18 +23,6 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
-
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
-            $table->integer('postcode')->nullable();
-            $table->string('state')->nullable();
-            $table->string('address')->nullable();
-            $table->string('scountry')->nullable();
-            $table->string('scity')->nullable();
-            $table->integer('spostcode')->nullable();
-            $table->string('sstate')->nullable();
-            $table->string('saddress')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -46,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sellers');
     }
 };

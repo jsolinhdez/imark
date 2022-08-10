@@ -15,12 +15,6 @@
 
 
 
-<div class="row">
-    <div class="col-md-12 text-center notification-div">
-        @include('backend.layouts.notifications')
-    </div>
-</div>
-
 @yield('content')
 <!-- Vendor End -->
 

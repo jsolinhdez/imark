@@ -15,32 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        //Customer
         DB::table('users')->insert([
-//            Admin
-            [
-                'full_name' => 'Solin Admin',
-                'username' => 'Admin',
-                'email' => 'admin@gmail.com',
-                'password' => bcrypt('1111'),
-                'role' => 'admin',
-                'status' => 'active',
-            ],
-//            Vendor
-            [
-                'full_name' => 'Solin Seller',
-                'username' => 'Seller',
-                'email' => 'seller@gmail.com',
-                'password' => bcrypt('1111'),
-                'role' => 'seller',
-                'status' => 'active',
-            ],
-//            Customer
             [
                 'full_name' => 'Solin Customer',
                 'username' => 'Customer',
                 'email' => 'customer@gmail.com',
                 'password' => bcrypt('1111'),
-                'role' => 'customer',
+                'status' => 'active',
+            ]
+        ]);
+        //Admin
+        DB::table('admins')->insert([
+            [
+                'full_name' => 'Solin Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('1111'),
                 'status' => 'active',
             ]
         ]);

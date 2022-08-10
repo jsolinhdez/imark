@@ -17,11 +17,7 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('backend/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 
-<script>
-    setTimeout(function () {
-        $('#alert').slideUp();
-    }, 2000);
-</script>
+
 <!-- sweetalert2-->
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 <script src="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -73,3 +69,8 @@
 
 
 @yield('scripts')
+<script>
+    setTimeout(function () {
+        $('#alert').slideUp();
+    }, 2000);
+</script>

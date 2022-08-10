@@ -1,7 +1,8 @@
 <table class="table table-bordered text-center mb-0">
     <thead class="bg-secondary text-dark">
     <tr>
-        <th>Products</th>
+        <th>Photo</th>
+        <th>Product</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
@@ -18,8 +19,9 @@
                 $phosi = explode('com',$photos[0]);
             @endphp
             <td class="align-middle"><img src="{{ $phosi[1] }}" alt=""
-                                          style="width: 50px;"> {{ $item->model->title }}
+                                          style="width: 50px;">
             </td>
+            <td class="align-middle">{{ $item->model->title }}</td>
             <td class="align-middle">$ {{ number_format($item->price,2) }}</td>
             <td class="align-middle" style="width: 20px">
                 <div class="input-group-btn quantity" id="cart_counter">

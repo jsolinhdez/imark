@@ -151,10 +151,21 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                        <i class="icon-notebook nav-icon"></i>
-                        <p>Order Management </p>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon-notebook"></i>
+                        <p>
+                            Order Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('shipping.index') }}" class="nav-link">
+                                <i class="icon-eye nav-icon"></i>
+                                <p>All Orders</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="pages/layout/fixed-topnav.html" class="nav-link">

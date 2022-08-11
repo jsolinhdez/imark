@@ -85,3 +85,18 @@ a.product-title{
 .cart-list ul.dropdown-menu.show{
     left: -50px !important;
 }
+
+.content-wrapper .badge-info {
+    color: #17a2b8;
+    background-color: transparent;
+    border: 1px solid #17a2b8;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.content-wrapper .badge-danger {
+    color: #dc3545;
+    background-color: transparent;
+    border: 1px solid #dc3545;
+    font-size: 15px;
+    text-transform: uppercase;
+}

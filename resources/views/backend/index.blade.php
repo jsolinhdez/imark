@@ -115,83 +115,57 @@
                                     <table class="table m-0">
                                         <thead>
                                         <tr>
+                                            <th>S. N.</th>
                                             <th>Order ID</th>
-                                            <th>Item</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Payment Method</th>
+                                            <th>Payment Status</th>
+                                            <th>Total</th>
                                             <th>Status</th>
-                                            <th>Popularity</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                    90,80,90,-70,61,-83,63
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                    90,80,-90,70,61,-83,68
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                    90,-80,90,70,-61,83,63
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-info">Processing</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">
-                                                    90,80,-90,70,-61,83,63
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">
-                                                    90,80,-90,70,61,-83,68
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                    90,-80,90,70,-61,83,63
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                    90,80,90,-70,61,-83,63
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @forelse($orders as $item)
+                                            @php
+                                                $number = explode('-',$item->order_number)
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $number[1] }}</td>
+                                                <td>{{ $item->first_name }} {{ $item->last_name }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->payment_method == "cod" ? "Cash on Delivery" : $item->payment_method}}</td>
+                                                <td>{{ ucfirst($item->payment_status)}}</td>
+                                                <td>{{ number_format($item->total_amount,2)}}</td>
+                                                <td><span class="badge @if($item->condition=='pending')badge-info
+                                                                             @elseif($item->condition=='proccessing')badge-warning
+                                                                             @elseif($item->condition=='delivered')badge-success
+                                                                             @elseif($item->condition=='cancelled')badge-danger
+                                                @endif">{{ $item->condition }}</span> </td>
+                                                <td>
+                                                    <a href="{{ route('coupon.edit', $item->id) }}"
+                                                       class="btn float-left btn-sm btn-outline-secondary"
+                                                       data-toggle="tooltip"
+                                                       title="View" data-popper-placement="bottom"><i
+                                                            class=" icon-eye"></i></a>
+                                                    <form class="float-left ml-2"
+                                                          action="{{ route('coupon.destroy',$item->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <a href="" class="dltBtn btn btn-sm btn-outline-danger"
+                                                           data-toggle="tooltip" data-id="{{ $item->id }}"
+                                                           title="Delete" data-popper-placement="bottom"><i
+                                                                class=" icon-trash"></i></a>
+                                                    </form>
+
+
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr><h4>No Orders</h4></tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>

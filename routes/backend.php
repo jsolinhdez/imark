@@ -46,6 +46,9 @@ Route::group(['prefix'=>'admin','middleware'=>['admin']],function (){
     Route::resource('/shipping', \App\Http\Controllers\ShippingController::class);
     Route::post('shipping_status',[\App\Http\Controllers\ShippingController::class,'shippingStatus'])->name('shipping.status');
 
+    //Order Section
+    Route::resource('order', \App\Http\Controllers\OrderController::class);
+
 });
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth:admin']], function () {

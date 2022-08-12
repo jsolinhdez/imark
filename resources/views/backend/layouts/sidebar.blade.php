@@ -160,7 +160,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('shipping.index') }}" class="nav-link">
+                            <a href="{{ route('order.index') }}" class="nav-link">
                                 <i class="icon-eye nav-icon"></i>
                                 <p>All Orders</p>
                             </a>

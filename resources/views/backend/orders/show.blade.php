@@ -17,18 +17,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class=" card-title">All Orders</h3>
-                                <p class="float-right">Total Orders:
-                                    <strong>{{ \App\Models\Order::count() }}</strong></p>
 
                             </div>
 
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table class="table table-bordered ">
                                     <thead>
                                     <tr>
-                                        <th>S. N.</th>
                                         <th>Order ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
@@ -40,35 +36,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse($orders as $item)
                                         @php
-                                            $number = explode('-',$item->order_number)
+                                            $number = explode('-',$order->order_number)
                                         @endphp
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $number[1] }}</td>
-                                            <td>{{ $item->first_name }} {{ $item->last_name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->payment_method == "cod" ? "Cash on Delivery" : $item->payment_method}}</td>
-                                            <td>{{ ucfirst($item->payment_status)}}</td>
-                                            <td>{{ number_format($item->total_amount,2)}}</td>
-                                            <td><span class="badge @if($item->condition=='pending')badge-info
-                                                                             @elseif($item->condition=='proccessing')badge-warning
-                                                                             @elseif($item->condition=='delivered')badge-success
-                                                                             @elseif($item->condition=='cancelled')badge-danger
-                                                @endif">{{ $item->condition }}</span> </td>
+                                            <td>{{ $order->first_name }} {{ $order->last_name }}</td>
+                                            <td>{{ $order->email }}</td>
+                                            <td>{{ $order->payment_method == "cod" ? "Cash on Delivery" : $order->payment_method}}</td>
+                                            <td>{{ ucfirst($order->payment_status)}}</td>
+                                            <td>{{ number_format($order->total_amount,2)}}</td>
+                                            <td><span class="badge @if($order->condition=='pending')badge-info
+                                                                             @elseif($order->condition=='proccessing')badge-warning
+                                                                             @elseif($order->condition=='delivered')badge-success
+                                                                             @elseif($order->condition=='cancelled')badge-danger
+                                                @endif">{{ $order->condition }}</span> </td>
                                             <td>
-                                                <a href="{{ route('order.show', $item->id) }}"
+                                                <a href="{{ route('order.show', $order->id) }}"
                                                    class="btn float-left btn-sm btn-outline-secondary"
                                                    data-toggle="tooltip"
                                                    title="View" data-popper-placement="bottom"><i
                                                         class=" icon-eye"></i></a>
                                                 <form class="float-left ml-2"
-                                                      action="{{ route('order.destroy',$item->id) }}" method="post">
+                                                      action="{{ route('order.destroy',$order->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="" class="dltBtn btn btn-sm btn-outline-danger"
-                                                       data-toggle="tooltip" data-id="{{ $item->id }}"
+                                                       data-toggle="tooltip" data-id="{{ $order->id }}"
                                                        title="delete" data-popper-placement="bottom"><i
                                                             class=" icon-trash"></i></a>
                                                 </form>
@@ -76,9 +70,6 @@
 
                                             </td>
                                         </tr>
-                                    @empty
-                                        <tr><h4>No Orders</h4></tr>
-                                    @endforelse
                                     </tbody>
                                 </table>
 
@@ -173,6 +164,7 @@
 
     </script>
 @endsection
+
 
 
 
